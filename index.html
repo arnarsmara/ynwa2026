@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <title>Strákaferð til Liverpool</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+
+<div class="header-container">
+  <img src="https://homefinderuk.org/sites/default/files/2023-06/liverpool.jpg" alt="Liverpool">
+  <div class="header-overlay">
+    <h1>Liverpool 2026</h1>
+    <p>Dagar 12-16 mars • Liverpool vs Tottenham • The Cavern Club Tour • The Albert Docks • Eat and Drink</p>
+  </div>
+</div>
+
+<section class="counters">
+  <div class="counter beer">
+    <h2>🍺 Fyrsti bjór á flugvellinum eftir</h2>
+    <p id="beerCounter">Reikna...</p>
+  </div>
+
+  <div class="counter">
+    <h2>⚽ Liverpool - Tottenham</h2>
+    <p id="tripCounter">Reikna...</p>
+  </div>
+</section>
+
+<div class="tabs">
+  <input type="radio" name="tab" id="thu" checked>
+  <label for="thu" class="tab-buttons">Fimmtudagur - 12.mars.2026</label>
+
+  <input type="radio" name="tab" id="fri">
+  <label for="fri" class="tab-buttons">Föstudagur - 13.mars.2026</label>
+
+  <input type="radio" name="tab" id="sat">
+  <label for="sat" class="tab-buttons">Laugardagur - 14.mars.2026</label>
+
+  <input type="radio" name="tab" id="sun">
+  <label for="sun" class="tab-buttons">Sunnudagur - 15.mars.2026</label>
+
+  <input type="radio" name="tab" id="mon">
+  <label for="mon" class="tab-buttons">Mánudagur - 16.mars.2026</label>
+
+  <div class="tab-content">
+    <div class="content" id="thu-content">
+      <h2>🍺 Fimmtudagur – Komudagur</h2>
+      <p>Mæting á flugvöll kl 17:00</p>
+      <p>Flug til Manchester 18:50 - Easy Jet - Booking Ref: KBKGMCP</p>
+      <p>Check in á Hótel kl 22:30</p>
+      <p>Cavern Quarter í fyrsta Bjór, 5 mín ganga frá Hard Days Night Hotel</p>
+    </div>
+
+    <div class="content" id="fri-content">
+      <h2>🍺 Föstudagur – Pub crawl</h2>
+      <p>Ohannes Burger Liverpool &Town Uber&Deliveroo&Just Eat</p>
+      <p>Concert Square & Baltic Triangle</p>
+    </div>
+
+    <div class="content" id="sat-content">
+  <h2>Laugadagur - Do what you want</h2>
+  <p>Anfield Tour - </p>
+  <p>- Legends Q&A With Phil Thompson - kl 11:30 - £55</p>
+  <p>- Stadium Tour - kl 10 - 15 - £25</p>
+  <p>The Albert Docks</p>
+  <p>-Albert Dock is arguably the heart of Liverpool. Since its opening in 1846, the Albert Docks have undergone numerous transformations and developments to become what it is today. From it's role during WWII, up until its UNESCO World Heritage Site recognition in 2004, the docks are full of history. We were spoilt for choice for places to eat, drink, visit and stay in this area. Smuggler's Cove and Revolucion de Cuba are two great bars/restaurants worth checking out. Many of Liverpool's best museums and galleries are found in this area too, including the Tate, the International Slavery Museum and Museum of Liverpool.</p>
+</div>
+
+    <div class="content" id="sun-content">
+      <h2>🍷 Sunnudagur – Leikdagur</h2>
+      <p>Liverpool - Tottenham</p>
+      <p>- Kick off kl 15:00</p>
+      <p>- Mæting á The Sandon kl 13:00</p>
+    </div>
+
+    <div class="content" id="mon-content">
+      <h2>🍷 Mánudagur – Heimferð</h2>
+      <p>Flug heim 8:35 - Jet 2 - Booking Ref: 32KKBJ 🔴</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <button onclick="logout()">Logout</button>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
