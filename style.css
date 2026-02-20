@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fff;
 }
 
 /* ================= HEADER ================= */
@@ -50,18 +51,29 @@ body {
 
 .counter {
   flex: 1;
-  background: #e00b0b34;
   padding: 20px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* 🍺 Beer counter */
+.counter.beer {
+  background: linear-gradient(135deg, #f9c74f, #f9844a);
+  color: #3a2a00;
+}
+
+/* 🔴 Match counter */
+.counter.match {
+  background: linear-gradient(135deg, #c8102e, #8b0000);
+  color: #fff;
+}
+
 /* ================= TABS ================= */
 .tabs {
   width: 100%;
   display: flex;
-  justify-content: flex-end; /* ALVEG hægra megin */
+  justify-content: flex-end;
   gap: 10px;
   padding: 16px;
   box-sizing: border-box;
@@ -80,14 +92,14 @@ body {
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.25s ease;
 }
 
 .tab-buttons:hover {
   background: #e0e0e0;
 }
 
-/* ACTIVE TAB */
+/* ACTIVE TAB – Standard */
 #thu:checked + .tab-buttons,
 #fri:checked + .tab-buttons,
 #sat:checked + .tab-buttons,
@@ -95,7 +107,13 @@ body {
 #mon:checked + .tab-buttons,
 #flight:checked + .tab-buttons {
   background: #d32f2f;
-  color: white;
+  color: #fff;
+}
+
+/* ACTIVE TAB – Guinness */
+#guinness:checked + .tab-buttons {
+  background: #111;
+  color: #fff;
 }
 
 /* ================= TAB CONTENT ================= */
@@ -105,6 +123,7 @@ body {
   justify-content: center;
 }
 
+/* All content cards */
 .content {
   display: none;
   width: 100%;
@@ -116,16 +135,17 @@ body {
   border-radius: 14px;
   opacity: 0;
   transform: translateY(10px);
-  transition: 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* SHOW ACTIVE */
+/* Show active tab */
 #thu:checked ~ .tab-content #thu-content,
 #fri:checked ~ .tab-content #fri-content,
 #sat:checked ~ .tab-content #sat-content,
 #sun:checked ~ .tab-content #sun-content,
 #mon:checked ~ .tab-content #mon-content,
-#flight:checked ~ .tab-content #flight-content {
+#flight:checked ~ .tab-content #flight-content,
+#guinness:checked ~ .tab-content #guinness-content {
   display: block;
   opacity: 1;
   transform: translateY(0);
@@ -133,12 +153,33 @@ body {
 
 /* ================= PARAGRAPH CARDS ================= */
 .content p {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e6e6e6;
   padding: 10px 14px;
   margin: 10px 0;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ================= PUB LIST ================= */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pub-list a {
+  padding: 14px;
+  border-radius: 12px;
+  background: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+}
+
+.pub-list a:hover {
+  background: #eaeaea;
 }
 
 /* ================= FLIGHT INFO ================= */
@@ -150,15 +191,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   margin-top: 8px;
   flex-wrap: wrap;
-  gap: 10px;
 }
 
 .flight-row a {
+  font-size: 14px;
   text-decoration: none;
   color: #1565c0;
-  font-size: 14px;
   font-weight: 500;
 }
 
@@ -190,6 +231,7 @@ body {
 .flight-status.boarding {
   background: #fff8e1;
   color: #f57f17;
+  animation: pulse 2s infinite;
 }
 
 .flight-status.boarding .dot {
@@ -216,6 +258,31 @@ body {
   background: #555;
 }
 
+/* ================= GUINNESS ================= */
+#guinness-content {
+  background: #111;
+  color: #fff;
+  border-color: #000;
+}
+
+#guinness-content p {
+  background: #1b1b1b;
+  border-color: #333;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 127, 23, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(245, 127, 23, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 127, 23, 0);
+  }
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
@@ -230,16 +297,4 @@ body {
     padding: 18px;
   }
 
-}
-
-/* 🍺 Beer counter */
-.counter.beer {
-  background: linear-gradient(135deg, #f9c74f, #f9844a);
-  color: #3a2a00;
-}
-
-/* 🔴 Match counter (Liverpool red) */
-.counter.match {
-  background: linear-gradient(135deg, #c8102e, #8b0000);
-  color: white;
 }
