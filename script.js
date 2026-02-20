@@ -86,3 +86,11 @@ function logout() {
   localStorage.removeItem("loggedIn");
   window.location.href = "login.html";
 }
+
+// ===== FIX MOBILE GUINNESS TAB =====
+document.addEventListener("change", function (e) {
+  if (e.target.id === "guinness") {
+    document.getElementById("guinness-content").style.display = "block";
+    document.getElementById("guinness-content").style.opacity = "1";
+  }
+});
