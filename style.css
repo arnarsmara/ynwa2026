@@ -318,3 +318,20 @@ body {
   background: #222;
   border-color: #f9c74f;
 }
+
+/* ===== FIX MOBILE GUINNESS ===== */
+#guinness-content {
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+
+  .tab-content {
+    display: block; /* fjarlægir flex centering á mobile */
+  }
+
+  #guinness-content {
+    padding-bottom: 40px;
+  }
+
+}
