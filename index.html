@@ -34,6 +34,7 @@
 </section>
 
 <div class="tabs">
+
   <input type="radio" name="tab" id="thu" checked>
   <label for="thu" class="tab-buttons">Fim - 12.03</label>
 
@@ -49,103 +50,78 @@
   <input type="radio" name="tab" id="mon">
   <label for="mon" class="tab-buttons">Mán - 16.03</label>
 
+  <input type="radio" name="tab" id="flight">
+  <label for="flight" class="tab-buttons">✈️ Flug Info</label>
+
   <div class="tab-content">
 
     <!-- FIMMTUDAGUR -->
     <div class="content" id="thu-content">
       <h2>🍺 Fimmtudagur – Komudagur</h2>
-
       <p>17:00 – Mæting á flugvöll 🍻</p>
-
-      <p class="flight-card">
-  18:50 – Flug til Manchester ✈️<br>
-  <span class="flight-code">EasyJet</span>
-
-  <div class="flight-row">
-    <div class="flight-status" id="outbound-status">
-      <span class="dot"></span>
-      <span class="text">On time</span>
-    </div>
-
-    <a href="https://www.flightradar24.com/" target="_blank">
-      Skoða stöðu flugs
-    </a>
-  </div>
-</p>
-
-
+      <p>18:50 – Flug til Manchester ✈️</p>
       <p>22:30 – Check-in á Hard Days Night Hotel</p>
-      <p>Seint kvöld – Cavern Quarter</p>
     </div>
 
     <!-- FÖSTUDAGUR -->
     <div class="content" id="fri-content">
       <h2>🍺 Föstudagur – Borgardagur</h2>
-
       <p>10:15 – Anfield Tour ⚽</p>
       <p>Eftir hádegi – Albert Dock</p>
-      <p>Seinnipartur – Matur á Bold Street</p>
-      <p>Kvöld – Concert Square & Baltic Triangle</p>
     </div>
 
     <!-- LAUGARDAGUR -->
     <div class="content" id="sat-content">
       <h2>⚽ Laugardagur – Wigan</h2>
-
       <p>10:00 – Brekki ☕</p>
-      <p>10:30–13:00 – Frjáls tími</p>
-      <p>13:00 – Ferð til Wigan</p>
       <p>15:00 – Wigan vs Bradford City</p>
-      <p>17:30 – Til baka til Liverpool</p>
-      <p>20:00 – Flight Club Darts 🎯</p>
-
-      <h3>Eftir 22:00 – Pubbar</h3>
-
-      <div class="pub-list">
-        <a href="https://www.google.com/maps/dir/Hard+Days+Night+Hotel+Liverpool/Roxy+Ball+Room+Liverpool" target="_blank">
-          🍺 Roxy Ball Room <span>2 mín ganga</span>
-        </a>
-        <a href="https://www.google.com/maps/dir/Hard+Days+Night+Hotel+Liverpool/McCooley's+Concert+Square+Liverpool" target="_blank">
-          🍻 McCooley’s <span>3 mín ganga</span>
-        </a>
-        <a href="https://www.google.com/maps/dir/Hard+Days+Night+Hotel+Liverpool/Soho+Bar+Liverpool" target="_blank">
-          🍸 Soho Bar <span>2 mín ganga</span>
-        </a>
-      </div>
     </div>
 
     <!-- SUNNUDAGUR -->
     <div class="content" id="sun-content">
       <h2>🔴 Sunnudagur – Liverpool vs Tottenham</h2>
-
-      <p>Morgunn – Brekki ☕</p>
-      <p>13:00 – The Tin Pub 🍺</p>
-      <p>15:00 – Inn á Anfield</p>
       <p>16:30 – Kickoff ⚽</p>
-      <p>Eftir leik – Drykkir</p>
-      <p>Kvöldmatur – Steini sér um stað</p>
     </div>
 
     <!-- MÁNUDAGUR -->
     <div class="content" id="mon-content">
       <h2>✈️ Mánudagur – Heimferð</h2>
-
-      <p class="flight-card">
-  08:35 – Flug heim ✈️<br>
-  <span class="flight-code">Jet2</span>
-
-  <div class="flight-row">
-    <div class="flight-status" id="return-status">
-      <span class="dot"></span>
-      <span class="text">On time</span>
+      <p>08:35 – Flug heim</p>
     </div>
 
-    <a href="https://www.flightradar24.com/" target="_blank">
-      Skoða stöðu flugs
-    </a>
-  </div>
-</p>
+    <!-- FLUG INFO -->
+    <div class="content" id="flight-content">
+      <h2>✈️ Flugupplýsingar</h2>
 
+      <div class="flight-card">
+        <strong>Brottför</strong><br>
+        18:50 – Keflavík → Manchester
+        <div class="flight-row">
+          <div class="flight-status boarding">
+            <span class="dot"></span>
+            Boarding
+          </div>
+          <a href="https://www.flightradar24.com/" target="_blank">
+            Skoða stöðu flugs
+          </a>
+        </div>
+      </div>
+
+      <div class="flight-card">
+        <strong>Heimferð</strong><br>
+        08:35 – Manchester → Keflavík
+        <div class="flight-row">
+          <div class="flight-status">
+            <span class="dot"></span>
+            On time
+          </div>
+          <a href="https://www.flightradar24.com/" target="_blank">
+            Skoða stöðu flugs
+          </a>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </div>
