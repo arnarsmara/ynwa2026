@@ -205,3 +205,113 @@ body {
     padding: 20px;
   }
 }
+
+/* Sticky Tabs */
+.tabs {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Horizontal scroll á mobile */
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 8px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-buttons {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.pub-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  background: #f4f4f4;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.pub-list a:hover {
+  background: #eaeaea;
+}
+
+.pub-list span {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* Flight status box */
+.flight-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.flight-status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e7d32;
+}
+
+.flight-status.boarding {
+  background: #fff8e1;
+  color: #f57f17;
+}
+
+.flight-status.boarding .dot {
+  background: #f57f17;
+}
+
+.flight-status.final {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.flight-status.final .dot {
+  background: #c62828;
+}
+
+.flight-status.departed {
+  background: #eeeeee;
+  color: #555;
+}
+
+.flight-status.departed .dot {
+  background: #555;
+}
+
+.flight-code {
+  font-size: 14px;
+  opacity: 0.7;
+}
