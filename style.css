@@ -88,7 +88,7 @@ body {
 
 .counter {
   flex: 1;
-  background: #99ccb946;
+  background: #e00b0b34;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -96,7 +96,7 @@ body {
 }
 
 .counter.beer {
-  background: #99ccb946;
+  background: #e00b0b34;
 }
 
 /* TABS */
