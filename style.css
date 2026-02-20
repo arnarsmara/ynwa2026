@@ -279,72 +279,77 @@ body {
   }
 }
 
+
+.flight-card {
+  display: block;
+}
+
+.flight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flight-row a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.flight-row a:hover {
+  text-decoration: underline;
+}
+
+.flight-card {
+  display: block;
+}
+
+.flight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flight-row a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.flight-row a:hover {
+  text-decoration: underline;
+}
+
+/* ===== MOBILE LAYOUT FIX ===== */
 @media (max-width: 768px) {
 
-  /* Tabs vinstra megin á mobile */
+  /* Tabs: halda hægri-jöfnun */
   .tabs {
-    justify-content: flex-start;
+    justify-content: flex-end;
+    max-width: 100%;
+    padding: 12px 10px 0 10px;
   }
 
-  /* Content fyllir skjáinn */
+  /* Content: fyllir skjáinn og miðjast */
+  .tab-content {
+    display: flex;
+    justify-content: center;
+  }
+
   .content {
     width: 100%;
-    max-width: none;
-    margin: 15px 0;
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 16px;
     border-radius: 0;
   }
-
-  /* Smá loft á milli */
-  .tab-content {
-    padding: 0;
-  }
-}
-
-.flight-card {
-  display: block;
-}
-
-.flight-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.flight-row a {
-  font-size: 14px;
-  text-decoration: none;
-  color: #1565c0;
-  font-weight: 500;
-}
-
-.flight-row a:hover {
-  text-decoration: underline;
-}
-
-.flight-card {
-  display: block;
-}
-
-.flight-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.flight-row a {
-  font-size: 14px;
-  text-decoration: none;
-  color: #1565c0;
-  font-weight: 500;
-}
-
-.flight-row a:hover {
-  text-decoration: underline;
 }
 
