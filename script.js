@@ -31,12 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(update, 1000);
   }
 
-  // ⏱️ UTC tímar
+  // ⏱️ UTC times
   const BEER_TIME_UTC  = new Date("2026-03-12T17:00:00Z").getTime();
   const MATCH_TIME_UTC = new Date("2026-03-15T16:30:00Z").getTime();
 
   startCountdown("beerCounter", BEER_TIME_UTC);
   startCountdown("tripCounter", MATCH_TIME_UTC);
+
 
   // ===============================
   // FLIGHT STATUS (AUTO)
@@ -77,7 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateAllFlights();
   setInterval(updateAllFlights, 60000);
+
 });
+
 
 // ===============================
 // LOGOUT
@@ -86,11 +89,3 @@ function logout() {
   localStorage.removeItem("loggedIn");
   window.location.href = "login.html";
 }
-
-// ===== FIX MOBILE GUINNESS TAB =====
-document.addEventListener("change", function (e) {
-  if (e.target.id === "guinness") {
-    document.getElementById("guinness-content").style.display = "block";
-    document.getElementById("guinness-content").style.opacity = "1";
-  }
-});
