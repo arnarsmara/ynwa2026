@@ -278,3 +278,73 @@ body {
     padding: 20px;
   }
 }
+
+@media (max-width: 768px) {
+
+  /* Tabs vinstra megin á mobile */
+  .tabs {
+    justify-content: flex-start;
+  }
+
+  /* Content fyllir skjáinn */
+  .content {
+    width: 100%;
+    max-width: none;
+    margin: 15px 0;
+    border-radius: 0;
+  }
+
+  /* Smá loft á milli */
+  .tab-content {
+    padding: 0;
+  }
+}
+
+.flight-card {
+  display: block;
+}
+
+.flight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flight-row a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.flight-row a:hover {
+  text-decoration: underline;
+}
+
+.flight-card {
+  display: block;
+}
+
+.flight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flight-row a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.flight-row a:hover {
+  text-decoration: underline;
+}
+
