@@ -231,3 +231,15 @@ body {
   }
 
 }
+
+/* 🍺 Beer counter */
+.counter.beer {
+  background: linear-gradient(135deg, #f9c74f, #f9844a);
+  color: #3a2a00;
+}
+
+/* 🔴 Match counter (Liverpool red) */
+.counter.match {
+  background: linear-gradient(135deg, #c8102e, #8b0000);
+  color: white;
+}
