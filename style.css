@@ -298,3 +298,23 @@ body {
   }
 
 }
+
+#guinness-content strong {
+  font-size: 16px;
+}
+
+#guinness-content {
+  background: #111;
+  color: #fff;
+}
+
+#guinness-content a {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  line-height: 1.6;
+}
+
+#guinness-content a:hover {
+  background: #222;
+  border-color: #f9c74f;
+}
