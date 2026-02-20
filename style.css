@@ -1,8 +1,11 @@
+/* RESET */
 body {
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* HEADER */
 .header-container {
   position: relative;
   height: 300px;
@@ -16,7 +19,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .header-overlay {
@@ -25,18 +27,17 @@ body {
   color: white;
   background: rgba(0, 0, 0, 0.5);
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .header-overlay h1 {
   margin: 0;
   font-size: 48px;
-  font-weight: bold;
 }
 
 .header-overlay p {
-  margin: 10px 0 0 0;
-  font-size: 24px;
+  margin-top: 10px;
+  font-size: 22px;
 }
 
 /* LOGIN */
@@ -52,7 +53,7 @@ body {
 .login-box {
   background: #222;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
   width: 300px;
 }
@@ -61,7 +62,7 @@ body {
   width: 100%;
   padding: 10px;
   margin: 15px 0;
-  border-radius: 5px;
+  border-radius: 6px;
   border: none;
 }
 
@@ -70,7 +71,7 @@ body {
   background: #c8102e;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -90,18 +91,18 @@ body {
   flex: 1;
   background: #e00b0b34;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.counter.beer {
-  background: #e00b0b34;
 }
 
 /* TABS */
 .tabs {
   padding: 20px;
+}
+
+.tabs input[type="radio"] {
+  display: none;
 }
 
 .tab-buttons {
@@ -111,8 +112,8 @@ body {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 10px;
+  transition: background 0.3s ease, color 0.3s ease;
   display: inline-block;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -120,10 +121,6 @@ body {
 
 .tab-buttons:hover {
   background-color: #e0e0e0;
-}
-
-.tabs input[type="radio"] {
-  display: none;
 }
 
 #thu:checked + .tab-buttons,
@@ -135,62 +132,54 @@ body {
   color: white;
 }
 
+/* TAB CONTENT WRAPPER */
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+/* CONTENT CARD */
 .content {
   display: none;
+  width: 65%;
+  max-width: 900px;
+  margin: 20px auto;
   padding: 30px;
   background-color: #f9f9f9;
   border: 2px solid #333;
-  border-radius: 8px;
-  margin-top: 20px;
+  border-radius: 14px;
+
+  /* animation */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* ACTIVE TAB */
 #thu:checked ~ .tab-content #thu-content,
 #fri:checked ~ .tab-content #fri-content,
 #sat:checked ~ .tab-content #sat-content,
 #sun:checked ~ .tab-content #sun-content,
 #mon:checked ~ .tab-content #mon-content {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.tabs .tab-content .content p {
-  display: block;
-  background: #ffffff !important;
-  border: 1px solid #e6e6e6 !important;
-  padding: 12px !important;
-  margin: 10px 0 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
-}
-
-/* Miðja og minnka content kassana */
-.tab-content {
-  display: flex;
-  justify-content: center;
-}
-
-.content {
-  width: 65%;
-  max-width: 900px;
-  margin: 20px auto;
-}
-
-.tabs .tab-content .content p {
+/* PARAGRAPH CARDS */
+.content p {
   background: #ffffff;
-  border: 1px solid #eaeaea;
+  border: 1px solid #e6e6e6;
   padding: 10px 14px;
   margin: 10px 0;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-@media (max-width: 768px) {
-  .content {
-    width: 95%;
-  }
-}
-
+/* MAP */
 .map-container {
   margin-top: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
@@ -199,4 +188,20 @@ body {
   width: 100%;
   height: 350px;
   border: 0;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .header-overlay h1 {
+    font-size: 32px;
+  }
+
+  .header-overlay p {
+    font-size: 18px;
+  }
+
+  .content {
+    width: 95%;
+    padding: 20px;
+  }
 }
