@@ -139,13 +139,13 @@ body {
 }
 
 /* Show active tab */
-#thu:checked ~ .tab-content #thu-content,
-#fri:checked ~ .tab-content #fri-content,
-#sat:checked ~ .tab-content #sat-content,
-#sun:checked ~ .tab-content #sun-content,
-#mon:checked ~ .tab-content #mon-content,
-#flight:checked ~ .tab-content #flight-content,
-#guinness:checked ~ .tab-content #guinness-content {
+#thu:checked ~ .tab-content > #thu-content,
+#fri:checked ~ .tab-content > #fri-content,
+#sat:checked ~ .tab-content > #sat-content,
+#sun:checked ~ .tab-content > #sun-content,
+#mon:checked ~ .tab-content > #mon-content,
+#flight:checked ~ .tab-content > #flight-content,
+#guinness:checked ~ .tab-content > #guinness-content {
   display: block;
   opacity: 1;
   transform: translateY(0);
