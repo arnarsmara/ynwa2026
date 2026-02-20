@@ -161,3 +161,42 @@ body {
   border-radius: 8px !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
 }
+
+/* Miðja og minnka content kassana */
+.tab-content {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 65%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.tabs .tab-content .content p {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 95%;
+  }
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
