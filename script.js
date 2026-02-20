@@ -1,72 +1,88 @@
+// ===================================
+// COUNTDOWNS (Beer + Match)
+// ===================================
 function startCountdown(elementId, targetDate) {
-  const element = document.getElementById(elementId);
+  const el = document.getElementById(elementId);
+  if (!el) return;
 
   function update() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+    const now = Date.now();
+    const diff = targetDate - now;
 
-    if (distance < 0) {
-      element.innerHTML = "🍻 KOMIÐ!";
+    if (diff <= 0) {
+      el.textContent = "🍻 KOMIÐ!";
       return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    element.innerHTML =
-      `${days} dagar · ${hours} klst · ${minutes} mín · ${seconds} sek`;
+    el.textContent = `${days} dagar · ${hours} klst · ${minutes} mín · ${seconds} sek`;
   }
 
   update();
   setInterval(update, 1000);
 }
 
-// Use UTC time to avoid timezone issues
-const tripDate = new Date("2026-03-12T18:50:00Z").getTime();
-const beerDate = new Date("2026-03-12T17:00:00Z").getTime();
+// ⏱️ UTC tímar (MJÖG mikilvægt)
+const BEER_TIME_UTC  = new Date("2026-03-12T17:00:00Z").getTime();
+const MATCH_TIME_UTC = new Date("2026-03-15T16:30:00Z").getTime();
 
-startCountdown("tripCounter", tripDate);
-startCountdown("beerCounter", beerDate);
+startCountdown("beerCounter", BEER_TIME_UTC);
+startCountdown("tripCounter", MATCH_TIME_UTC);
 
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
-}
-
-function updateFlightStatus(flightTimeStr, elementId) {
-  const flightTime = new Date(flightTimeStr);
-  const now = new Date();
-
-  const diffMinutes = (flightTime - now) / 1000 / 60;
+// ===================================
+// FLIGHT STATUS (AUTO)
+// ===================================
+function updateFlightStatus(elementId, flightTimeUTC) {
   const box = document.getElementById(elementId);
-
   if (!box) return;
 
   const text = box.querySelector(".text");
+  const now = new Date();
+  const flightTime = new Date(flightTimeUTC);
 
+  const diffMinutes = (flightTime - now) / 1000 / 60;
+
+  // Reset
   box.className = "flight-status";
 
   if (diffMinutes <= 0) {
     text.textContent = "Departed";
     box.classList.add("departed");
-  } else if (diffMinutes <= 15) {
+  } 
+  else if (diffMinutes <= 15) {
     text.textContent = "Final call";
     box.classList.add("final");
-  } else if (diffMinutes <= 45) {
+  } 
+  else if (diffMinutes <= 45) {
     text.textContent = "Boarding";
     box.classList.add("boarding");
-  } else {
+  } 
+  else {
     text.textContent = "On time";
   }
 }
 
-// Uppfæra strax + á 1 mín fresti
+// ✈️ Flugtímar (UTC)
+const OUTBOUND_FLIGHT_UTC = "2026-03-12T18:50:00Z";
+const RETURN_FLIGHT_UTC   = "2026-03-16T08:35:00Z";
+
 function updateAllFlights() {
-  updateFlightStatus("2026-03-12T18:50:00", "outbound-status");
-  updateFlightStatus("2026-03-16T08:35:00", "return-status");
+  updateFlightStatus("outbound-status", OUTBOUND_FLIGHT_UTC);
+  updateFlightStatus("return-status", RETURN_FLIGHT_UTC);
 }
 
+// Keyra strax + uppfæra á 1 mín fresti
 updateAllFlights();
 setInterval(updateAllFlights, 60000);
+
+// ===================================
+// LOGOUT
+// ===================================
+function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "login.html";
+}

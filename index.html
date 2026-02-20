@@ -226,46 +226,40 @@ Tékk inn, síðasti kaffibollinn og heim.
     </div>
 
     <!-- FLUG INFO -->
-    <div class="content" id="flight-content">
-      <h2>✈️ Flugupplýsingar</h2>
+   <div class="content" id="flight-content">
+  <h2>✈️ Flugupplýsingar</h2>
 
-      <div class="flight-card">
-        <strong>Brottför</strong><br>
-        18:50 – Keflavík → Manchester
-        <div class="flight-row">
-          <div class="flight-status boarding">
-            <span class="dot"></span>
-            Boarding
-          </div>
-          <a href="https://www.flightradar24.com/" target="_blank">
-            Skoða stöðu flugs
-          </a>
-        </div>
+  <!-- BROTTFÖR -->
+  <div class="flight-card">
+    <strong>Brottför</strong><br>
+    18:50 – Keflavík → Manchester
+
+    <div class="flight-row">
+      <div class="flight-status" id="outbound-status">
+        <span class="dot"></span>
+        <span class="text">On time</span>
       </div>
 
-      <div class="flight-card">
-        <strong>Heimferð</strong><br>
-        08:35 – Manchester → Keflavík
-        <div class="flight-row">
-          <div class="flight-status">
-            <span class="dot"></span>
-            On time
-          </div>
-          <a href="https://www.flightradar24.com/" target="_blank">
-            Skoða stöðu flugs
-          </a>
-        </div>
-      </div>
-
+      <a href="https://www.flightradar24.com/" target="_blank">
+        Skoða stöðu flugs
+      </a>
     </div>
+  </div>
 
+  <!-- HEIMFERÐ -->
+  <div class="flight-card">
+    <strong>Heimferð</strong><br>
+    08:35 – Manchester → Keflavík
+
+    <div class="flight-row">
+      <div class="flight-status" id="return-status">
+        <span class="dot"></span>
+        <span class="text">On time</span>
+      </div>
+
+      <a href="https://www.flightradar24.com/" target="_blank">
+        Skoða stöðu flugs
+      </a>
+    </div>
   </div>
 </div>
-
-<footer>
-  <button onclick="logout()">Logout</button>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
