@@ -153,9 +153,16 @@ function showMain(id, btn) {
     b.classList.remove("active");
   });
 
-  document.getElementById(id).style.display = "block";
-  btn.classList.add("active");
+  const target = document.getElementById(id);
+  if (target) target.style.display = "block";
+
+  if (btn) btn.classList.add("active");
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  showMain("schedule-section", document.querySelector(".main-tab-btn"));
+});
+</script>
 
 // default load
 document.addEventListener("DOMContentLoaded", function() {
