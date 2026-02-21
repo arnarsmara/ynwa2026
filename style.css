@@ -145,7 +145,8 @@ body {
 #sun:checked ~ .tab-content > #sun-content,
 #mon:checked ~ .tab-content > #mon-content,
 #flight:checked ~ .tab-content > #flight-content,
-#guinness:checked ~ .tab-content > #guinness-content {
+#guinness:checked ~ .tab-content > #guinness-content,
+#weather:checked ~ .tab-content > #weather-content {
   display: block;
   opacity: 1;
   transform: translateY(0);

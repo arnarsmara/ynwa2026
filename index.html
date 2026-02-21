@@ -59,6 +59,9 @@
   <input type="radio" name="tab" id="guinness">
   <label for="guinness" class="tab-buttons">🍺 Guinness</label>
 
+  <input type="radio" name="tab" id="weather">
+  <label for="weather" class="tab-buttons">🌦 Weather</label>
+
 <!-- ================= TAB CONTENT ================= -->
 <div class="tab-content">
 
@@ -154,6 +157,14 @@
           <a href="https://www.flightradar24.com/" target="_blank">Flightradar</a>
         </div>
       </div>
+
+      <div class="flight-card">
+  <strong>🚆 Train Schedule</strong>
+  <div id="train-schedule" style="margin-top:10px;">
+    Loading...
+   </div>
+  </div>
+
     </div>
 
     <!-- ===== GUINNESS ===== -->
@@ -234,6 +245,22 @@
 
     </div>
    </div>
+    
+   <!-- ===== WEATHER ===== -->
+<div class="content" id="weather-content">
+  <h2>🌦️ Liverpool Weather</h2>
+
+  <iframe 
+    src="https://www.meteoblue.com/en/weather/widget/daily/liverpool_united-kingdom_2644210?geoloc=fixed&days=5&tempunit=C&windunit=kmh&layout=image"
+    frameborder="0"
+    scrolling="NO"
+    allowtransparency="true"
+    sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+    style="width: 100%; height: 420px;">
+  </iframe>
+
+</div>
+
   </div>
  </div>
 

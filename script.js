@@ -81,6 +81,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// ===============================
+// TRAIN SCHEDULE (STATIC DATA)
+// ===============================
+function updateTrainSchedule() {
+  const box = document.getElementById("train-schedule");
+  if (!box) return;
+
+  const today = new Date();
+  const day = today.getUTCDate();
+  const month = today.getUTCMonth() + 1;
+
+  const schedules = {
+    "12-3": {
+      route: "Manchester Airport → Liverpool Lime Street",
+      times: ["19:07", "19:30", "20:07", "20:30", "21:07", "21:30"]
+    },
+    "14-3": {
+      route: "Liverpool Lime Street → Wigan North Western",
+      times: ["11:40", "12:10", "12:40", "13:10", "13:40", "14:10"]
+    },
+    "16-3": {
+      route: "Liverpool Lime Street → Manchester Airport",
+      times: ["05:30", "06:00", "06:30", "07:00", "07:30"]
+    }
+  };
+
+  const key = `${day}-${month}`;
+
+  if (!schedules[key]) {
+    box.innerHTML = "No train journey scheduled today.";
+    return;
+  }
+
+  const schedule = schedules[key];
+
+  let html = `<div style="font-weight:600;margin-bottom:8px;">${schedule.route}</div>`;
+  html += `<div style="display:flex;flex-wrap:wrap;gap:8px;">`;
+
+  schedule.times.forEach(time => {
+    html += `
+      <div style="
+        padding:6px 10px;
+        background:#f4f4f4;
+        border:1px solid #ddd;
+        border-radius:8px;
+        font-size:14px;
+      ">
+        ${time}
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  box.innerHTML = html;
+}
+
+updateTrainSchedule();
+
 
 // ===============================
 // LOGOUT
