@@ -110,36 +110,13 @@ body {
   }
 }
 
-/* ================= MAIN TAB SYSTEM ================= */
-
-.sidebar input {
-  display: none;
-}
+/* ================= JS MAIN TAB SYSTEM ================= */
 
 .main-section {
   display: none;
 }
 
-/* Default section */
-#schedule-section {
-  display: block;
-}
-
-/* Show correct main section */
-#schedule:checked ~ .main-content #schedule-section,
-#guinness-main:checked ~ .main-content #guinness-section,
-#weather-main:checked ~ .main-content #weather-section,
-#travel-main:checked ~ .main-content #travel-section,
-#whatto-main:checked ~ .main-content #whatto-section {
-  display: block;
-}
-
-/* Active sidebar button */
-#schedule:checked + label,
-#guinness-main:checked + label,
-#weather-main:checked + label,
-#travel-main:checked + label,
-#whatto-main:checked + label {
+.main-tab-btn.active {
   background: #c8102e;
 }
 
