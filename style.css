@@ -1,54 +1,38 @@
-/* ================= RESET ================= */
 body {
   margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, sans-serif;
   background: #fff;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 .header-container {
   position: relative;
-  height: 300px;
+  height: 250px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
 .header-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .header-overlay {
   position: absolute;
-  text-align: center;
   color: white;
-  background: rgba(0, 0, 0, 0.35);
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.header-overlay h1 {
-  margin: 0;
-  font-size: 48px;
-}
-
-.header-overlay p {
-  margin-top: 10px;
-  font-size: 22px;
-}
-
-/* ================= COUNTERS ================= */
+/* COUNTERS */
 .counters {
   display: flex;
   gap: 15px;
   margin: 20px;
   flex-wrap: wrap;
 }
-
 .counter {
   flex: 1;
   padding: 20px;
@@ -56,62 +40,50 @@ body {
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .counter.beer {
   background: linear-gradient(135deg, #f9c74f, #f9844a);
-  color: #3a2a00;
 }
-
 .counter.match {
   background: linear-gradient(135deg, #c8102e, #8b0000);
-  color: #fff;
+  color: white;
 }
 
-/* ================= LAYOUT ================= */
+/* LAYOUT */
 .layout {
   display: flex;
-  min-height: 600px;
+  min-height: 500px;
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 .sidebar {
   width: 220px;
   background: #111;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.sidebar input {
-  display: none;
-}
-
-.main-tab-btn {
-  padding: 12px 14px;
-  border-radius: 10px;
+.main-btn {
+  padding: 12px;
+  border: none;
   background: #1c1c1c;
-  color: #fff;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s ease;
-  border: 2px solid transparent;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-.main-tab-btn:hover {
+.main-btn:hover {
   background: #2a2a2a;
 }
 
-#schedule:checked + label,
-#guinness-main:checked + label,
-#weather-main:checked + label,
-#travel-main:checked + label,
-#whatto-main:checked + label {
+.main-btn.active {
   background: #c8102e;
-  border-color: #fff;
 }
 
-/* ================= MAIN CONTENT ================= */
+/* CONTENT */
 .main-content {
   flex: 1;
   padding: 30px;
@@ -121,6 +93,39 @@ body {
   display: none;
 }
 
+.main-section.active {
+  display: block;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ================= MAIN TAB SYSTEM ================= */
+
+.sidebar input {
+  display: none;
+}
+
+.main-section {
+  display: none;
+}
+
+/* Default section */
+#schedule-section {
+  display: block;
+}
+
+/* Show correct main section */
 #schedule:checked ~ .main-content #schedule-section,
 #guinness-main:checked ~ .main-content #guinness-section,
 #weather-main:checked ~ .main-content #weather-section,
@@ -129,50 +134,32 @@ body {
   display: block;
 }
 
-/* ================= DAY TABS ================= */
-.day-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+/* Active sidebar button */
+#schedule:checked + label,
+#guinness-main:checked + label,
+#weather-main:checked + label,
+#travel-main:checked + label,
+#whatto-main:checked + label {
+  background: #c8102e;
 }
+
+
+/* ================= DAY TAB SYSTEM ================= */
 
 .day-tabs input {
   display: none;
 }
 
-.day-btn {
-  padding: 8px 14px;
-  background: #f0f0f0;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  border: 2px solid #333;
-  transition: 0.2s ease;
-}
-
-.day-btn:hover {
-  background: #e0e0e0;
-}
-
-#thu:checked + label,
-#fri:checked + label,
-#sat:checked + label,
-#sun:checked + label,
-#mon:checked + label {
-  background: #d32f2f;
-  color: #fff;
-}
-
-/* ================= DAY PANELS ================= */
 .day-panel {
   display: none;
-  background: #f9f9f9;
-  padding: 25px;
-  border-radius: 12px;
-  border: 2px solid #333;
 }
 
+/* Default day */
+#thu-panel {
+  display: block;
+}
+
+/* Show selected day */
 #thu:checked ~ .day-content #thu-panel,
 #fri:checked ~ .day-content #fri-panel,
 #sat:checked ~ .day-content #sat-panel,
@@ -181,38 +168,12 @@ body {
   display: block;
 }
 
-/* ================= CARDS ================= */
-.day-panel p,
-.main-section p {
-  background: #fff;
-  padding: 10px 14px;
-  border-radius: 10px;
-  margin: 10px 0;
-  border: 1px solid #e6e6e6;
-}
-
-/* ================= WEATHER ================= */
-iframe {
-  border-radius: 12px;
-  border: none;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 900px) {
-
-  .layout {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .main-content {
-    padding: 20px;
-  }
-
+/* Active day button */
+#thu:checked + label,
+#fri:checked + label,
+#sat:checked + label,
+#sun:checked + label,
+#mon:checked + label {
+  background: #d32f2f;
+  color: white;
 }
