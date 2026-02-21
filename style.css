@@ -146,7 +146,10 @@ body {
 #mon:checked ~ .tab-content > #mon-content,
 #flight:checked ~ .tab-content > #flight-content,
 #guinness:checked ~ .tab-content > #guinness-content,
-#weather:checked ~ .tab-content > #weather-content {
+#weather:checked ~ .tab-content > #weather-content, 
+#dagskra:checked ~ .tab-content > #dagskra-content,
+#liverpool:checked ~ .tab-content > #liverpool-content,
+#beatles:checked ~ .tab-content > #beatles-content{
   display: block;
   opacity: 1;
   transform: translateY(0);
@@ -326,4 +329,37 @@ body {
 /* ===== FIX MOBILE GUINNESS ===== */
 #guinness-content {
   min-height: 100vh;
+}
+
+/* ================= RIGHT SIDEBAR TABS ================= */
+
+@media (min-width: 1024px) {
+
+  .tabs {
+    position: fixed;
+    right: 0;
+    top: 320px; /* rétt undir header + counters */
+    width: 220px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    background: #ffffff;
+    border-left: 2px solid #ddd;
+    height: calc(100vh - 320px);
+    overflow-y: auto;
+  }
+
+  .tab-buttons {
+    width: 100%;
+    text-align: center;
+  }
+
+  .tab-content {
+    margin-right: 240px; /* pláss fyrir sidebar */
+  }
+
+  .content {
+    max-width: 900px;
+  }
+
 }
