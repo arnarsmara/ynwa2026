@@ -1,156 +1,190 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #fff;
-}
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <title>Liverpool 2026</title>
+  <link rel="stylesheet" href="style.css">
 
-/* HEADER */
-.header-container {
-  position: relative;
-  height: 250px;
-  overflow: hidden;
-}
-.header-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.header-overlay {
-  position: absolute;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 20px;
-  border-radius: 10px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
 
-/* COUNTERS */
-.counters {
-  display: flex;
-  gap: 15px;
-  margin: 20px;
-  flex-wrap: wrap;
-}
-.counter {
-  flex: 1;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.counter.beer {
-  background: linear-gradient(135deg, #f9c74f, #f9844a);
-}
-.counter.match {
-  background: linear-gradient(135deg, #c8102e, #8b0000);
-  color: white;
-}
+<!-- HEADER -->
+<div class="header-container">
+  <img src="https://homefinderuk.org/sites/default/files/2023-06/liverpool.jpg" alt="Liverpool">
+  <div class="header-overlay">
+    <h1>Liverpool 2026</h1>
+    <p>12–16 mars • Liverpool vs Tottenham • Bjór • Darts • Stemning</p>
+  </div>
+</div>
 
-/* LAYOUT */
-.layout {
-  display: flex;
-  min-height: 500px;
+<!-- COUNTERS -->
+<section class="counters">
+  <div class="counter beer">
+    <h2>🍺 Fyrsti bjór á flugvellinum eftir</h2>
+    <p id="beerCounter">Reikna...</p>
+  </div>
+
+  <div class="counter match">
+    <h2>⚽ Liverpool - Tottenham</h2>
+    <p id="tripCounter">Reikna...</p>
+  </div>
+</section>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <button class="main-tab-btn active" onclick="showMain('schedule-section', this)">📅 Dagskrá</button>
+    <button class="main-tab-btn" onclick="showMain('guinness-section', this)">🍺 Guinness</button>
+    <button class="main-tab-btn" onclick="showMain('weather-section', this)">🌦 Weather</button>
+    <button class="main-tab-btn" onclick="showMain('travel-section', this)">✈️ Travel</button>
+    <button class="main-tab-btn" onclick="showMain('whatto-section', this)">🎯 What to do</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- ================= DAGSkrá ================= -->
+    <div class="main-section" id="schedule-section">
+
+      <div class="day-tabs">
+        <input type="radio" name="day-tab" id="thu" checked>
+        <label for="thu" class="day-btn">Fim · 12.03</label>
+
+        <input type="radio" name="day-tab" id="fri">
+        <label for="fri" class="day-btn">Fös · 13.03</label>
+
+        <input type="radio" name="day-tab" id="sat">
+        <label for="sat" class="day-btn">Lau · 14.03</label>
+
+        <input type="radio" name="day-tab" id="sun">
+        <label for="sun" class="day-btn">Sun · 15.03</label>
+
+        <input type="radio" name="day-tab" id="mon">
+        <label for="mon" class="day-btn">Mán · 16.03</label>
+      </div>
+
+      <div class="day-content">
+
+        <!-- FIM -->
+        <div class="day-panel" id="thu-panel">
+          <h2>🍺 Fimmtudagur – Komudagur</h2>
+          <p>22:30 – Check-in á Hard Days Night Hotel</p>
+          <p>23:00 – Fyrsti bjór 🍻 (3–5 mín ganga)</p>
+        </div>
+
+        <!-- FÖS -->
+        <div class="day-panel" id="fri-panel">
+          <h2>🍺 Föstudagur – Borgardagur</h2>
+          <p>13:00 – Anfield Stadium Tour</p>
+        </div>
+
+        <!-- LAU -->
+        <div class="day-panel" id="sat-panel">
+          <h2>⚽ Laugardagur – Wigan</h2>
+          <p>15:00 – Wigan vs Bradford City</p>
+        </div>
+
+        <!-- SUN -->
+        <div class="day-panel" id="sun-panel">
+          <h2>🔴 Sunnudagur – Liverpool vs Tottenham</h2>
+          <p>16:30 – Kick-off ⚽</p>
+        </div>
+
+        <!-- MÁN -->
+        <div class="day-panel" id="mon-panel">
+          <h2>✈️ Mánudagur – Heimferð</h2>
+          <p>08:35 – Flug heim</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= GUINNESS ================= -->
+    <div class="main-section" id="guinness-section">
+      <h2>🍺 Top 10 Guinness Pubs in Liverpool</h2>
+
+      <div class="pub-list">
+        <a href="https://www.google.com/maps/search/Shenanigans+Liverpool" target="_blank">
+          <strong>1. Shenanigans</strong><br>
+          ⭐ 4.6/5<br>
+          📍 6 mín ganga<br>
+          Lively Irish pub með frábæru Guinness.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Ye+Cracke+Liverpool" target="_blank">
+          <strong>2. Ye Cracke</strong><br>
+          ⭐ 4.6/5<br>
+          📍 11 mín ganga<br>
+          Sögulegur Scouse pub.
+        </a>
+      </div>
+    </div>
+
+    <!-- ================= WEATHER ================= -->
+    <div class="main-section" id="weather-section">
+      <h2>🌦 Liverpool Weather</h2>
+      <iframe 
+        src="https://www.meteoblue.com/en/weather/widget/daily/liverpool_united-kingdom_2644210?geoloc=fixed&days=5&tempunit=C&windunit=kmh&layout=image"
+        frameborder="0"
+        style="width:100%; height:420px;">
+      </iframe>
+    </div>
+
+    <!-- ================= TRAVEL ================= -->
+    <div class="main-section" id="travel-section">
+      <h2>✈️ Flight Info</h2>
+
+      <div class="flight-status" id="outbound-status">
+        <span class="dot"></span>
+        <span class="text">On time</span>
+      </div>
+
+      <div class="flight-status" id="return-status">
+        <span class="dot"></span>
+        <span class="text">On time</span>
+      </div>
+
+      <h3 style="margin-top:25px;">🚆 Train Schedule</h3>
+      <div id="train-schedule"></div>
+    </div>
+
+    <!-- ================= WHAT TO DO ================= -->
+    <div class="main-section" id="whatto-section">
+      <h2>🎯 What to do in Liverpool</h2>
+      <ul>
+        <li>Albert Dock</li>
+        <li>Beatles Museum</li>
+        <li>Anfield Tour</li>
+        <li>Baltic Market</li>
+        <li>Crosby Beach</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showMain(id, btn) {
+  document.querySelectorAll(".main-section").forEach(sec => {
+    sec.style.display = "none";
+  });
+  document.querySelectorAll(".main-tab-btn").forEach(b => {
+    b.classList.remove("active");
+  });
+  document.getElementById(id).style.display = "block";
+  btn.classList.add("active");
 }
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("schedule-section").style.display = "block";
+});
+</script>
 
-/* SIDEBAR */
-.sidebar {
-  width: 220px;
-  background: #111;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.main-btn {
-  padding: 12px;
-  border: none;
-  background: #1c1c1c;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.main-btn:hover {
-  background: #2a2a2a;
-}
-
-.main-btn.active {
-  background: #c8102e;
-}
-
-/* CONTENT */
-.main-content {
-  flex: 1;
-  padding: 30px;
-}
-
-.main-section {
-  display: none;
-}
-
-.main-section.active {
-  display: block;
-}
-
-/* MOBILE */
-@media (max-width: 900px) {
-  .layout {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-/* ================= JS MAIN TAB SYSTEM ================= */
-
-.main-section {
-  display: none;
-}
-
-.main-tab-btn.active {
-  background: #c8102e;
-}
-
-
-/* ================= DAY TAB SYSTEM ================= */
-
-.day-tabs input {
-  display: none;
-}
-
-.day-panel {
-  display: none;
-}
-
-/* Default day */
-#thu-panel {
-  display: block;
-}
-
-/* Show selected day */
-#thu:checked ~ .day-content #thu-panel,
-#fri:checked ~ .day-content #fri-panel,
-#sat:checked ~ .day-content #sat-panel,
-#sun:checked ~ .day-content #sun-panel,
-#mon:checked ~ .day-content #mon-panel {
-  display: block;
-}
-
-/* Active day button */
-#thu:checked + label,
-#fri:checked + label,
-#sat:checked + label,
-#sun:checked + label,
-#mon:checked + label {
-  background: #d32f2f;
-  color: white;
-}
+<script src="script.js?v=3"></script>
+</body>
+</html>
