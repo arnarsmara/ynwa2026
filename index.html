@@ -40,22 +40,11 @@
 
   <!-- ===== SIDEBAR ===== -->
   <div class="sidebar">
-
-    <input type="radio" name="main-tab" id="schedule" checked>
-    <label for="schedule" class="main-tab-btn">📅 Dagskrá</label>
-
-    <input type="radio" name="main-tab" id="guinness-main">
-    <label for="guinness-main" class="main-tab-btn">🍺 Guinness</label>
-
-    <input type="radio" name="main-tab" id="weather-main">
-    <label for="weather-main" class="main-tab-btn">🌦 Weather</label>
-
-    <input type="radio" name="main-tab" id="travel-main">
-    <label for="travel-main" class="main-tab-btn">✈️ Travel</label>
-
-    <input type="radio" name="main-tab" id="whatto-main">
-    <label for="whatto-main" class="main-tab-btn">🎯 What to do</label>
-
+    <button class="main-tab-btn active" onclick="showMain('schedule-section', this)">📅 Dagskrá</button>
+    <button class="main-tab-btn" onclick="showMain('guinness-section', this)">🍺 Guinness</button>
+    <button class="main-tab-btn" onclick="showMain('weather-section', this)">🌦 Weather</button>
+    <button class="main-tab-btn" onclick="showMain('travel-section', this)">✈️ Travel</button>
+    <button class="main-tab-btn" onclick="showMain('whatto-section', this)">🎯 What to do</button>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
@@ -124,20 +113,19 @@
     <!-- ================= WEATHER ================= -->
     <div class="main-section" id="weather-section">
       <h2>🌦 Liverpool Weather</h2>
-
       <iframe 
         src="https://www.meteoblue.com/en/weather/widget/daily/liverpool_united-kingdom_2644210?geoloc=fixed&days=5&tempunit=C&windunit=kmh&layout=image"
         frameborder="0"
-        scrolling="NO"
         style="width:100%; height:420px;">
       </iframe>
-
     </div>
 
     <!-- ================= TRAVEL ================= -->
     <div class="main-section" id="travel-section">
       <h2>✈️ Travel Info</h2>
-      <p>Flight + Train info helst hér.</p>
+
+      <div id="train-schedule"></div>
+
     </div>
 
     <!-- ================= WHAT TO DO ================= -->
@@ -154,6 +142,26 @@
 
   </div>
 </div>
+
+<script>
+function showMain(id, btn) {
+  document.querySelectorAll(".main-section").forEach(sec => {
+    sec.style.display = "none";
+  });
+
+  document.querySelectorAll(".main-tab-btn").forEach(b => {
+    b.classList.remove("active");
+  });
+
+  document.getElementById(id).style.display = "block";
+  btn.classList.add("active");
+}
+
+// default load
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("schedule-section").style.display = "block";
+});
+</script>
 
 <script src="script.js?v=3"></script>
 </body>
