@@ -178,9 +178,15 @@ const notesRef = db.ref("liverpool2026/notes");
 // ===============================
 // SHARED NOTES (Firebase Realtime DB)
 // ===============================
+// ===============================
+// SHARED NOTES (Firebase Realtime DB)
+// ===============================
+let notesListenerActive = false;
+
 function loadNotes() {
   const list = document.getElementById("notes-list");
-  if (!list) return;
+  if (!list || notesListenerActive) return;
+  notesListenerActive = true;
 
   notesRef.orderByChild("timestamp").on("value", (snapshot) => {
     const notes = [];
@@ -192,13 +198,17 @@ function loadNotes() {
       return;
     }
 
-    list.innerHTML = notes.map(n => `
-      <div class="note-item">
+    list.innerHTML = "";
+    notes.forEach(n => {
+      const div = document.createElement("div");
+      div.className = "note-item";
+      div.innerHTML = `
         <span class="note-text">${n.text}</span>
         <span class="note-meta">${n.time}</span>
         <button class="note-delete" onclick="deleteNote('${n.id}')">✕</button>
-      </div>
-    `).join("");
+      `;
+      list.appendChild(div);
+    });
   });
 }
 
