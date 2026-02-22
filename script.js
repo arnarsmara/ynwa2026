@@ -178,9 +178,6 @@ const notesRef = db.ref("liverpool2026/notes");
 // ===============================
 // SHARED NOTES (Firebase Realtime DB)
 // ===============================
-// ===============================
-// SHARED NOTES (Firebase Realtime DB)
-// ===============================
 let notesListenerActive = false;
 
 function loadNotes() {
@@ -212,6 +209,11 @@ function loadNotes() {
   });
 }
 
+// Start listener immediately when page loads
+window.addEventListener("load", () => {
+  loadNotes();
+});
+
 function addNote() {
   const input = document.getElementById("note-input");
   if (!input) return;
@@ -229,14 +231,6 @@ function addNote() {
 function deleteNote(id) {
   notesRef.child(id).remove();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".main-tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      if (tab.dataset.main === "notes") loadNotes();
-    });
-  });
-});
 
 // ===============================
 // CURRENCY CONVERTER
