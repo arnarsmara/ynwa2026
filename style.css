@@ -405,6 +405,158 @@ body {
   text-decoration: underline;
 }
 
+/* ================= CURRENCY ================= */
+.currency-rate-display {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 16px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.currency-converter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.currency-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.currency-input-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+}
+
+.currency-input-group input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.currency-input-group input:focus { border-color: #d32f2f; }
+
+.currency-arrow {
+  font-size: 24px;
+  color: #aaa;
+  padding-top: 20px;
+  flex-shrink: 0;
+}
+
+.quick-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-btns button {
+  padding: 8px 14px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.quick-btns button:hover {
+  background: #d32f2f;
+  color: #fff;
+  border-color: #d32f2f;
+}
+
+/* ================= NOTES ================= */
+.notes-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.notes-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.notes-input-row input:focus { border-color: #d32f2f; }
+
+.note-add-btn {
+  padding: 10px 16px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.note-add-btn:hover { background: #b71c1c; }
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  animation: fadeIn 0.2s ease;
+}
+
+.note-item .note-text { flex: 1; }
+
+.note-item .note-meta {
+  font-size: 11px;
+  color: #aaa;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.note-delete {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.note-delete:hover { color: #d32f2f; }
+
 /* ================= ANIMATIONS ================= */
 @keyframes pulse {
   0%   { box-shadow: 0 0 0 0 rgba(245,127,23,0.6); }

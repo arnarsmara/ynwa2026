@@ -157,3 +157,116 @@ function logout() {
   localStorage.removeItem("loggedIn");
   window.location.href = "login.html";
 }
+
+// ===============================
+// FIREBASE SETUP
+// ===============================
+const firebaseConfig = {
+  apiKey: "AIzaSyCxl3Gi4_E7yJyMjcLTphMNkLI18Dh3iiU",
+  authDomain: "liverpool2026.firebaseapp.com",
+  databaseURL: "https://liverpool2026-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "liverpool2026",
+  storageBucket: "liverpool2026.firebasestorage.app",
+  messagingSenderId: "966731065796",
+  appId: "1:966731065796:web:c4fc3cffce0accea705c91"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const notesRef = db.ref("liverpool2026/notes");
+
+// ===============================
+// SHARED NOTES (Firebase Realtime DB)
+// ===============================
+function loadNotes() {
+  const list = document.getElementById("notes-list");
+  if (!list) return;
+
+  notesRef.orderByChild("timestamp").on("value", (snapshot) => {
+    const notes = [];
+    snapshot.forEach(child => notes.push({ id: child.key, ...child.val() }));
+    notes.reverse();
+
+    if (notes.length === 0) {
+      list.innerHTML = `<p style="color:#aaa;font-size:14px;text-align:center;padding:20px 0;">Engar athugasemdir enn 🍺</p>`;
+      return;
+    }
+
+    list.innerHTML = notes.map(n => `
+      <div class="note-item">
+        <span class="note-text">${n.text}</span>
+        <span class="note-meta">${n.time}</span>
+        <button class="note-delete" onclick="deleteNote('${n.id}')">✕</button>
+      </div>
+    `).join("");
+  });
+}
+
+function addNote() {
+  const input = document.getElementById("note-input");
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) return;
+
+  const now = new Date();
+  const time = now.toLocaleDateString("is-IS", { day: "numeric", month: "numeric" }) +
+               " " + now.toLocaleTimeString("is-IS", { hour: "2-digit", minute: "2-digit" });
+
+  notesRef.push({ text, time, timestamp: Date.now() });
+  input.value = "";
+}
+
+function deleteNote(id) {
+  notesRef.child(id).remove();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".main-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      if (tab.dataset.main === "notes") loadNotes();
+    });
+  });
+});
+
+// ===============================
+// CURRENCY CONVERTER
+// ===============================
+let iskGbpRate = null;
+
+async function fetchRate() {
+  const display = document.getElementById("rate-display");
+  if (!display) return;
+
+  try {
+    const res = await fetch("https://api.frankfurter.app/latest?from=GBP&to=ISK");
+    const data = await res.json();
+    iskGbpRate = data.rates.ISK;
+    display.textContent = `1 GBP = ${iskGbpRate.toFixed(0)} ISK  ·  1 ISK = ${(1/iskGbpRate).toFixed(5)} GBP`;
+  } catch (e) {
+    iskGbpRate = 175;
+    display.textContent = `1 GBP ≈ 175 ISK (offline gisting)`;
+  }
+}
+
+function convertCurrency(from) {
+  if (!iskGbpRate) return;
+  const iskInput = document.getElementById("isk-input");
+  const gbpInput = document.getElementById("gbp-input");
+  if (!iskInput || !gbpInput) return;
+
+  if (from === "isk") {
+    const val = parseFloat(iskInput.value) || 0;
+    gbpInput.value = val > 0 ? (val / iskGbpRate).toFixed(2) : "";
+  } else {
+    const val = parseFloat(gbpInput.value) || 0;
+    iskInput.value = val > 0 ? Math.round(val * iskGbpRate) : "";
+  }
+}
+
+function quickConvert(isk) {
+  if (!iskGbpRate) return;
+  document.getElementById("isk-input").value = isk;
+  document.getElementById("gbp-input").value = (isk / iskGbpRate).toFixed(2);
+}
+
+fetchRate();
