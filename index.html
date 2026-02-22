@@ -42,7 +42,7 @@
     <button class="main-tab" data-main="weather">🌦 Weather</button>
     <button class="main-tab" data-main="guinness">🍺 Guinness</button>
     <button class="main-tab" data-main="city">🗺 City</button>
-    <button class="main-tab" data-main="flight">✈️ Flug</button>
+    <button class="main-tab" data-main="flight">🧳 Travel Info</button>
   </nav>
 
   <!-- ===== MAIN CONTENT AREA ===== -->
@@ -51,6 +51,7 @@
     <!-- ========== DAGSKRÁ ========== -->
     <div class="main-panel active" id="main-dagskra">
 
+      <!-- Sub-tabs for days -->
       <div class="sub-tabs" id="sub-tab-bar">
         <button class="sub-tab active" data-sub="thu-content">Fim · 12.03</button>
         <button class="sub-tab" data-sub="fri-content">Fös · 13.03</button>
@@ -304,9 +305,12 @@
       </div>
     </div>
 
-    <!-- ========== FLIGHT ========== -->
+    <!-- ========== TRAVEL INFO ========== -->
     <div class="main-panel" id="main-flight">
-      <h2>✈️ Flugupplýsingar</h2>
+      <h2>🧳 Travel Info</h2>
+
+      <!-- FLIGHTS -->
+      <h3 class="section-heading">✈️ Flug</h3>
 
       <div class="flight-card">
         <strong>Brottför</strong><br>
@@ -335,6 +339,43 @@
       <div class="flight-card">
         <strong>🚆 Train Schedule</strong>
         <div id="train-schedule" style="margin-top:10px;">Loading...</div>
+      </div>
+
+      <!-- HOTELS -->
+      <h3 class="section-heading">🏨 Hótel</h3>
+
+      <div class="hotel-card">
+        <div class="hotel-header">
+          <span class="hotel-emoji">🎸</span>
+          <div>
+            <strong>Hard Days Night Hotel</strong>
+            <span class="hotel-stars">⭐⭐⭐⭐</span>
+          </div>
+        </div>
+        <div class="hotel-body">
+          <p>📍 <a href="https://www.google.com/maps/search/Hard+Days+Night+Hotel+Liverpool" target="_blank">North John Street, Liverpool L2 6RR</a></p>
+          <p>📞 +44 151 236 1964</p>
+          <p>🌐 <a href="https://www.harddaysnighthotel.com" target="_blank">harddaysnighthotel.com</a></p>
+          <p>🕐 Check-in: 15:00 · Check-out: 11:00</p>
+          <p>🎸 Beatles þema hótel í hjarta Liverpool miðbæjar – 3–5 mín ganga frá Mathew Street</p>
+        </div>
+      </div>
+
+      <div class="hotel-card">
+        <div class="hotel-header">
+          <span class="hotel-emoji">🏨</span>
+          <div>
+            <strong>Premier Inn Liverpool ONE</strong>
+            <span class="hotel-stars">⭐⭐⭐</span>
+          </div>
+        </div>
+        <div class="hotel-body">
+          <p>📍 <a href="https://www.google.com/maps/search/Premier+Inn+Liverpool+ONE" target="_blank">1 Lord Street, Liverpool L2 1TS</a></p>
+          <p>📞 +44 333 321 9254</p>
+          <p>🌐 <a href="https://www.premierinn.com" target="_blank">premierinn.com</a></p>
+          <p>🕐 Check-in: 15:00 · Check-out: 12:00</p>
+          <p>📌 Miðsvæðis staðsetning við Liverpool ONE – skammt frá Albert Dock og miðbæ</p>
+        </div>
       </div>
 
     </div>
