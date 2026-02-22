@@ -309,20 +309,30 @@ body {
 
 /* ================= INFO BOX (Travel Info sections) ================= */
 .info-box {
-  background: #fff;
-  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  border: 2px solid #d0d0d0;
   border-radius: 14px;
   padding: 18px;
   margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .info-box-title {
   font-size: 16px;
   font-weight: 700;
-  color: #333;
+  color: #222;
   margin: 0 0 14px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.info-box .flight-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+.info-box .hotel-card {
+  background: #fff;
 }
 
 /* ================= SECTION HEADING ================= */
