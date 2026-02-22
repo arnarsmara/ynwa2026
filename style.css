@@ -307,6 +307,24 @@ body {
 .flight-status.departed { background: #eee; color: #555; }
 .flight-status.departed .dot { background: #555; }
 
+/* ================= INFO BOX (Travel Info sections) ================= */
+.info-box {
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.info-box-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
 /* ================= SECTION HEADING ================= */
 .section-heading {
   font-size: 16px;
