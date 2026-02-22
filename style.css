@@ -290,7 +290,26 @@ body {
 @media (max-width: 768px) {
 
   .tabs {
-    justify-content: flex-end;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 12px 12px 8px 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .tab-buttons {
+    flex: 0 0 auto;
+    padding: 8px 13px;
+    font-size: 13px;
+    white-space: nowrap;
+    border-radius: 20px;
   }
 
   .content {
