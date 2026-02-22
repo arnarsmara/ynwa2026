@@ -1,0 +1,319 @@
+/* ================= RESET ================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #fff;
+}
+
+/* ================= HEADER ================= */
+.header-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-overlay {
+  position: absolute;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.header-overlay h1 {
+  margin: 0;
+  font-size: 48px;
+}
+
+.header-overlay p {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+/* ================= COUNTERS ================= */
+.counters {
+  display: flex;
+  gap: 15px;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.counter {
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.counter.beer {
+  background: linear-gradient(135deg, #f9c74f, #f9844a);
+  color: #3a2a00;
+}
+
+.counter.match {
+  background: linear-gradient(135deg, #c8102e, #8b0000);
+  color: #fff;
+}
+
+/* ================= TABS ================= */
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tab-buttons {
+  background: #f0f0f0;
+  border: 2px solid #333;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #333;
+  white-space: nowrap;
+}
+
+.tab-buttons:hover {
+  background: #e0e0e0;
+}
+
+.tab-buttons.active {
+  background: #d32f2f;
+  color: #fff;
+  border-color: #d32f2f;
+}
+
+.tab-buttons[data-tab="guinness-content"].active {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+/* ================= TAB CONTENT ================= */
+.tab-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: none;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border: 2px solid #333;
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= PARAGRAPH CARDS ================= */
+.content p {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ================= PUB LIST ================= */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pub-list a {
+  padding: 14px;
+  border-radius: 12px;
+  background: #f4f4f4;
+  border: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+}
+
+.pub-list a:hover {
+  background: #eaeaea;
+}
+
+/* ================= FLIGHT INFO ================= */
+.flight-card {
+  margin-bottom: 15px;
+}
+
+.flight-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.flight-row a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1565c0;
+  font-weight: 500;
+}
+
+.flight-row a:hover {
+  text-decoration: underline;
+}
+
+.flight-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.flight-status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e7d32;
+}
+
+.flight-status.boarding {
+  background: #fff8e1;
+  color: #f57f17;
+  animation: pulse 2s infinite;
+}
+
+.flight-status.boarding .dot {
+  background: #f57f17;
+}
+
+.flight-status.final {
+  background: #fdecea;
+  color: #c62828;
+}
+
+.flight-status.final .dot {
+  background: #c62828;
+}
+
+.flight-status.departed {
+  background: #eeeeee;
+  color: #555;
+}
+
+.flight-status.departed .dot {
+  background: #555;
+}
+
+/* ================= GUINNESS ================= */
+#guinness-content {
+  background: #f9f9f9;
+  color: #111;
+  min-height: 100vh;
+}
+
+#guinness-content .pub-list a,
+#guinness-content a {
+  background: #1b1b1b;
+  color: #fff;
+  border: 1px solid #333;
+  line-height: 1.6;
+}
+
+#guinness-content a:hover {
+  background: #222;
+  border-color: #f9c74f;
+}
+
+#guinness-content strong {
+  font-size: 16px;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 127, 23, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(245, 127, 23, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 127, 23, 0); }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .tabs {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 16px 12px 12px 12px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-buttons {
+    flex: 0 0 auto;
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 20px;
+    opacity: 0.45;
+    transform: scale(0.88);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: none;
+  }
+
+  .tab-buttons.active {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  }
+
+  .tab-buttons:hover:not(.active) {
+    opacity: 0.65;
+    transform: scale(0.94);
+    background: #e0e0e0;
+  }
+
+  .content {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 18px;
+  }
+
+}
