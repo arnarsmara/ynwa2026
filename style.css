@@ -519,6 +519,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .note-item {
