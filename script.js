@@ -4,6 +4,34 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ===============================
+  // TAB SWITCHING
+  // ===============================
+  const tabButtons = document.querySelectorAll(".tab-buttons");
+  const tabContents = document.querySelectorAll(".content");
+
+  function activateTab(targetId) {
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+    tabContents.forEach(c => c.classList.remove("active"));
+
+    const activeBtn = document.querySelector(`.tab-buttons[data-tab="${targetId}"]`);
+    const activeContent = document.getElementById(targetId);
+
+    if (activeBtn) activeBtn.classList.add("active");
+    if (activeContent) {
+      activeContent.classList.add("active");
+      if (window.innerWidth <= 768 && activeBtn) {
+        activeBtn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    }
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+  });
+
+  activateTab("thu-content");
+
+  // ===============================
   // COUNTDOWNS (Beer + Match)
   // ===============================
   function startCountdown(elementId, targetDate) {
