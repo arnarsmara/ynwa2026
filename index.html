@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Liverpool 2026</title>
   <link rel="stylesheet" href="style.css">
-
   <script>
     if (localStorage.getItem("loggedIn") !== "true") {
       window.location.href = "login.html";
@@ -28,110 +27,285 @@
     <h2>🍺 Fyrsti bjór á flugvellinum eftir</h2>
     <p id="beerCounter">Reikna...</p>
   </div>
-
   <div class="counter match">
     <h2>⚽ Liverpool - Tottenham</h2>
     <p id="tripCounter">Reikna...</p>
   </div>
 </section>
 
-<!-- ================= TABS ================= -->
-<div class="tabs">
+<!-- ================= LAYOUT WRAPPER ================= -->
+<div class="layout">
 
-  <input type="radio" name="tab" id="thu" checked>
-  <label for="thu" class="tab-buttons">Fim · 12.03</label>
+  <!-- ===== MAIN TABS (sidebar on desktop, top on mobile) ===== -->
+  <nav class="main-tabs" id="main-tab-bar">
+    <button class="main-tab active" data-main="dagskra">📅 Dagskrá</button>
+    <button class="main-tab" data-main="weather">🌦 Weather</button>
+    <button class="main-tab" data-main="guinness">🍺 Guinness</button>
+    <button class="main-tab" data-main="city">🗺 City</button>
+    <button class="main-tab" data-main="flight">✈️ Flug</button>
+  </nav>
 
-  <input type="radio" name="tab" id="fri">
-  <label for="fri" class="tab-buttons">Fös · 13.03</label>
+  <!-- ===== MAIN CONTENT AREA ===== -->
+  <div class="main-content">
 
-  <input type="radio" name="tab" id="sat">
-  <label for="sat" class="tab-buttons">Lau · 14.03</label>
+    <!-- ========== DAGSKRÁ ========== -->
+    <div class="main-panel active" id="main-dagskra">
 
-  <input type="radio" name="tab" id="sun">
-  <label for="sun" class="tab-buttons">Sun · 15.03</label>
+      <div class="sub-tabs" id="sub-tab-bar">
+        <button class="sub-tab active" data-sub="thu-content">Fim · 12.03</button>
+        <button class="sub-tab" data-sub="fri-content">Fös · 13.03</button>
+        <button class="sub-tab" data-sub="sat-content">Lau · 14.03</button>
+        <button class="sub-tab" data-sub="sun-content">Sun · 15.03</button>
+        <button class="sub-tab" data-sub="mon-content">Mán · 16.03</button>
+      </div>
 
-  <input type="radio" name="tab" id="mon">
-  <label for="mon" class="tab-buttons">Mán · 16.03</label>
+      <!-- Thursday -->
+      <div class="sub-content active" id="thu-content">
+        <h2>🍺 Fimmtudagur – Komudagur</h2>
+        <p>22:30 – Check-in á Hard Days Night Hotel</p>
+        <p>23:00 – Fyrsti bjór 🍻 (3–5 mín ganga)</p>
+        <p>
+          Mælt með:<br>
+          <a href="https://www.google.com/maps/search/The+Cavern+Club+Liverpool" target="_blank">The Cavern Club</a><br>
+          <a href="https://www.google.com/maps/search/Ye+Cracke+Liverpool" target="_blank">Ye Cracke</a><br>
+          <a href="https://www.google.com/maps/search/The+Vines+Liverpool" target="_blank">The Vines</a>
+        </p>
+      </div>
 
-  <input type="radio" name="tab" id="flight">
-  <label for="flight" class="tab-buttons">✈️ Flug</label>
+      <!-- Friday -->
+      <div class="sub-content" id="fri-content">
+        <h2>🍺 Föstudagur – Borgardagur</h2>
+        <p>10:00 – Brekki ☕</p>
+        <p>13:00 – Anfield Stadium Tour (£25 · 70–90 mín)</p>
+        <p>
+          15:30 – Beatles Tour (valkvætt · £20–25)<br>
+          <a href="https://www.google.com/maps/search/Beatles+Tour+Liverpool" target="_blank">Meiri upplýsingar</a>
+        </p>
+        <p>20:00 – Steik 🍽️</p>
+        <p>
+          <a href="https://www.google.com/maps/search/Hawksmoor+Liverpool" target="_blank">Hawksmoor</a><br>
+          <a href="https://www.google.com/maps/search/Miller+%26+Carter+Liverpool" target="_blank">Miller & Carter</a><br>
+          <a href="https://www.google.com/maps/search/Fazenda+Liverpool" target="_blank">Fazenda</a>
+        </p>
+      </div>
 
-  <input type="radio" name="tab" id="guinness">
-  <label for="guinness" class="tab-buttons">🍺 Guinness</label>
+      <!-- Saturday -->
+      <div class="sub-content" id="sat-content">
+        <h2>⚽ Laugardagur – Wigan</h2>
+        <p>10:00 – Brekki ☕</p>
+        <p>13:00 – Hittingur á hótelinu</p>
+        <p>Lest til Wigan (~50 mín · £8–12)</p>
+        <p>15:00 – Wigan vs Bradford City</p>
+        <p>20:00 – Flight Club Darts 🎯</p>
+        <div class="pub-list">
+          <a href="https://www.google.com/maps/search/Roxy+Ball+Room+Liverpool" target="_blank">Roxy Ball Room</a>
+          <a href="https://www.google.com/maps/search/McCooley's+Concert+Square+Liverpool" target="_blank">McCooley's</a>
+          <a href="https://www.google.com/maps/search/Soho+Bar+Liverpool" target="_blank">Soho Bar</a>
+          <a href="https://www.google.com/maps/search/The+Shipping+Forecast+Liverpool" target="_blank">The Shipping Forecast</a>
+          <a href="https://www.google.com/maps/search/The+Pilgrim+Liverpool" target="_blank">The Pilgrim</a>
+        </div>
+      </div>
 
-  <input type="radio" name="tab" id="weather">
-  <label for="weather" class="tab-buttons">🌦 Weather</label>
+      <!-- Sunday -->
+      <div class="sub-content" id="sun-content">
+        <h2>🔴 Sunnudagur – Liverpool vs Tottenham</h2>
+        <p>10:00 – Brekki ☕</p>
+        <p>12:00 – Hittingur við hótel</p>
+        <p>13:00 – Á Anfield · bjór á The Tin</p>
+        <p>16:30 – Kick-off ⚽</p>
+        <p>Eftir leik – Steina Tours Time 🍻</p>
+      </div>
 
-<!-- ================= TAB CONTENT ================= -->
-<div class="tab-content">
+      <!-- Monday -->
+      <div class="sub-content" id="mon-content">
+        <h2>✈️ Mánudagur – Heimferð</h2>
+        <p>Fyrsta lest Liverpool → Manchester Airport</p>
+        <p>08:35 – Flug heim</p>
+      </div>
 
-    <!-- ===== THURSDAY ===== -->
-    <div class="content" id="thu-content">
-      <h2>🍺 Fimmtudagur – Komudagur</h2>
-      <p>22:30 – Check-in á Hard Days Night Hotel</p>
-      <p>23:00 – Fyrsti bjór 🍻 (3–5 mín ganga)</p>
-      <p>
-        Mælt með:<br>
-        <a href="https://www.google.com/maps/search/The+Cavern+Club+Liverpool" target="_blank">The Cavern Club</a><br>
-        <a href="https://www.google.com/maps/search/Ye+Cracke+Liverpool" target="_blank">Ye Cracke</a><br>
-        <a href="https://www.google.com/maps/search/The+Vines+Liverpool" target="_blank">The Vines</a>
-      </p>
     </div>
 
-    <!-- ===== FRIDAY ===== -->
-    <div class="content" id="fri-content">
-      <h2>🍺 Föstudagur – Borgardagur</h2>
-      <p>10:00 – Brekki ☕</p>
-      <p>13:00 – Anfield Stadium Tour (£25 · 70–90 mín)</p>
-      <p>
-        15:30 – Beatles Tour (valkvætt · £20–25)<br>
-        <a href="https://www.google.com/maps/search/Beatles+Tour+Liverpool" target="_blank">Meiri upplýsingar</a>
-      </p>
-      <p>20:00 – Steik 🍽️</p>
-      <p>
-        <a href="https://www.google.com/maps/search/Hawksmoor+Liverpool" target="_blank">Hawksmoor</a><br>
-        <a href="https://www.google.com/maps/search/Miller+%26+Carter+Liverpool" target="_blank">Miller & Carter</a><br>
-        <a href="https://www.google.com/maps/search/Fazenda+Liverpool" target="_blank">Fazenda</a>
-      </p>
+    <!-- ========== WEATHER ========== -->
+    <div class="main-panel" id="main-weather">
+      <h2>🌦️ Liverpool Weather</h2>
+      <iframe
+        src="https://www.meteoblue.com/en/weather/widget/daily/liverpool_united-kingdom_2644210?geoloc=fixed&days=5&tempunit=C&windunit=kmh&layout=image"
+        frameborder="0"
+        scrolling="NO"
+        allowtransparency="true"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+        style="width: 100%; height: 420px;">
+      </iframe>
     </div>
 
-    <!-- ===== SATURDAY ===== -->
-    <div class="content" id="sat-content">
-      <h2>⚽ Laugardagur – Wigan</h2>
-      <p>10:00 – Brekki ☕</p>
-      <p>13:00 – Hittingur á hótelinu</p>
-      <p>Lest til Wigan (~50 mín · £8–12)</p>
-      <p>15:00 – Wigan vs Bradford City</p>
-      <p>20:00 – Flight Club Darts 🎯</p>
+    <!-- ========== GUINNESS ========== -->
+    <div class="main-panel" id="main-guinness">
+      <h2>🍺 Top 10 Guinness Pubs in Liverpool</h2>
+      <div class="pub-list guinness-list">
 
-      <div class="pub-list">
-        <a href="https://www.google.com/maps/search/Roxy+Ball+Room+Liverpool" target="_blank">Roxy Ball Room</a>
-        <a href="https://www.google.com/maps/search/McCooley's+Concert+Square+Liverpool" target="_blank">McCooley’s</a>
-        <a href="https://www.google.com/maps/search/Soho+Bar+Liverpool" target="_blank">Soho Bar</a>
-        <a href="https://www.google.com/maps/search/The+Shipping+Forecast+Liverpool" target="_blank">The Shipping Forecast</a>
-        <a href="https://www.google.com/maps/search/The+Pilgrim+Liverpool" target="_blank">The Pilgrim</a>
+        <a href="https://www.google.com/maps/search/Shenanigans+Liverpool" target="_blank">
+          <strong>1. Shenanigans</strong><br>
+          ⭐ 4.6/5 · 📍 6 mín ganga frá Hard Days Night Hotel<br>
+          Lively Irish pub með frábæru Guinness og lifandi tónlist.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Flanagan's+Apple+Liverpool" target="_blank">
+          <strong>2. Flanagan's Apple</strong><br>
+          ⭐ 4.5/5 · 📍 5 mín ganga<br>
+          Þriggja hæða írskur bar með góðri stemningu og sterkri Guinness.
+        </a>
+
+        <a href="https://www.google.com/maps/search/McCooley's+Mathew+Street+Liverpool" target="_blank">
+          <strong>3. McCooley's (Mathew St)</strong><br>
+          ⭐ 4.4/5 · 📍 3 mín ganga<br>
+          Sport, pool borð og solid pint í hjarta næturlífsins.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Philharmonic+Dining+Rooms+Liverpool" target="_blank">
+          <strong>4. The Philharmonic Dining Rooms</strong><br>
+          ⭐ 4.6/5 · 📍 12 mín ganga<br>
+          Viktorísk perla – klassísk pub stemning og fallegasta innrétting borgarinnar.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Pogue+Mahone's+Liverpool" target="_blank">
+          <strong>5. Pogue Mahone's</strong><br>
+          ⭐ 4.4/5 · 📍 7 mín ganga<br>
+          Írskur pub með mjúka og vel hellta Guinness.
+        </a>
+
+        <a href="https://www.google.com/maps/search/O'Brien's+Pub+Liverpool" target="_blank">
+          <strong>6. O'Brien's Pub</strong><br>
+          ⭐ 4.5/5 · 📍 8 mín ganga<br>
+          Rólegri bar þar sem Guinness er oft hrósað sérstaklega.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Punch+Tarmey's+Liverpool" target="_blank">
+          <strong>7. Punch Tarmey's</strong><br>
+          ⭐ 4.3/5 · 📍 10 mín ganga<br>
+          Stór bar í Baltic Triangle – frábært fyrir hópa og sport.
+        </a>
+
+        <a href="https://www.google.com/maps/search/The+Denbigh+Castle+Liverpool" target="_blank">
+          <strong>8. The Denbigh Castle</strong><br>
+          ⭐ 4.5/5 · 📍 15 mín ganga<br>
+          Hefðbundinn breskur pub með ekta stemningu.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Shenanigans+Sports+Bar+Liverpool" target="_blank">
+          <strong>9. Shenanigans Sports Bar</strong><br>
+          ⭐ 4.3/5 · 📍 6 mín ganga<br>
+          Sportbar útgáfa með góðri Guinness og stórum skjám.
+        </a>
+
+        <a href="https://www.google.com/maps/search/Ye+Cracke+Liverpool" target="_blank">
+          <strong>10. Ye Cracke</strong><br>
+          ⭐ 4.6/5 · 📍 11 mín ganga<br>
+          Sögulegur Scouse pub með karakter og klassískri stemningu.
+        </a>
+
       </div>
     </div>
 
-    <!-- ===== SUNDAY ===== -->
-    <div class="content" id="sun-content">
-      <h2>🔴 Sunnudagur – Liverpool vs Tottenham</h2>
-      <p>10:00 – Brekki ☕</p>
-      <p>12:00 – Hittingur við hótel</p>
-      <p>13:00 – Á Anfield · bjór á The Tin</p>
-      <p>16:30 – Kick-off ⚽</p>
-      <p>Eftir leik – Steina Tours Time 🍻</p>
+    <!-- ========== CITY ========== -->
+    <div class="main-panel" id="main-city">
+      <h2>🗺 Liverpool – Helstu staðir</h2>
+
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d19180.123!2d-2.9916!3d53.4084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sliverpool+city+centre+attractions!5e0!3m2!1sen!2suk!4v1700000000000"
+        width="100%"
+        height="320"
+        style="border:0; border-radius:12px; margin-bottom:20px;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+
+      <div class="city-list">
+
+        <a href="https://www.google.com/maps/search/Anfield+Stadium+Liverpool" target="_blank">
+          <span class="city-icon">⚽</span>
+          <div>
+            <strong>Anfield Stadium</strong><br>
+            <span>Heimavöllur Liverpool FC – stadium tour í boði</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Hard+Days+Night+Hotel+Liverpool" target="_blank">
+          <span class="city-icon">🏨</span>
+          <div>
+            <strong>Hard Days Night Hotel</strong><br>
+            <span>Hótelið okkar – Beatles þema, miðbær</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/The+Cavern+Club+Liverpool" target="_blank">
+          <span class="city-icon">🎸</span>
+          <div>
+            <strong>The Cavern Club</strong><br>
+            <span>Mathew Street – þar sem Beatles hófu feril sinn</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Albert+Dock+Liverpool" target="_blank">
+          <span class="city-icon">⚓</span>
+          <div>
+            <strong>Albert Dock</strong><br>
+            <span>Sögulegt hafnarsvæði með veitingastaði og söfn</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Liverpool+ONE+Shopping+Centre" target="_blank">
+          <span class="city-icon">🛍</span>
+          <div>
+            <strong>Liverpool ONE</strong><br>
+            <span>Stærsta verslunarmiðstöð borgarinnar</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Mathew+Street+Liverpool" target="_blank">
+          <span class="city-icon">🍺</span>
+          <div>
+            <strong>Mathew Street</strong><br>
+            <span>Beatles og bar-gata – miðpunktur næturlífsins</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Liverpool+Cathedral" target="_blank">
+          <span class="city-icon">⛪</span>
+          <div>
+            <strong>Liverpool Cathedral</strong><br>
+            <span>Stærsta kirkja Bretlands – stórkostleg útsýni</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/The+Mersey+Ferry+Liverpool" target="_blank">
+          <span class="city-icon">⛴</span>
+          <div>
+            <strong>Mersey Ferry</strong><br>
+            <span>Ferjusígling á Mersey – klassísk Liverpool upplifun</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/Sefton+Park+Liverpool" target="_blank">
+          <span class="city-icon">🌳</span>
+          <div>
+            <strong>Sefton Park</strong><br>
+            <span>Stærsti garður borgarinnar – frábær í sól</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/The+Philharmonic+Dining+Rooms+Liverpool" target="_blank">
+          <span class="city-icon">🏛</span>
+          <div>
+            <strong>The Philharmonic Dining Rooms</strong><br>
+            <span>Fallegasti pub í Liverpool – Victorian masterpiece</span>
+          </div>
+        </a>
+
+      </div>
     </div>
 
-    <!-- ===== MONDAY ===== -->
-    <div class="content" id="mon-content">
-      <h2>✈️ Mánudagur – Heimferð</h2>
-      <p>Fyrsta lest Liverpool → Manchester Airport</p>
-      <p>08:35 – Flug heim</p>
-    </div>
-
-    <!-- ===== FLIGHT INFO ===== -->
-    <div class="content" id="flight-content">
+    <!-- ========== FLIGHT ========== -->
+    <div class="main-panel" id="main-flight">
       <h2>✈️ Flugupplýsingar</h2>
 
       <div class="flight-card">
@@ -159,112 +333,15 @@
       </div>
 
       <div class="flight-card">
-  <strong>🚆 Train Schedule</strong>
-  <div id="train-schedule" style="margin-top:10px;">
-    Loading...
-   </div>
-  </div>
+        <strong>🚆 Train Schedule</strong>
+        <div id="train-schedule" style="margin-top:10px;">Loading...</div>
+      </div>
 
     </div>
 
-    <!-- ===== GUINNESS ===== -->
-    <div class="content" id="guinness-content">
-  <h2>🍺 Top 10 Guinness Pubs in Liverpool</h2>
+  </div><!-- /main-content -->
+</div><!-- /layout -->
 
-  <div class="pub-list">
-
-    <a href="https://www.google.com/maps/search/Shenanigans+Liverpool" target="_blank">
-      <strong>1. Shenanigans</strong><br>
-      ⭐ 4.6/5<br>
-      📍 6 mín ganga frá Hard Days Night Hotel<br>
-      Lively Irish pub með frábæru Guinness og lifandi tónlist.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Flanagan’s+Apple+Liverpool" target="_blank">
-      <strong>2. Flanagan’s Apple</strong><br>
-      ⭐ 4.5/5<br>
-      📍 5 mín ganga<br>
-      Þriggja hæða írskur bar með góðri stemningu og sterkri Guinness.
-    </a>
-
-    <a href="https://www.google.com/maps/search/McCooley’s+Mathew+Street+Liverpool" target="_blank">
-      <strong>3. McCooley’s (Mathew St)</strong><br>
-      ⭐ 4.4/5<br>
-      📍 3 mín ganga<br>
-      Sport, pool borð og solid pint í hjarta næturlífsins.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Philharmonic+Dining+Rooms+Liverpool" target="_blank">
-      <strong>4. The Philharmonic Dining Rooms</strong><br>
-      ⭐ 4.6/5<br>
-      📍 12 mín ganga<br>
-      Viktorísk perla – klassísk pub stemning og fallegasta innrétting borgarinnar.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Pogue+Mahone’s+Liverpool" target="_blank">
-      <strong>5. Pogue Mahone’s</strong><br>
-      ⭐ 4.4/5<br>
-      📍 7 mín ganga<br>
-      Írskur pub með mjúka og vel hellta Guinness.
-    </a>
-
-    <a href="https://www.google.com/maps/search/O’Brien’s+Pub+Liverpool" target="_blank">
-      <strong>6. O’Brien’s Pub</strong><br>
-      ⭐ 4.5/5<br>
-      📍 8 mín ganga<br>
-      Rólegri bar þar sem Guinness er oft hrósað sérstaklega.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Punch+Tarmey’s+Liverpool" target="_blank">
-      <strong>7. Punch Tarmey’s</strong><br>
-      ⭐ 4.3/5<br>
-      📍 10 mín ganga<br>
-      Stór bar í Baltic Triangle – frábært fyrir hópa og sport.
-    </a>
-
-    <a href="https://www.google.com/maps/search/The+Denbigh+Castle+Liverpool" target="_blank">
-      <strong>8. The Denbigh Castle</strong><br>
-      ⭐ 4.5/5<br>
-      📍 15 mín ganga<br>
-      Hefðbundinn breskur pub með ekta stemningu.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Shenanigans+Sports+Bar+Liverpool" target="_blank">
-      <strong>9. Shenanigans Sports Bar</strong><br>
-      ⭐ 4.3/5<br>
-      📍 6 mín ganga<br>
-      Sportbar útgáfa með góðri Guinness og stórum skjám.
-    </a>
-
-    <a href="https://www.google.com/maps/search/Ye+Cracke+Liverpool" target="_blank">
-      <strong>10. Ye Cracke</strong><br>
-      ⭐ 4.6/5<br>
-      📍 11 mín ganga<br>
-      Sögulegur Scouse pub með karakter og klassískri stemningu.
-    </a>
-
-    </div>
-   </div>
-    
-   <!-- ===== WEATHER ===== -->
-<div class="content" id="weather-content">
-  <h2>🌦️ Liverpool Weather</h2>
-
-  <iframe 
-    src="https://www.meteoblue.com/en/weather/widget/daily/liverpool_united-kingdom_2644210?geoloc=fixed&days=5&tempunit=C&windunit=kmh&layout=image"
-    frameborder="0"
-    scrolling="NO"
-    allowtransparency="true"
-    sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
-    style="width: 100%; height: 420px;">
-  </iframe>
-
-</div>
-
-  </div>
- </div>
-
-
-<script src="script.js?v=2"></script>  
+<script src="script.js?v=3"></script>
 </body>
 </html>
