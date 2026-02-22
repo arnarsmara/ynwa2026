@@ -178,38 +178,43 @@ const notesRef = db.ref("liverpool2026/notes");
 // ===============================
 // SHARED NOTES (Firebase Realtime DB)
 // ===============================
-// ===============================
-// SHARED NOTES (Firebase Realtime DB)
-// ===============================
 let notesListenerActive = false;
 
-function loadNotes() {
+function renderNotes(notes) {
   const list = document.getElementById("notes-list");
-  if (!list || notesListenerActive) return;
-  notesListenerActive = true;
+  if (!list) return;
 
+  if (notes.length === 0) {
+    list.innerHTML = `<p style="color:#aaa;font-size:14px;text-align:center;padding:20px 0;">Engar athugasemdir enn 🍺</p>`;
+    return;
+  }
+
+  list.innerHTML = "";
+  notes.forEach(n => {
+    const div = document.createElement("div");
+    div.className = "note-item";
+    div.innerHTML = `
+      <span class="note-text">${n.text}</span>
+      <span class="note-meta">${n.time}</span>
+      <button class="note-delete" onclick="deleteNote('${n.id}')">✕</button>
+    `;
+    list.appendChild(div);
+  });
+}
+
+// Start listener immediately - works even if notes panel is hidden
+if (!notesListenerActive) {
+  notesListenerActive = true;
   notesRef.orderByChild("timestamp").on("value", (snapshot) => {
     const notes = [];
     snapshot.forEach(child => notes.push({ id: child.key, ...child.val() }));
     notes.reverse();
-
-    if (notes.length === 0) {
-      list.innerHTML = `<p style="color:#aaa;font-size:14px;text-align:center;padding:20px 0;">Engar athugasemdir enn 🍺</p>`;
-      return;
-    }
-
-    list.innerHTML = "";
-    notes.forEach(n => {
-      const div = document.createElement("div");
-      div.className = "note-item";
-      div.innerHTML = `
-        <span class="note-text">${n.text}</span>
-        <span class="note-meta">${n.time}</span>
-        <button class="note-delete" onclick="deleteNote('${n.id}')">✕</button>
-      `;
-      list.appendChild(div);
-    });
+    renderNotes(notes);
   });
+}
+
+function loadNotes() {
+  // Just triggers a re-render if needed, listener is already active
 }
 
 function addNote() {
@@ -229,11 +234,6 @@ function addNote() {
 function deleteNote(id) {
   notesRef.child(id).remove();
 }
-
-// Start notes listener immediately on load
-window.addEventListener("load", () => {
-  loadNotes();
-});
 
 // ===============================
 // CURRENCY CONVERTER
