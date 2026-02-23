@@ -210,9 +210,11 @@ function renderNotes(notes) {
 
 // Firebase listener
 notesRef.orderByChild("timestamp").on("value", (snapshot) => {
+  console.log("Firebase data received, notes count:", snapshot.numChildren());
   cachedNotes = [];
   snapshot.forEach(child => cachedNotes.push({ id: child.key, ...child.val() }));
   cachedNotes.reverse();
+  console.log("cachedNotes:", cachedNotes);
   renderNotes(cachedNotes);
 });
 
