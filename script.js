@@ -259,29 +259,36 @@ function uploadImage(input) {
   if (!file) return;
 
   const progress = document.getElementById("upload-progress");
-  if (progress) progress.style.display = "block";
+  if (progress) { progress.style.display = "block"; progress.textContent = "Hleð upp mynd... ⏳"; }
 
-  const fileName = `notes/${Date.now()}_${file.name}`;
-  const ref = storage.ref(fileName);
-  const uploadTask = ref.put(file);
+  // Use FileReader to convert to base64 - works on all mobile browsers
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result.split(',')[1];
+    const contentType = file.type || 'image/jpeg';
+    const fileName = `notes/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._]/g, '_')}`;
+    const ref = storage.ref(fileName);
 
-  uploadTask.on("state_changed",
-    null,
-    (err) => {
-      if (progress) progress.style.display = "none";
-      alert("Villa við að hlaða upp mynd: " + err.message);
-    },
-    () => {
-      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+    ref.putString(base64, 'base64', { contentType })
+      .then((snapshot) => snapshot.ref.getDownloadURL())
+      .then((url) => {
         if (progress) progress.style.display = "none";
         const now = new Date();
         const time = now.toLocaleDateString("is-IS", { day: "numeric", month: "numeric" }) +
                      " " + now.toLocaleTimeString("is-IS", { hour: "2-digit", minute: "2-digit" });
         notesRef.push({ text: "📷 Mynd", imageUrl: url, time, timestamp: Date.now() });
         input.value = "";
+      })
+      .catch((err) => {
+        if (progress) progress.style.display = "none";
+        alert("Villa við að hlaða upp mynd: " + err.message);
       });
-    }
-  );
+  };
+  reader.onerror = () => {
+    if (progress) progress.style.display = "none";
+    alert("Gat ekki lesið myndina");
+  };
+  reader.readAsDataURL(file);
 }
 
 function deleteNote(id) {
