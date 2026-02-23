@@ -532,9 +532,8 @@ body {
 .note-img-btn:hover { background: #e0e0e0; }
 
 .notes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: block;
+  min-height: 600px;
 }
 
 .note-item {
