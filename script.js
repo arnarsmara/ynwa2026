@@ -178,6 +178,9 @@ const notesRef = db.ref("liverpool2026/notes");
 // ===============================
 // SHARED NOTES (Firebase Realtime DB)
 // ===============================
+// ===============================
+// SHARED NOTES (Firebase Realtime DB)
+// ===============================
 let notesListenerActive = false;
 
 function renderNotes(notes) {
@@ -189,20 +192,22 @@ function renderNotes(notes) {
     return;
   }
 
-  list.innerHTML = "";
+  let html = `<table style="width:100%;border-collapse:collapse;">`;
   notes.forEach(n => {
-    const div = document.createElement("div");
-    div.className = "note-item";
-    div.innerHTML = `
-      <span class="note-text">${n.text}</span>
-      <span class="note-meta">${n.time}</span>
-      <button class="note-delete" onclick="deleteNote('${n.id}')">✕</button>
-    `;
-    list.appendChild(div);
+    html += `
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 12px;font-size:14px;line-height:1.5;word-break:break-word;">${n.text}</td>
+        <td style="padding:10px 8px;font-size:11px;color:#aaa;white-space:nowrap;text-align:right;">${n.time}</td>
+        <td style="padding:10px 8px;text-align:right;width:30px;">
+          <button onclick="deleteNote('${n.id}')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:16px;">✕</button>
+        </td>
+      </tr>`;
   });
+  html += `</table>`;
+  list.innerHTML = html;
 }
 
-// Start listener immediately - works even if notes panel is hidden
+// Start listener immediately — works even if notes panel is hidden
 if (!notesListenerActive) {
   notesListenerActive = true;
   notesRef.orderByChild("timestamp").on("value", (snapshot) => {
@@ -213,9 +218,7 @@ if (!notesListenerActive) {
   });
 }
 
-function loadNotes() {
-  // Just triggers a re-render if needed, listener is already active
-}
+function loadNotes() {} // listener already active
 
 function addNote() {
   const input = document.getElementById("note-input");
