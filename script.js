@@ -212,7 +212,16 @@ function renderNotes(notes) {
 notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   console.log("Firebase data received, notes count:", snapshot.numChildren());
   cachedNotes = [];
-  snapshot.forEach(child => cachedNotes.push({ id: child.key, ...child.val() }));
+  snapshot.forEach(child => {
+    try {
+      const val = child.val();
+      if (val && (val.text || val.imageUrl)) {
+        cachedNotes.push({ id: child.key, ...val });
+      }
+    } catch(e) {
+      console.log("Skipping broken note:", child.key);
+    }
+  });
   cachedNotes.reverse();
   console.log("cachedNotes:", cachedNotes);
   renderNotes(cachedNotes);
