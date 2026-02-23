@@ -11,6 +11,7 @@
   </script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 
@@ -428,8 +429,13 @@
         <p style="font-size:13px;color:#777;margin:0 0 12px;">Allar athugasemdir eru sýnilegar öllum í hópnum í rauntíma.</p>
         <div class="notes-input-row">
           <input type="text" id="note-input" placeholder="Skrifaðu athugasemd..." onkeydown="if(event.key==='Enter') addNote()">
-          <button class="note-add-btn" onclick="addNote()">➕ Bæta við</button>
+          <label class="note-img-btn" title="Senda mynd">
+            📷
+            <input type="file" id="image-input" accept="image/*" style="display:none;" onchange="uploadImage(this)">
+          </label>
+          <button class="note-add-btn" onclick="addNote()">➕</button>
         </div>
+        <div id="upload-progress" style="display:none;font-size:12px;color:#888;margin:0 0 8px;">Hleð upp mynd... ⏳</div>
         <div id="notes-list" class="notes-list">
           <p style="color:#aaa;font-size:14px;text-align:center;padding:20px 0;">Hleður... 🍺</p>
         </div>
@@ -439,6 +445,6 @@
   </div><!-- /main-content -->
 </div><!-- /layout -->
 
-<script src="script.js?v=3"></script>
+<script src="script.js"></script>
 </body>
 </html>

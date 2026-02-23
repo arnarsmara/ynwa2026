@@ -515,6 +515,22 @@ body {
 
 .note-add-btn:hover { background: #b71c1c; }
 
+.note-img-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  background: #f0f0f0;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.note-img-btn:hover { background: #e0e0e0; }
+
 .notes-list {
   display: flex;
   flex-direction: column;

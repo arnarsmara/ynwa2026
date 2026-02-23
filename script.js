@@ -173,10 +173,11 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+const storage = firebase.storage();
 const notesRef = db.ref("liverpool2026/notes");
 
 // ===============================
-// SHARED NOTES (Firebase Realtime DB)
+// SHARED NOTES (Firebase Realtime DB + Storage)
 // ===============================
 let cachedNotes = [];
 
@@ -191,11 +192,14 @@ function renderNotes(notes) {
 
   let html = `<table style="width:100%;border-collapse:collapse;">`;
   notes.forEach(n => {
+    const content = n.imageUrl
+      ? `<img src="${n.imageUrl}" style="max-width:100%;max-height:300px;border-radius:8px;display:block;margin-top:4px;cursor:pointer;" onclick="window.open('${n.imageUrl}','_blank')">`
+      : n.text;
     html += `
       <tr style="border-bottom:1px solid #eee;">
-        <td style="padding:10px 12px;font-size:14px;line-height:1.5;word-break:break-word;">${n.text}</td>
-        <td style="padding:10px 8px;font-size:11px;color:#aaa;white-space:nowrap;text-align:right;">${n.time}</td>
-        <td style="padding:10px 8px;text-align:right;width:30px;">
+        <td style="padding:10px 12px;font-size:14px;line-height:1.5;word-break:break-word;">${content}</td>
+        <td style="padding:10px 8px;font-size:11px;color:#aaa;white-space:nowrap;text-align:right;vertical-align:top;">${n.time}</td>
+        <td style="padding:10px 8px;text-align:right;width:30px;vertical-align:top;">
           <button onclick="deleteNote('${n.id}')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:16px;">✕</button>
         </td>
       </tr>`;
@@ -204,7 +208,7 @@ function renderNotes(notes) {
   list.innerHTML = html;
 }
 
-// Start Firebase listener immediately
+// Firebase listener
 notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   cachedNotes = [];
   snapshot.forEach(child => cachedNotes.push({ id: child.key, ...child.val() }));
@@ -212,7 +216,7 @@ notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   renderNotes(cachedNotes);
 });
 
-// Also re-render when Notes tab is clicked (in case panel was hidden during first render)
+// Re-render when Notes tab clicked
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".main-tab").forEach(tab => {
     tab.addEventListener("click", () => {
@@ -237,6 +241,36 @@ function addNote() {
 
   notesRef.push({ text, time, timestamp: Date.now() });
   input.value = "";
+}
+
+function uploadImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const progress = document.getElementById("upload-progress");
+  if (progress) progress.style.display = "block";
+
+  const fileName = `notes/${Date.now()}_${file.name}`;
+  const ref = storage.ref(fileName);
+  const uploadTask = ref.put(file);
+
+  uploadTask.on("state_changed",
+    null,
+    (err) => {
+      if (progress) progress.style.display = "none";
+      alert("Villa við að hlaða upp mynd: " + err.message);
+    },
+    () => {
+      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+        if (progress) progress.style.display = "none";
+        const now = new Date();
+        const time = now.toLocaleDateString("is-IS", { day: "numeric", month: "numeric" }) +
+                     " " + now.toLocaleTimeString("is-IS", { hour: "2-digit", minute: "2-digit" });
+        notesRef.push({ text: "📷 Mynd", imageUrl: url, time, timestamp: Date.now() });
+        input.value = "";
+      });
+    }
+  );
 }
 
 function deleteNote(id) {
