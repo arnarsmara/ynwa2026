@@ -178,10 +178,7 @@ const notesRef = db.ref("liverpool2026/notes");
 // ===============================
 // SHARED NOTES (Firebase Realtime DB)
 // ===============================
-// ===============================
-// SHARED NOTES (Firebase Realtime DB)
-// ===============================
-let notesListenerActive = false;
+let cachedNotes = [];
 
 function renderNotes(notes) {
   const list = document.getElementById("notes-list");
@@ -207,18 +204,26 @@ function renderNotes(notes) {
   list.innerHTML = html;
 }
 
-// Start listener immediately — works even if notes panel is hidden
-if (!notesListenerActive) {
-  notesListenerActive = true;
-  notesRef.orderByChild("timestamp").on("value", (snapshot) => {
-    const notes = [];
-    snapshot.forEach(child => notes.push({ id: child.key, ...child.val() }));
-    notes.reverse();
-    renderNotes(notes);
-  });
-}
+// Start Firebase listener immediately
+notesRef.orderByChild("timestamp").on("value", (snapshot) => {
+  cachedNotes = [];
+  snapshot.forEach(child => cachedNotes.push({ id: child.key, ...child.val() }));
+  cachedNotes.reverse();
+  renderNotes(cachedNotes);
+});
 
-function loadNotes() {} // listener already active
+// Also re-render when Notes tab is clicked (in case panel was hidden during first render)
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".main-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      if (tab.dataset.main === "notes") {
+        setTimeout(() => renderNotes(cachedNotes), 50);
+      }
+    });
+  });
+});
+
+function loadNotes() {}
 
 function addNote() {
   const input = document.getElementById("note-input");
