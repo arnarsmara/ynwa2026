@@ -200,8 +200,7 @@ function renderNotes(notes) {
         <td style="padding:10px 12px;font-size:14px;line-height:1.5;word-break:break-word;">${content}</td>
         <td style="padding:10px 8px;font-size:11px;color:#aaa;white-space:nowrap;text-align:right;vertical-align:top;">${n.time}</td>
         <td style="padding:10px 8px;text-align:right;width:30px;vertical-align:top;">
-          <button onclick="deleteNote('${n.id}')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:16px;">✕</button>
-        </td>
+          <td style="padding:10px 8px;text-align:right;width:10px;"></td>
       </tr>`;
   });
   html += `</table>`;
