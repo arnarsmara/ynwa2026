@@ -35,19 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const subContents = document.querySelectorAll(".sub-content");
 
   function activateSub(id) {
-    subTabs.forEach(t => t.classList.remove("active"));
-    subContents.forEach(c => c.classList.remove("active"));
-
-    const tab = document.querySelector(`.sub-tab[data-sub="${id}"]`);
     const content = document.getElementById(id);
+    if (!content) return;
 
+    // Only affect sub-tabs and sub-contents within the same parent panel
+    const parentPanel = content.closest(".main-panel");
+    if (!parentPanel) return;
+
+    parentPanel.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
+    parentPanel.querySelectorAll(".sub-content").forEach(c => c.classList.remove("active"));
+
+    const tab = parentPanel.querySelector(`.sub-tab[data-sub="${id}"]`);
     if (tab) {
       tab.classList.add("active");
       if (window.innerWidth <= 768) {
         tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
       }
     }
-    if (content) content.classList.add("active");
+    content.classList.add("active");
   }
 
   subTabs.forEach(tab => {
