@@ -56,15 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   activateSub("thu-content");
 
-  // Reset food sub-tabs when food panel is opened
-  document.querySelectorAll(".main-tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      if (tab.dataset.main === "food") {
-        setTimeout(() => activateSub("lunch-content"), 10);
-      }
-    });
-  });
-
   // ===============================
   // COUNTDOWNS
   // ===============================
@@ -216,9 +207,41 @@ function renderNotes(notes) {
   list.innerHTML = html;
 }
 
+// ===============================
+// NOTIFICATION SOUND
+// ===============================
+let lastNoteCount = null;
+
+function playNotificationSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o1 = ctx.createOscillator();
+    const o2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    o1.connect(gain);
+    o2.connect(gain);
+    gain.connect(ctx.destination);
+
+    o1.frequency.value = 880;
+    o2.frequency.value = 1100;
+    o1.type = "sine";
+    o2.type = "sine";
+
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+    o1.start(ctx.currentTime);
+    o1.stop(ctx.currentTime + 0.15);
+    o2.start(ctx.currentTime + 0.15);
+    o2.stop(ctx.currentTime + 0.4);
+  } catch(e) {}
+}
+
 // Firebase listener
 notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   console.log("Firebase data received, notes count:", snapshot.numChildren());
+  const newCount = snapshot.numChildren();
   cachedNotes = [];
   snapshot.forEach(child => {
     try {
@@ -232,6 +255,13 @@ notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   });
   cachedNotes.reverse();
   console.log("cachedNotes:", cachedNotes);
+
+  // Play sound if new note arrived (not on first load)
+  if (lastNoteCount !== null && newCount > lastNoteCount) {
+    playNotificationSound();
+  }
+  lastNoteCount = newCount;
+
   renderNotes(cachedNotes);
 });
 
