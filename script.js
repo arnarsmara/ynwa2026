@@ -207,41 +207,9 @@ function renderNotes(notes) {
   list.innerHTML = html;
 }
 
-// ===============================
-// NOTIFICATION SOUND
-// ===============================
-let lastNoteCount = null;
-
-function playNotificationSound() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const o1 = ctx.createOscillator();
-    const o2 = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    o1.connect(gain);
-    o2.connect(gain);
-    gain.connect(ctx.destination);
-
-    o1.frequency.value = 880;
-    o2.frequency.value = 1100;
-    o1.type = "sine";
-    o2.type = "sine";
-
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-
-    o1.start(ctx.currentTime);
-    o1.stop(ctx.currentTime + 0.15);
-    o2.start(ctx.currentTime + 0.15);
-    o2.stop(ctx.currentTime + 0.4);
-  } catch(e) {}
-}
-
 // Firebase listener
 notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   console.log("Firebase data received, notes count:", snapshot.numChildren());
-  const newCount = snapshot.numChildren();
   cachedNotes = [];
   snapshot.forEach(child => {
     try {
@@ -255,13 +223,6 @@ notesRef.orderByChild("timestamp").on("value", (snapshot) => {
   });
   cachedNotes.reverse();
   console.log("cachedNotes:", cachedNotes);
-
-  // Play sound if new note arrived (not on first load)
-  if (lastNoteCount !== null && newCount > lastNoteCount) {
-    playNotificationSound();
-  }
-  lastNoteCount = newCount;
-
   renderNotes(cachedNotes);
 });
 
@@ -332,6 +293,92 @@ function uploadImage(input) {
 function deleteNote(id) {
   notesRef.child(id).remove();
 }
+
+// ===============================
+// WEATHER (Open-Meteo API)
+// ===============================
+const WMO_ICONS = {
+  0: ["☀️","Skýlaust"], 1: ["🌤","Aðallega skýlaust"], 2: ["⛅","Hálfskýjað"],
+  3: ["☁️","Skýjað"], 45: ["🌫","Þoka"], 48: ["🌫","Þoka"],
+  51: ["🌦","Létt drizzle"], 53: ["🌦","Drizzle"], 55: ["🌧","Þung drizzle"],
+  61: ["🌧","Létt rigning"], 63: ["🌧","Rigning"], 65: ["🌧","Þung rigning"],
+  71: ["🌨","Létt snjókoma"], 73: ["🌨","Snjókoma"], 75: ["❄️","Þung snjókoma"],
+  80: ["🌦","Skúrir"], 81: ["🌧","Þungir skúrir"], 82: ["⛈","Ofsaveður"],
+  95: ["⛈","Þrumuveður"], 96: ["⛈","Þrumuveður"], 99: ["⛈","Þrumuveður"]
+};
+
+const DAY_NAMES = ["Sun","Mán","Þri","Mið","Fim","Fös","Lau"];
+
+async function fetchWeather() {
+  try {
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=53.4084&longitude=-2.9916&current=temperature_2m,weathercode,windspeed_10m,precipitation&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FLondon&forecast_days=7";
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const c = data.current;
+    const d = data.daily;
+    const [icon, desc] = WMO_ICONS[c.weathercode] || ["🌡️", "Óþekkt"];
+
+    // Update weather strip on front page
+    const stripIcon = document.getElementById("strip-icon");
+    const stripTemp = document.getElementById("strip-temp");
+    const stripDesc = document.getElementById("strip-desc");
+    const stripWind = document.getElementById("strip-wind");
+    const stripRain = document.getElementById("strip-rain");
+    if (stripIcon) stripIcon.textContent = icon;
+    if (stripTemp) stripTemp.textContent = `${Math.round(c.temperature_2m)}°C`;
+    if (stripDesc) stripDesc.textContent = desc;
+    if (stripWind) stripWind.textContent = `💨 ${Math.round(c.windspeed_10m)} km/h`;
+    if (stripRain) stripRain.textContent = `🌧 ${c.precipitation} mm`;
+
+    // Build weather panel
+    const panel = document.getElementById("weather-main");
+    if (!panel) return;
+
+    const todayDate = new Date(d.time[0]);
+    const [todayIcon, todayDesc] = WMO_ICONS[d.weathercode[0]] || ["🌡️","Óþekkt"];
+
+    let html = `
+      <div class="weather-today">
+        <div class="weather-today-icon">${todayIcon}</div>
+        <div class="weather-today-info">
+          <h3>Í dag · ${DAY_NAMES[todayDate.getDay()]}</h3>
+          <div class="weather-today-temp">${Math.round(c.temperature_2m)}°C</div>
+          <div class="weather-today-desc">${todayDesc}</div>
+          <div class="weather-today-details">
+            <span>💨 ${Math.round(c.windspeed_10m)} km/h</span>
+            <span>🌧 ${c.precipitation} mm</span>
+            <span>🔼 ${Math.round(d.temperature_2m_max[0])}° / 🔽 ${Math.round(d.temperature_2m_min[0])}°</span>
+          </div>
+        </div>
+      </div>
+      <div class="weather-forecast">`;
+
+    for (let i = 1; i < d.time.length; i++) {
+      const date = new Date(d.time[i]);
+      const dateStr = `${date.getDate()}/${date.getMonth()+1}`;
+      const [dIcon] = WMO_ICONS[d.weathercode[i]] || ["🌡️"];
+      const rain = d.precipitation_sum[i];
+      html += `
+        <div class="weather-day">
+          <div class="day-name">${DAY_NAMES[date.getDay()]} ${dateStr}</div>
+          <div class="day-icon">${dIcon}</div>
+          <div class="day-temp">${Math.round(d.temperature_2m_max[i])}°</div>
+          <div class="day-low">${Math.round(d.temperature_2m_min[i])}° lágmark</div>
+          ${rain > 0 ? `<div class="day-rain">🌧 ${rain.toFixed(1)} mm</div>` : ""}
+        </div>`;
+    }
+
+    html += `</div><p style="font-size:11px;color:#bbb;text-align:right;margin-top:12px;">Gögn: Open-Meteo</p>`;
+    panel.innerHTML = html;
+
+  } catch(e) {
+    const panel = document.getElementById("weather-main");
+    if (panel) panel.innerHTML = `<p style="color:#aaa;text-align:center;padding:40px;">Gat ekki sótt veðurgögn 😕</p>`;
+  }
+}
+
+fetchWeather();
 
 // ===============================
 // CURRENCY CONVERTER
