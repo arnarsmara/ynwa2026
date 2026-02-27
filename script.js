@@ -316,7 +316,7 @@ const DAY_NAMES = ["Sun","Mán","Þri","Mið","Fim","Fös","Lau"];
 
 async function fetchWeather() {
   try {
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=53.4084&longitude=-2.9916&current=temperature_2m,weathercode,windspeed_10m,precipitation&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FLondon&forecast_days=7";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=53.4084&longitude=-2.9916&current=temperature_2m,weathercode,windspeed_10m,precipitation&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FLondon&forecast_days=7&wind_speed_unit=ms";
     const res = await fetch(url);
     const data = await res.json();
 
@@ -333,7 +333,7 @@ async function fetchWeather() {
     if (stripIcon) stripIcon.textContent = icon;
     if (stripTemp) stripTemp.textContent = `${Math.round(c.temperature_2m)}°C`;
     if (stripDesc) stripDesc.textContent = desc;
-    if (stripWind) stripWind.textContent = `💨 ${Math.round(c.windspeed_10m)} km/h`;
+    if (stripWind) stripWind.textContent = `💨 ${Math.round(c.windspeed_10m)} m/s`;
     if (stripRain) stripRain.textContent = `🌧 ${c.precipitation} mm`;
 
     // Build weather panel
@@ -351,7 +351,7 @@ async function fetchWeather() {
           <div class="weather-today-temp">${Math.round(c.temperature_2m)}°C</div>
           <div class="weather-today-desc">${todayDesc}</div>
           <div class="weather-today-details">
-            <span>💨 ${Math.round(c.windspeed_10m)} km/h</span>
+            <span>💨 ${Math.round(c.windspeed_10m)} m/s</span>
             <span>🌧 ${c.precipitation} mm</span>
             <span>🔼 ${Math.round(d.temperature_2m_max[0])}° / 🔽 ${Math.round(d.temperature_2m_min[0])}°</span>
           </div>
