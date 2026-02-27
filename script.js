@@ -56,6 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   activateSub("thu-content");
 
+  // Reset food sub-tabs when food panel is opened
+  document.querySelectorAll(".main-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      if (tab.dataset.main === "food") {
+        setTimeout(() => activateSub("lunch-content"), 10);
+      }
+    });
+  });
+
   // ===============================
   // COUNTDOWNS
   // ===============================
