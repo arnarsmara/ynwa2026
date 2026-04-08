@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Break — Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: rgba(255,255,255,0.08);
+    --accent: #00e5a0;
+    --accent-dim: rgba(0,229,160,0.12);
+    --text: #f0f0f0;
+    --muted: #666;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .ticker-tape {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .ticker-inner {
+    display: flex;
+    gap: 0;
+    animation: scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .tick-item {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0 20px;
+    color: var(--muted);
+    border-right: 1px solid var(--border);
+    line-height: 32px;
+  }
+
+  .tick-item .up { color: #00e5a0; }
+  .tick-item .dn { color: #ff4d6d; }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .box {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    padding: 48px 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    animation: fadein 0.6s ease both;
+  }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--accent);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 3px;
+    padding: 4px 5px;
+    border-radius: 2px;
+  }
+
+  .logo-mark span {
+    display: block;
+    width: 4px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .logo-name {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .logo-name em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  input[type="password"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 16px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  input[type="password"]:focus {
+    border-color: var(--accent);
+  }
+
+  .error-msg {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #ff4d6d;
+    height: 18px;
+    margin-bottom: 20px;
+    transition: opacity 0.2s;
+  }
+
+  button {
+    width: 100%;
+    background: var(--accent);
+    color: #0a0a0f;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+
+  button:hover { opacity: 0.88; }
+  button:active { transform: scale(0.98); }
+
+  .hint {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .corner {
+    position: fixed;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.1);
+  }
+  .corner-tl { top: 48px; left: 16px; }
+  .corner-br { bottom: 16px; right: 16px; }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="glow"></div>
+
+<div class="ticker-tape">
+  <div class="ticker-inner" id="tape"></div>
+</div>
+
+<span class="corner corner-tl">SB/v1.0</span>
+<span class="corner corner-br">NASDAQ · NYSE · ICEX</span>
+
+<div class="box">
+  <div class="logo-line">
+    <div class="logo-mark">
+      <span style="height:6px"></span>
+      <span style="height:10px"></span>
+      <span style="height:14px"></span>
+      <span style="height:8px"></span>
+    </div>
+    <div class="logo-name">Stock<em>Break</em></div>
+  </div>
+
+  <label for="pwd">Lykilorð</label>
+  <input type="password" id="pwd" placeholder="••••••••" autofocus
+         onkeydown="if(event.key==='Enter') login()">
+  <div class="error-msg" id="err"></div>
+
+  <button onclick="login()">Innskrá →</button>
+
+  <div class="hint">StockBreak · Hlutabréfaeftirlit</div>
+</div>
+
+<script>
+const TICKS = [
+  ["AAPL","257.35",true],["MSFT","384.20",true],["NVDA","183.76",true],
+  ["TSLA","354.65",false],["GOOGL","318.21",true],["AMZN","221.80",false],
+  ["META","581.40",true],["MAREL","428 kr",true],["ARION","180 kr",true],
+  ["VTI","333.89",true],["VOO","621.34",true],["QQQ","607.45",true],
+  ["ICEAIR","0.78 kr",true],["SIMINN","13.10 kr",true],["HAGA","97 kr",false],
+  ["AAPL","257.35",true],["MSFT","384.20",true],["NVDA","183.76",true],
+  ["TSLA","354.65",false],["GOOGL","318.21",true],["AMZN","221.80",false],
+  ["META","581.40",true],["MAREL","428 kr",true],["ARION","180 kr",true],
+  ["VTI","333.89",true],["VOO","621.34",true],["QQQ","607.45",true],
+];
+
+const tape = document.getElementById("tape");
+tape.innerHTML = TICKS.map(([sym,price,up])=>
+  `<span class="tick-item">${sym} <span class="${up?'up':'dn'}">${price} ${up?"▲":"▼"}</span></span>`
+).join("");
+
+function login() {
+  const pwd = document.getElementById("pwd").value;
+  const err = document.getElementById("err");
+  if (pwd === "YNWA2026") {
+    localStorage.setItem("sb_auth", "true");
+    window.location.href = "index.html";
+  } else {
+    err.textContent = "Vitlaust lykilorð";
+    document.getElementById("pwd").style.borderColor = "#ff4d6d";
+    setTimeout(() => {
+      err.textContent = "";
+      document.getElementById("pwd").style.borderColor = "";
+    }, 2000);
+  }
+}
+</script>
+</body>
+</html>

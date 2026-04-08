@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Break</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<script>
+  if (localStorage.getItem("sb_auth") !== "true") window.location.href = "login.html";
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0f; --surface: #111118; --surface2: #16161f;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+  --accent: #00e5a0; --accent-dim: rgba(0,229,160,0.1);
+  --red: #ff4d6d; --red-dim: rgba(255,77,109,0.1);
+  --text: #f0f0f0; --muted: #888; --dim: #3a3a4a;
+  --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; min-height: 100vh; }
+
+.tape { height: 30px; background: var(--surface); border-bottom: 1px solid var(--border); overflow: hidden; display: flex; align-items: center; }
+.tape-inner { display: flex; animation: scroll 50s linear infinite; white-space: nowrap; }
+.tape-item { font-family: var(--mono); font-size: 11px; padding: 0 18px; color: var(--muted); border-right: 1px solid var(--border); line-height: 30px; }
+.up { color: var(--accent); } .dn { color: var(--red); }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.header { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 52px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { width: 24px; height: 24px; border: 1.5px solid var(--accent); display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 3px 4px; border-radius: 2px; }
+.logo-mark span { display: block; width: 3px; background: var(--accent); border-radius: 1px; }
+.logo-name { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+.logo-name em { color: var(--accent); font-style: normal; }
+.header-right { display: flex; align-items: center; gap: 10px; }
+.update-info { font-family: var(--mono); font-size: 10px; color: var(--dim); }
+@media(min-width:600px){ .update-info { color: var(--muted); } }
+.hbtn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--border2); border-radius: 2px; padding: 5px 10px; cursor: pointer; transition: all 0.15s; }
+.hbtn.accent { color: var(--accent); border-color: rgba(0,229,160,0.25); background: var(--accent-dim); }
+.hbtn.muted { color: var(--muted); }
+.hbtn:hover { opacity: 0.7; }
+
+.nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; position: sticky; top: 52px; z-index: 99; }
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 18px; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.panel { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.panel.active { display: block; }
+
+.stitle { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.stitle:first-child { margin-top: 0; }
+
+.index-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 8px; }
+.index-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; position: relative; overflow: hidden; }
+.index-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; }
+.index-card.up::after { background: var(--accent); }
+.index-card.dn::after { background: var(--red); }
+.ic-name { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 6px; }
+.ic-price { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 3px; }
+.ic-chg { font-family: var(--mono); font-size: 11px; }
+
+.ticker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
+.tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; transition: border-color 0.15s; }
+.tcard:hover { border-color: var(--border2); }
+.tcard.is-s { border-left: 2px solid #3b6fd4; }
+.tcard.no-data { opacity: 0.4; }
+.tc-sym { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.tc-name { font-size: 11px; color: var(--muted); margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tc-price { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.tc-chg { font-family: var(--mono); font-size: 11px; margin-top: 3px; }
+
+.news-list { display: flex; flex-direction: column; gap: 1px; }
+.news-item { display: flex; gap: 14px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; transition: border-color 0.15s; }
+.news-item:hover { border-color: var(--border2); }
+.news-src { font-family: var(--mono); font-size: 10px; color: var(--dim); min-width: 55px; flex-shrink: 0; }
+.news-src strong { display: block; color: var(--muted); font-weight: 500; }
+.news-title { font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 5px; }
+.news-tag { font-family: var(--mono); font-size: 10px; color: var(--accent); background: var(--accent-dim); padding: 2px 7px; border-radius: 2px; }
+
+.sb-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+.sb-table { width: 100%; border-collapse: collapse; }
+.sb-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); font-weight: 500; }
+.sb-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); vertical-align: middle; }
+.sb-table tr:last-child td { border-bottom: none; }
+.sb-table tr:hover td { background: rgba(255,255,255,0.02); }
+.pill { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 2px; font-weight: 500; }
+.pill-up { background: rgba(0,229,160,0.12); color: var(--accent); }
+.pill-dn { background: rgba(255,77,109,0.1); color: var(--red); }
+.pill-hot { background: rgba(255,150,0,0.12); color: #ff9600; }
+.pill-neu { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+.sector-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.sector-row:last-child { border: none; }
+.sector-name { font-size: 13px; color: var(--text); width: 160px; flex-shrink: 0; }
+.sector-bar-bg { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.sector-bar { height: 100%; border-radius: 3px; }
+.sector-pct { font-family: var(--mono); font-size: 12px; width: 52px; text-align: right; flex-shrink: 0; }
+
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.fsel { background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--mono); font-size: 11px; padding: 6px 10px; border-radius: 2px; cursor: pointer; outline: none; }
+.fsel:focus { border-color: var(--accent); }
+
+.loading-msg { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 40px; text-align: center; }
+.error-banner { font-family: var(--mono); font-size: 12px; color: var(--red); background: var(--red-dim); border: 1px solid rgba(255,77,109,0.2); border-radius: 3px; padding: 10px 14px; margin-bottom: 14px; display: none; }
+
+.is-notice { font-family: var(--mono); font-size: 11px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-left: 2px solid #3b6fd4; padding: 10px 14px; border-radius: 3px; margin-bottom: 16px; line-height: 1.7; }
+
+@media(max-width:600px){
+  .header { padding: 0 12px; }
+  .panel { padding: 12px; }
+  .index-grid { grid-template-columns: repeat(2, 1fr); }
+  .ticker-grid { grid-template-columns: repeat(2, 1fr); }
+  .update-info { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="tape"><div class="tape-inner" id="tape">
+  <span class="tape-item">StockBreak — <span class="up">Hleður gögnum...</span></span>
+</div></div>
+
+<header class="header">
+  <a class="logo" href="#">
+    <div class="logo-mark">
+      <span style="height:5px"></span><span style="height:9px"></span>
+      <span style="height:13px"></span><span style="height:7px"></span>
+    </div>
+    <div class="logo-name">Stock<em>Break</em></div>
+  </a>
+  <div class="header-right">
+    <span class="update-info" id="update-info">Hleður...</span>
+    <button class="hbtn accent" onclick="loadData()">↻ Uppfæra</button>
+    <button class="hbtn muted" onclick="logout()">Útskrá</button>
+  </div>
+</header>
+
+<nav class="nav">
+  <button class="nav-btn active" data-tab="markets">Markaðir</button>
+  <button class="nav-btn" data-tab="stocks">Hlutabréf</button>
+  <button class="nav-btn" data-tab="iceland">Íslenskt</button>
+  <button class="nav-btn" data-tab="ipo">IPO</button>
+  <button class="nav-btn" data-tab="sectors">Geirar</button>
+  <button class="nav-btn" data-tab="screener">Leitar</button>
+  <button class="nav-btn" data-tab="news">Fréttir</button>
+</nav>
+
+<!-- MARKAÐIR -->
+<div class="panel active" id="panel-markets">
+  <div class="error-banner" id="error-banner">
+    ⚠️ Gat ekki lesið stocks_data.json — keyraðu update_stocks.py til að uppfæra gögn.
+  </div>
+  <div class="stitle">Vísitölur</div>
+  <div class="index-grid" id="index-grid"><div class="loading-msg">Hleður...</div></div>
+  <div class="stitle">Stærstu hreyfingar dagsins</div>
+  <div class="ticker-grid" id="movers-grid"></div>
+  <div class="stitle">Fréttir</div>
+  <div class="news-list" id="news-markets"></div>
+</div>
+
+<!-- HLUTABRÉF -->
+<div class="panel" id="panel-stocks">
+  <div class="stitle">Tækni</div>
+  <div class="ticker-grid" id="tech-grid"></div>
+  <div class="stitle">Fjármál</div>
+  <div class="ticker-grid" id="fin-grid"></div>
+  <div class="stitle">Heilsa &amp; Neytendur</div>
+  <div class="ticker-grid" id="health-grid"></div>
+  <div class="stitle">Orka &amp; ETF</div>
+  <div class="ticker-grid" id="energy-grid"></div>
+  <div class="stitle">ETF sjóðir</div>
+  <div class="ticker-grid" id="etf-grid"></div>
+</div>
+
+<!-- ÍSLENSKT -->
+<div class="panel" id="panel-iceland">
+  <div class="is-notice">
+    Nasdaq Iceland — gögn sótt við hverja keyrslu á update_stocks.py · Verð í ISK
+  </div>
+  <div class="ticker-grid" id="iceland-grid"></div>
+</div>
+
+<!-- IPO -->
+<div class="panel" id="panel-ipo">
+  <div class="stitle">Væntanlegar IPO skráningar 2025–2026</div>
+  <div class="sb-wrap">
+    <table class="sb-table">
+      <thead><tr><th>Fyrirtæki</th><th>Geiri</th><th>Verðmat</th><th>Tími</th><th>Staða</th></tr></thead>
+      <tbody id="ipo-body"></tbody>
+    </table>
+  </div>
+  <div class="stitle" style="margin-top:28px">Nýlegar IPO — síðastliðin 90 dagar</div>
+  <div class="sb-wrap">
+    <table class="sb-table">
+      <thead><tr><th>Fyrirtæki</th><th>Útboðsverð</th><th>1. dagur</th><th>Breyting</th><th>Geiri</th></tr></thead>
+      <tbody id="recent-ipo-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GEIRAR -->
+<div class="panel" id="panel-sectors">
+  <div class="stitle">S&amp;P 500 — geiraskipting &amp; ávöxtun YTD</div>
+  <div class="sb-wrap" style="padding:16px 20px"><div id="sectors-list"></div></div>
+</div>
+
+<!-- LEITAR -->
+<div class="panel" id="panel-screener">
+  <div class="filters">
+    <select class="fsel" id="f-mkt" onchange="filterScreener()">
+      <option value="all">Allir markaðir</option>
+      <option value="us">Bandarísk / ETF</option>
+      <option value="is">Íslensk</option>
+    </select>
+    <select class="fsel" id="f-dir" onchange="filterScreener()">
+      <option value="all">Allar breytingar</option>
+      <option value="up">Hækkandi ▲</option>
+      <option value="dn">Lækkandi ▼</option>
+    </select>
+    <select class="fsel" id="f-sec" onchange="filterScreener()">
+      <option value="all">Allir geirar</option>
+      <option value="Tech">Tækni</option>
+      <option value="Finance">Fjármál</option>
+      <option value="Energy">Orka</option>
+      <option value="Health">Heilsa</option>
+      <option value="Consumer">Neytendur</option>
+      <option value="ETF">ETF</option>
+      <option value="Íslenskt">Íslenskt</option>
+    </select>
+  </div>
+  <div class="sb-wrap">
+    <table class="sb-table">
+      <thead><tr><th>Ticker</th><th>Nafn</th><th>Verð</th><th>Dagleg br.</th><th>Geiri</th><th>Markaður</th></tr></thead>
+      <tbody id="screener-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FRÉTTIR -->
+<div class="panel" id="panel-news">
+  <div class="stitle">Hlutabréfafréttir</div>
+  <div class="news-list" id="news-all"></div>
+</div>
+
+<script>
+const NEWS_STATIC = [
+  {src:"Reuters",time:"2 klst",title:"Fed heldur vöxtum óbreyttum — markaðir bregðast vel við",tag:"Seðlabanki"},
+  {src:"Bloomberg",time:"3 klst",title:"NVIDIA þrífaldaði hagnað — AI eftirspurn eykst",tag:"NVDA"},
+  {src:"WSJ",time:"5 klst",title:"Apple kynnir nýja AI eiginleika í iOS 19",tag:"AAPL"},
+  {src:"FT",time:"6 klst",title:"Klarna IPO nálgast — verðmat yfir $15 milljarða",tag:"IPO"},
+  {src:"CNBC",time:"7 klst",title:"S&P 500 nær nýju met — tæknihlutabréf leiðandi",tag:"Markaðir"},
+  {src:"Reuters",time:"8 klst",title:"Tesla Model Y endurhannaður — sala yfir væntingum",tag:"TSLA"},
+  {src:"Keldan",time:"3 klst",title:"Íslenska markaðurinn hækkar — Marel í fararbroddi",tag:"Ísland"},
+  {src:"Bloomberg",time:"10 klst",title:"Goldman Sachs hækkar markmið S&P 500 í 6.500",tag:"GS"},
+  {src:"WSJ",time:"11 klst",title:"Evrópskir markaðir loka á hæsta stigi þetta ár",tag:"Evrópa"},
+  {src:"FT",time:"12 klst",title:"Bitcoin yfir $90.000 — stofnanafjárfestar auka hlutdeild",tag:"Crypto"},
+];
+
+const IPO_UPCOMING = [
+  {name:"Klarna",sector:"Fintech",val:"$15B",date:"Q2 2025",status:"hot"},
+  {name:"CoreWeave",sector:"AI / Cloud",val:"$23B",date:"Mars 2025",status:"priced"},
+  {name:"Cerebras",sector:"AI / Tækni",val:"$7B",date:"Q2 2025",status:"priced"},
+  {name:"Chime",sector:"Neobanki",val:"$8B",date:"Q3 2025",status:"neu"},
+  {name:"Medline",sector:"Heilsugæsla",val:"$10B",date:"Q4 2025",status:"neu"},
+  {name:"Stubhub",sector:"Tónleikar",val:"$3.5B",date:"Q3 2025",status:"neu"},
+  {name:"Panera Bread",sector:"Veitingastaðir",val:"$1B",date:"Q3 2025",status:"neu"},
+  {name:"Genesys",sector:"Hugbúnaður",val:"$5B",date:"Q4 2025",status:"neu"},
+];
+
+const IPO_RECENT = [
+  {name:"Reddit",price:"$34",day1:"$50.44",chg:"+48.4%",up:true,sector:"Social"},
+  {name:"Astera Labs",price:"$36",day1:"$72.00",chg:"+100%",up:true,sector:"Tækni"},
+  {name:"BrightSpring",price:"$13",day1:"$11.80",chg:"−9.2%",up:false,sector:"Heilsa"},
+  {name:"Amer Sports",price:"$13",day1:"$14.50",chg:"+11.5%",up:true,sector:"Íþróttir"},
+  {name:"Rubrik",price:"$32",day1:"$38.00",chg:"+18.8%",up:true,sector:"Öryggi"},
+];
+
+const SECTORS_STATIC = [
+  {name:"Tækni",ytd:28.4,up:true},{name:"Fjármál",ytd:13.1,up:true},
+  {name:"Samskipti",ytd:8.9,up:true},{name:"Neytendavörur",ytd:5.2,up:true},
+  {name:"Heilsugæsla",ytd:12.2,up:true},{name:"Iðnaður",ytd:8.7,up:true},
+  {name:"Hlutlæg gæði",ytd:4.9,up:true},{name:"Orkuiðnaður",ytd:-3.8,up:false},
+  {name:"Fasteignir",ytd:-2.5,up:false},{name:"Neysluvörur",ytd:6.1,up:true},
+];
+
+let allStocks = [];
+
+function chgSpan(d) {
+  if (d.chgPct == null) return '<span style="color:var(--dim)">—</span>';
+  const sign = d.up ? "+" : "";
+  return `<span class="${d.up?"up":"dn"}">${sign}${d.chgPct}%</span>`;
+}
+
+function tcard(d) {
+  const isIs = d.market === "is";
+  const price = d.price != null
+    ? (isIs ? d.price.toLocaleString("is-IS") + " kr" : "$" + d.price.toLocaleString("en-US"))
+    : "—";
+  const extra = isIs ? " is-s" : "";
+  const noData = !d.ok ? " no-data" : "";
+  return `<div class="tcard${extra}${noData}">
+    <div class="tc-sym">${d.sym}</div>
+    <div class="tc-name">${d.name}</div>
+    <div class="tc-price">${price}</div>
+    <div class="tc-chg">${chgSpan(d)}</div>
+  </div>`;
+}
+
+function newsHtml(n) {
+  return `<div class="news-item">
+    <div class="news-src"><strong>${n.src}</strong>${n.time} síðan</div>
+    <div>
+      <div class="news-title">${n.title}</div>
+      <div style="margin-top:5px"><span class="news-tag">${n.tag}</span></div>
+    </div>
+  </div>`;
+}
+
+function renderAll(data) {
+  const indices = data.indices || [];
+  const us      = data.us || [];
+  const etfs    = data.etfs || [];
+  const iceland = data.iceland || [];
+  allStocks = [...us, ...etfs, ...iceland];
+
+  // Vísitölur
+  const ig = document.getElementById("index-grid");
+  if (ig) ig.innerHTML = indices.map(d => {
+    const price = d.price != null ? d.price.toLocaleString("en-US") : "—";
+    return `<div class="index-card ${d.up?"up":"dn"}">
+      <div class="ic-name">${d.name}</div>
+      <div class="ic-price">${price}</div>
+      <div class="ic-chg">${chgSpan(d)}</div>
+    </div>`;
+  }).join("");
+
+  // Movers
+  const movers = [...us, ...etfs]
+    .filter(d => d.chgPct != null)
+    .sort((a,b) => Math.abs(b.chgPct) - Math.abs(a.chgPct))
+    .slice(0, 8);
+  const mg = document.getElementById("movers-grid");
+  if (mg) mg.innerHTML = movers.map(tcard).join("");
+
+  // Geirar
+  const byS = (sec) => us.filter(d => d.sector === sec);
+  document.getElementById("tech-grid").innerHTML   = byS("Tech").map(tcard).join("");
+  document.getElementById("fin-grid").innerHTML    = byS("Finance").map(tcard).join("");
+  document.getElementById("health-grid").innerHTML = [...byS("Health"), ...byS("Consumer")].map(tcard).join("");
+  document.getElementById("energy-grid").innerHTML = byS("Energy").map(tcard).join("");
+  document.getElementById("etf-grid").innerHTML    = etfs.map(tcard).join("");
+
+  // Íslenskt
+  const isg = document.getElementById("iceland-grid");
+  if (isg) isg.innerHTML = iceland.map(tcard).join("");
+
+  // Fréttir
+  const nm = document.getElementById("news-markets");
+  if (nm) nm.innerHTML = NEWS_STATIC.slice(0,5).map(newsHtml).join("");
+  const na = document.getElementById("news-all");
+  if (na) na.innerHTML = NEWS_STATIC.map(newsHtml).join("");
+
+  // IPO
+  const ib = document.getElementById("ipo-body");
+  if (ib) ib.innerHTML = IPO_UPCOMING.map(i =>
+    `<tr>
+      <td style="font-weight:500">${i.name}</td>
+      <td style="color:var(--muted)">${i.sector}</td>
+      <td style="font-family:var(--mono);font-size:12px">${i.val}</td>
+      <td style="color:var(--muted);font-family:var(--mono);font-size:12px">${i.date}</td>
+      <td><span class="pill pill-${i.status==="hot"?"hot":i.status==="priced"?"up":"neu"}">${
+        i.status==="hot"?"Heitasta":i.status==="priced"?"Verðlagt":"Væntanlegt"
+      }</span></td>
+    </tr>`
+  ).join("");
+
+  const rb = document.getElementById("recent-ipo-body");
+  if (rb) rb.innerHTML = IPO_RECENT.map(i =>
+    `<tr>
+      <td style="font-weight:500">${i.name}</td>
+      <td style="font-family:var(--mono);font-size:12px">${i.price}</td>
+      <td style="font-family:var(--mono);font-size:12px">${i.day1}</td>
+      <td><span class="pill ${i.up?"pill-up":"pill-dn"}">${i.chg}</span></td>
+      <td style="color:var(--muted)">${i.sector}</td>
+    </tr>`
+  ).join("");
+
+  // Geirar
+  const sl = document.getElementById("sectors-list");
+  if (sl) {
+    const maxV = Math.max(...SECTORS_STATIC.map(s => Math.abs(s.ytd)));
+    sl.innerHTML = SECTORS_STATIC.map(s =>
+      `<div class="sector-row">
+        <div class="sector-name">${s.name}</div>
+        <div class="sector-bar-bg"><div class="sector-bar" style="width:${(Math.abs(s.ytd)/maxV*100).toFixed(0)}%;background:${s.up?"var(--accent)":"var(--red)"}"></div></div>
+        <div class="sector-pct ${s.up?"up":"dn"}">${s.up?"+":""}${s.ytd}%</div>
+      </div>`
+    ).join("");
+  }
+
+  // Tape
+  const tape = document.getElementById("tape");
+  if (tape) {
+    const items = [...us, ...etfs, ...iceland].filter(d => d.price != null);
+    const html = [...items, ...items].map(d => {
+      const p = d.market==="is" ? d.price+" kr" : "$"+d.price;
+      return `<span class="tape-item">${d.sym} <span class="${d.up?"up":"dn"}">${p} ${d.up?"▲":"▼"}</span></span>`;
+    }).join("");
+    tape.innerHTML = html;
+  }
+
+  filterScreener();
+}
+
+function filterScreener() {
+  const mkt = document.getElementById("f-mkt")?.value || "all";
+  const dir = document.getElementById("f-dir")?.value || "all";
+  const sec = document.getElementById("f-sec")?.value || "all";
+
+  const res = allStocks.filter(d => {
+    if (mkt === "us" && d.market !== "us") return false;
+    if (mkt === "is" && d.market !== "is") return false;
+    if (dir === "up" && !d.up) return false;
+    if (dir === "dn" && d.up) return false;
+    if (sec !== "all" && d.sector !== sec) return false;
+    return true;
+  });
+
+  const sb = document.getElementById("screener-body");
+  if (sb) sb.innerHTML = res.map(d => {
+    const price = d.price != null
+      ? (d.market==="is" ? d.price+" kr" : "$"+d.price)
+      : "—";
+    return `<tr>
+      <td style="font-family:var(--mono);font-size:12px;font-weight:500">${d.sym}</td>
+      <td style="color:var(--muted)">${d.name}</td>
+      <td style="font-family:var(--mono);font-size:12px">${price}</td>
+      <td>${d.chgPct != null ? `<span class="pill ${d.up?"pill-up":"pill-dn"}">${d.up?"+":""}${d.chgPct}%</span>` : "—"}</td>
+      <td style="color:var(--muted)">${d.sector}</td>
+      <td><span class="pill pill-neu">${d.market==="is"?"🇮🇸 ICEX":"🇺🇸 NYSE/Nasdaq"}</span></td>
+    </tr>`;
+  }).join("");
+}
+
+async function loadData() {
+  const btn = document.querySelector(".hbtn.accent");
+  const info = document.getElementById("update-info");
+  if (btn) btn.textContent = "↻ Hleður...";
+
+  try {
+    // Bæta við cache-bust til að fá alltaf nýjustu útgáfu
+    const res = await fetch("stocks_data.json?t=" + Date.now());
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+
+    document.getElementById("error-banner").style.display = "none";
+
+    if (info) info.textContent = "Uppfært: " + data.updated;
+    renderAll(data);
+
+  } catch (err) {
+    document.getElementById("error-banner").style.display = "block";
+    if (info) info.textContent = "Villa — keyra update_stocks.py";
+    console.error("loadData villa:", err);
+  }
+
+  if (btn) btn.textContent = "↻ Uppfæra";
+}
+
+// Nav
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+  });
+});
+
+function logout() {
+  localStorage.removeItem("sb_auth");
+  window.location.href = "login.html";
+}
+
+// Hlaða gögnum við opnun
+loadData();
+
+// Uppfæra á 5 mín fresti — keyrir loadData sem les nýjasta JSON skrána
+setInterval(loadData, 5 * 60 * 1000);
+</script>
+</body>
+</html>
