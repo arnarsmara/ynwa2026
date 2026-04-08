@@ -34,8 +34,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 .logo-name { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
 .logo-name em { color: var(--accent); font-style: normal; }
 .header-right { display: flex; align-items: center; gap: 10px; }
-.update-info { font-family: var(--mono); font-size: 10px; color: var(--dim); }
-@media(min-width:600px){ .update-info { color: var(--muted); } }
+.update-info { font-family: var(--mono); font-size: 10px; color: var(--muted); }
 .hbtn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--border2); border-radius: 2px; padding: 5px 10px; cursor: pointer; transition: all 0.15s; }
 .hbtn.accent { color: var(--accent); border-color: rgba(0,229,160,0.25); background: var(--accent-dim); }
 .hbtn.muted { color: var(--muted); }
@@ -54,7 +53,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 .stitle:first-child { margin-top: 0; }
 
 .index-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 8px; }
-.index-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; position: relative; overflow: hidden; }
+.index-card { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.15s; }
+.index-card:hover { border-color: var(--border2); }
 .index-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; }
 .index-card.up::after { background: var(--accent); }
 .index-card.dn::after { background: var(--red); }
@@ -63,14 +63,84 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 .ic-chg { font-family: var(--mono); font-size: 11px; }
 
 .ticker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
-.tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; transition: border-color 0.15s; }
+.tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 12px 14px; transition: border-color 0.15s; cursor: pointer; }
 .tcard:hover { border-color: var(--border2); }
 .tcard.is-s { border-left: 2px solid #3b6fd4; }
-.tcard.no-data { opacity: 0.4; }
+.tcard.no-data { opacity: 0.4; cursor: default; }
 .tc-sym { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
 .tc-name { font-size: 11px; color: var(--muted); margin-bottom: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tc-price { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
 .tc-chg { font-family: var(--mono); font-size: 11px; margin-top: 3px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+  gap: 12px;
+}
+
+.modal-title-block {}
+.modal-sym { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-bottom: 2px; }
+.modal-name { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.modal-price-block { text-align: right; flex-shrink: 0; }
+.modal-price { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.modal-chg { font-family: var(--mono); font-size: 13px; margin-top: 2px; }
+.modal-close { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; padding: 0; line-height: 1; flex-shrink: 0; transition: color 0.15s; }
+.modal-close:hover { color: var(--text); }
+
+.range-tabs { display: flex; gap: 4px; padding: 16px 20px 0; }
+.range-btn { font-family: var(--mono); font-size: 11px; padding: 5px 10px; border-radius: 2px; border: 1px solid var(--border); background: none; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.range-btn:hover { color: var(--text); border-color: var(--border2); }
+.range-btn.active { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,229,160,0.3); }
+
+.chart-wrap { padding: 12px 20px 0; height: 200px; position: relative; }
+canvas#stockChart { width: 100% !important; height: 100% !important; }
+
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1px;
+  margin: 16px 20px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.stat-item { background: var(--surface); padding: 10px 12px; }
+.stat-label { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.stat-value { font-size: 14px; font-weight: 700; color: var(--text); }
+
+.modal-desc { margin: 0 20px 20px; font-size: 12px; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px; }
 
 .news-list { display: flex; flex-direction: column; gap: 1px; }
 .news-item { display: flex; gap: 14px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; transition: border-color 0.15s; }
@@ -103,9 +173,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 .fsel { background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--mono); font-size: 11px; padding: 6px 10px; border-radius: 2px; cursor: pointer; outline: none; }
 .fsel:focus { border-color: var(--accent); }
 
-.loading-msg { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 40px; text-align: center; }
 .error-banner { font-family: var(--mono); font-size: 12px; color: var(--red); background: var(--red-dim); border: 1px solid rgba(255,77,109,0.2); border-radius: 3px; padding: 10px 14px; margin-bottom: 14px; display: none; }
-
 .is-notice { font-family: var(--mono); font-size: 11px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-left: 2px solid #3b6fd4; padding: 10px 14px; border-radius: 3px; margin-bottom: 16px; line-height: 1.7; }
 
 @media(max-width:600px){
@@ -114,13 +182,15 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
   .index-grid { grid-template-columns: repeat(2, 1fr); }
   .ticker-grid { grid-template-columns: repeat(2, 1fr); }
   .update-info { display: none; }
+  .modal { max-height: 95vh; }
+  .modal-stats { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
 
 <div class="tape"><div class="tape-inner" id="tape">
-  <span class="tape-item">StockBreak — <span class="up">Hleður gögnum...</span></span>
+  <span class="tape-item">StockBreak — <span class="up">Hleður...</span></span>
 </div></div>
 
 <header class="header">
@@ -133,7 +203,6 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
   </a>
   <div class="header-right">
     <span class="update-info" id="update-info">Hleður...</span>
-    <button class="hbtn accent" onclick="loadData()">↻ Uppfæra</button>
     <button class="hbtn muted" onclick="logout()">Útskrá</button>
   </div>
 </header>
@@ -151,10 +220,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 <!-- MARKAÐIR -->
 <div class="panel active" id="panel-markets">
   <div class="error-banner" id="error-banner">
-    ⚠️ Gat ekki lesið stocks_data.json — keyraðu update_stocks.py til að uppfæra gögn.
+    ⚠️ Gat ekki lesið stocks_data.json — keyraðu update_stocks.py og git push.
   </div>
   <div class="stitle">Vísitölur</div>
-  <div class="index-grid" id="index-grid"><div class="loading-msg">Hleður...</div></div>
+  <div class="index-grid" id="index-grid"><div style="font-family:var(--mono);font-size:12px;color:var(--muted);padding:20px">Hleður...</div></div>
   <div class="stitle">Stærstu hreyfingar dagsins</div>
   <div class="ticker-grid" id="movers-grid"></div>
   <div class="stitle">Fréttir</div>
@@ -169,7 +238,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
   <div class="ticker-grid" id="fin-grid"></div>
   <div class="stitle">Heilsa &amp; Neytendur</div>
   <div class="ticker-grid" id="health-grid"></div>
-  <div class="stitle">Orka &amp; ETF</div>
+  <div class="stitle">Orka</div>
   <div class="ticker-grid" id="energy-grid"></div>
   <div class="stitle">ETF sjóðir</div>
   <div class="ticker-grid" id="etf-grid"></div>
@@ -177,15 +246,13 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 
 <!-- ÍSLENSKT -->
 <div class="panel" id="panel-iceland">
-  <div class="is-notice">
-    Nasdaq Iceland — gögn sótt við hverja keyrslu á update_stocks.py · Verð í ISK
-  </div>
+  <div class="is-notice">Nasdaq Iceland — gögn sótt við hverja keyrslu á update_stocks.py · Verð í ISK</div>
   <div class="ticker-grid" id="iceland-grid"></div>
 </div>
 
 <!-- IPO -->
 <div class="panel" id="panel-ipo">
-  <div class="stitle">Væntanlegar IPO skráningar 2025–2026</div>
+  <div class="stitle">Væntanlegar IPO 2025–2026</div>
   <div class="sb-wrap">
     <table class="sb-table">
       <thead><tr><th>Fyrirtæki</th><th>Geiri</th><th>Verðmat</th><th>Tími</th><th>Staða</th></tr></thead>
@@ -245,6 +312,39 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
   <div class="news-list" id="news-all"></div>
 </div>
 
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title-block">
+        <div class="modal-sym" id="m-sym"></div>
+        <div class="modal-name" id="m-name"></div>
+      </div>
+      <div class="modal-price-block">
+        <div class="modal-price" id="m-price"></div>
+        <div class="modal-chg" id="m-chg"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="range-tabs" id="range-tabs">
+      <button class="range-btn" data-range="5d">5D</button>
+      <button class="range-btn" data-range="1w">1V</button>
+      <button class="range-btn active" data-range="1m">1M</button>
+      <button class="range-btn" data-range="6m">6M</button>
+      <button class="range-btn" data-range="ytd">YTD</button>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="stockChart"></canvas>
+    </div>
+
+    <div class="modal-stats" id="m-stats"></div>
+    <div class="modal-desc" id="m-desc"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const NEWS_STATIC = [
   {src:"Reuters",time:"2 klst",title:"Fed heldur vöxtum óbreyttum — markaðir bregðast vel við",tag:"Seðlabanki"},
@@ -287,21 +387,41 @@ const SECTORS_STATIC = [
 ];
 
 let allStocks = [];
+let currentStock = null;
+let chartInstance = null;
 
+// ── HELPERS ──
 function chgSpan(d) {
   if (d.chgPct == null) return '<span style="color:var(--dim)">—</span>';
   const sign = d.up ? "+" : "";
   return `<span class="${d.up?"up":"dn"}">${sign}${d.chgPct}%</span>`;
 }
 
+function fmt(val, isIs) {
+  if (val == null) return "—";
+  return isIs ? val.toLocaleString("is-IS") + " kr" : "$" + val.toLocaleString("en-US");
+}
+
+function fmtB(val) {
+  if (!val) return "—";
+  return val >= 1000 ? "$" + (val/1000).toFixed(1) + "T" : "$" + val.toFixed(1) + "B";
+}
+
+function fmtVol(val) {
+  if (!val) return "—";
+  if (val >= 1e9) return (val/1e9).toFixed(2) + "B";
+  if (val >= 1e6) return (val/1e6).toFixed(1) + "M";
+  return val.toLocaleString();
+}
+
+// ── TICKER CARD ──
 function tcard(d) {
   const isIs = d.market === "is";
-  const price = d.price != null
-    ? (isIs ? d.price.toLocaleString("is-IS") + " kr" : "$" + d.price.toLocaleString("en-US"))
-    : "—";
+  const price = d.price != null ? fmt(d.price, isIs) : "—";
   const extra = isIs ? " is-s" : "";
   const noData = !d.ok ? " no-data" : "";
-  return `<div class="tcard${extra}${noData}">
+  const onclick = d.ok ? `onclick="openModal('${d.sym}'"` : "";
+  return `<div class="tcard${extra}${noData}" ${d.ok?`onclick="openModal('${d.sym}')"`:""}>
     <div class="tc-sym">${d.sym}</div>
     <div class="tc-name">${d.name}</div>
     <div class="tc-price">${price}</div>
@@ -319,6 +439,185 @@ function newsHtml(n) {
   </div>`;
 }
 
+// ── MODAL ──
+function openModal(sym) {
+  const d = allStocks.find(s => s.sym === sym);
+  if (!d) return;
+  currentStock = d;
+
+  const isIs = d.market === "is";
+  const price = d.price != null ? fmt(d.price, isIs) : "—";
+
+  document.getElementById("m-sym").textContent = d.sym + " · " + (d.sector || "");
+  document.getElementById("m-name").textContent = d.name;
+  document.getElementById("m-price").textContent = price;
+  document.getElementById("m-chg").innerHTML = chgSpan(d);
+
+  // Stats
+  const stats = [
+    {label:"52v hámark",  val: d.hi52 != null ? fmt(d.hi52, isIs) : "—"},
+    {label:"52v lágmark", val: d.lo52 != null ? fmt(d.lo52, isIs) : "—"},
+    {label:"Markaðsvirði",val: fmtB(d.mktcapB)},
+    {label:"P/E hlutfall", val: d.pe != null ? d.pe : "—"},
+    {label:"Arðgreiðsla",  val: d.dividend != null ? d.dividend + "%" : "—"},
+    {label:"Beta",         val: d.beta != null ? d.beta : "—"},
+    {label:"Velta",        val: fmtVol(d.volume)},
+    {label:"Meðalvelta",   val: fmtVol(d.avgVol)},
+  ];
+
+  document.getElementById("m-stats").innerHTML = stats.map(s =>
+    `<div class="stat-item">
+      <div class="stat-label">${s.label}</div>
+      <div class="stat-value">${s.val}</div>
+    </div>`
+  ).join("");
+
+  // Description
+  const descEl = document.getElementById("m-desc");
+  if (d.desc) {
+    descEl.textContent = d.desc + (d.desc.length >= 300 ? "..." : "");
+    descEl.style.display = "block";
+  } else {
+    descEl.style.display = "none";
+  }
+
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  // Default range
+  document.querySelectorAll(".range-btn").forEach(b => b.classList.remove("active"));
+  document.querySelector('.range-btn[data-range="1m"]').classList.add("active");
+  drawChart(d, "1m");
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById("modal-overlay") && e.type !== "click") return;
+  if (e && e.target !== document.getElementById("modal-overlay")) return;
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+}
+
+document.querySelector(".modal-close")?.addEventListener("click", () => {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+});
+
+// ── CHART ──
+function filterHistByRange(hist, range) {
+  if (!hist || hist.length === 0) return [];
+  const now = new Date();
+  let cutoff;
+  if (range === "5d")  cutoff = new Date(now - 5*24*60*60*1000);
+  else if (range === "1w")  cutoff = new Date(now - 7*24*60*60*1000);
+  else if (range === "1m")  cutoff = new Date(now - 30*24*60*60*1000);
+  else if (range === "6m")  cutoff = new Date(now - 182*24*60*60*1000);
+  else if (range === "ytd") cutoff = new Date(now.getFullYear(), 0, 1);
+  else cutoff = new Date(0);
+
+  return hist.filter(p => new Date(p.d) >= cutoff);
+}
+
+function drawChart(d, range) {
+  const filtered = filterHistByRange(d.hist, range);
+  const canvas = document.getElementById("stockChart");
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  if (!filtered || filtered.length === 0) {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#444";
+    ctx.font = "12px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("Engin söguleg gögn — keyra update_stocks.py", canvas.width/2, canvas.height/2);
+    return;
+  }
+
+  const labels = filtered.map(p => {
+    const dt = new Date(p.d);
+    return dt.toLocaleDateString("is-IS", {day:"numeric", month:"numeric"});
+  });
+  const prices = filtered.map(p => p.c);
+  const isUp = prices[prices.length-1] >= prices[0];
+  const color = isUp ? "#00e5a0" : "#ff4d6d";
+  const colorDim = isUp ? "rgba(0,229,160,0.1)" : "rgba(255,77,109,0.1)";
+
+  chartInstance = new Chart(canvas, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        data: prices,
+        borderColor: color,
+        borderWidth: 1.5,
+        pointRadius: 0,
+        fill: true,
+        backgroundColor: colorDim,
+        tension: 0.3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          mode: "index",
+          intersect: false,
+          backgroundColor: "#16161f",
+          borderColor: "rgba(255,255,255,0.1)",
+          borderWidth: 1,
+          titleColor: "#888",
+          bodyColor: "#f0f0f0",
+          bodyFont: { family: "DM Mono", size: 12 },
+          callbacks: {
+            label: ctx => {
+              const p = ctx.raw;
+              const first = prices[0];
+              const chg = ((p - first) / first * 100).toFixed(2);
+              const sign = chg >= 0 ? "+" : "";
+              return `${d.market==="is" ? p.toLocaleString("is-IS")+" kr" : "$"+p.toLocaleString("en-US")}  (${sign}${chg}%)`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: "rgba(255,255,255,0.04)" },
+          ticks: { color: "#555", font: { family: "DM Mono", size: 10 },
+            maxTicksLimit: 6, maxRotation: 0 }
+        },
+        y: {
+          position: "right",
+          grid: { color: "rgba(255,255,255,0.04)" },
+          ticks: { color: "#555", font: { family: "DM Mono", size: 10 },
+            callback: v => d.market==="is" ? v.toLocaleString("is-IS") : "$"+v.toLocaleString("en-US") }
+        }
+      }
+    }
+  });
+}
+
+// Range tabs
+document.getElementById("range-tabs").addEventListener("click", e => {
+  const btn = e.target.closest(".range-btn");
+  if (!btn || !currentStock) return;
+  document.querySelectorAll(".range-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  drawChart(currentStock, btn.dataset.range);
+});
+
+// Keyboard close
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    document.getElementById("modal-overlay").classList.remove("open");
+    document.body.style.overflow = "";
+    if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+  }
+});
+
+// ── RENDER ──
 function renderAll(data) {
   const indices = data.indices || [];
   const us      = data.us || [];
@@ -329,43 +628,39 @@ function renderAll(data) {
   // Vísitölur
   const ig = document.getElementById("index-grid");
   if (ig) ig.innerHTML = indices.map(d => {
-    const price = d.price != null ? d.price.toLocaleString("en-US") : "—";
-    return `<div class="index-card ${d.up?"up":"dn"}">
+    const price = d.price != null ? (+d.price).toLocaleString("en-US") : "—";
+    return `<div class="index-card ${d.up?"up":"dn"}" onclick="openModal('${d.sym}')">
       <div class="ic-name">${d.name}</div>
       <div class="ic-price">${price}</div>
       <div class="ic-chg">${chgSpan(d)}</div>
     </div>`;
   }).join("");
+  // Add indices to allStocks for modal lookup
+  allStocks = [...indices, ...allStocks];
 
   // Movers
   const movers = [...us, ...etfs]
     .filter(d => d.chgPct != null)
     .sort((a,b) => Math.abs(b.chgPct) - Math.abs(a.chgPct))
     .slice(0, 8);
-  const mg = document.getElementById("movers-grid");
-  if (mg) mg.innerHTML = movers.map(tcard).join("");
+  document.getElementById("movers-grid").innerHTML = movers.map(tcard).join("");
 
-  // Geirar
-  const byS = (sec) => us.filter(d => d.sector === sec);
+  // By sector
+  const byS = sec => us.filter(d => d.sector === sec);
   document.getElementById("tech-grid").innerHTML   = byS("Tech").map(tcard).join("");
   document.getElementById("fin-grid").innerHTML    = byS("Finance").map(tcard).join("");
-  document.getElementById("health-grid").innerHTML = [...byS("Health"), ...byS("Consumer")].map(tcard).join("");
+  document.getElementById("health-grid").innerHTML = [...byS("Health"),...byS("Consumer")].map(tcard).join("");
   document.getElementById("energy-grid").innerHTML = byS("Energy").map(tcard).join("");
   document.getElementById("etf-grid").innerHTML    = etfs.map(tcard).join("");
 
-  // Íslenskt
-  const isg = document.getElementById("iceland-grid");
-  if (isg) isg.innerHTML = iceland.map(tcard).join("");
+  document.getElementById("iceland-grid").innerHTML = iceland.map(tcard).join("");
 
-  // Fréttir
-  const nm = document.getElementById("news-markets");
-  if (nm) nm.innerHTML = NEWS_STATIC.slice(0,5).map(newsHtml).join("");
-  const na = document.getElementById("news-all");
-  if (na) na.innerHTML = NEWS_STATIC.map(newsHtml).join("");
+  // News
+  document.getElementById("news-markets").innerHTML = NEWS_STATIC.slice(0,5).map(newsHtml).join("");
+  document.getElementById("news-all").innerHTML     = NEWS_STATIC.map(newsHtml).join("");
 
   // IPO
-  const ib = document.getElementById("ipo-body");
-  if (ib) ib.innerHTML = IPO_UPCOMING.map(i =>
+  document.getElementById("ipo-body").innerHTML = IPO_UPCOMING.map(i =>
     `<tr>
       <td style="font-weight:500">${i.name}</td>
       <td style="color:var(--muted)">${i.sector}</td>
@@ -377,8 +672,7 @@ function renderAll(data) {
     </tr>`
   ).join("");
 
-  const rb = document.getElementById("recent-ipo-body");
-  if (rb) rb.innerHTML = IPO_RECENT.map(i =>
+  document.getElementById("recent-ipo-body").innerHTML = IPO_RECENT.map(i =>
     `<tr>
       <td style="font-weight:500">${i.name}</td>
       <td style="font-family:var(--mono);font-size:12px">${i.price}</td>
@@ -389,28 +683,22 @@ function renderAll(data) {
   ).join("");
 
   // Geirar
-  const sl = document.getElementById("sectors-list");
-  if (sl) {
-    const maxV = Math.max(...SECTORS_STATIC.map(s => Math.abs(s.ytd)));
-    sl.innerHTML = SECTORS_STATIC.map(s =>
-      `<div class="sector-row">
-        <div class="sector-name">${s.name}</div>
-        <div class="sector-bar-bg"><div class="sector-bar" style="width:${(Math.abs(s.ytd)/maxV*100).toFixed(0)}%;background:${s.up?"var(--accent)":"var(--red)"}"></div></div>
-        <div class="sector-pct ${s.up?"up":"dn"}">${s.up?"+":""}${s.ytd}%</div>
-      </div>`
-    ).join("");
-  }
+  const maxV = Math.max(...SECTORS_STATIC.map(s => Math.abs(s.ytd)));
+  document.getElementById("sectors-list").innerHTML = SECTORS_STATIC.map(s =>
+    `<div class="sector-row">
+      <div class="sector-name">${s.name}</div>
+      <div class="sector-bar-bg"><div class="sector-bar" style="width:${(Math.abs(s.ytd)/maxV*100).toFixed(0)}%;background:${s.up?"var(--accent)":"var(--red)"}"></div></div>
+      <div class="sector-pct ${s.up?"up":"dn"}">${s.up?"+":""}${s.ytd}%</div>
+    </div>`
+  ).join("");
 
   // Tape
-  const tape = document.getElementById("tape");
-  if (tape) {
-    const items = [...us, ...etfs, ...iceland].filter(d => d.price != null);
-    const html = [...items, ...items].map(d => {
-      const p = d.market==="is" ? d.price+" kr" : "$"+d.price;
-      return `<span class="tape-item">${d.sym} <span class="${d.up?"up":"dn"}">${p} ${d.up?"▲":"▼"}</span></span>`;
-    }).join("");
-    tape.innerHTML = html;
-  }
+  const items = [...us,...etfs,...iceland].filter(d => d.price != null);
+  const html = [...items,...items].map(d => {
+    const p = d.market==="is" ? d.price+" kr" : "$"+d.price;
+    return `<span class="tape-item">${d.sym} <span class="${d.up?"up":"dn"}">${p} ${d.up?"▲":"▼"}</span></span>`;
+  }).join("");
+  document.getElementById("tape").innerHTML = html;
 
   filterScreener();
 }
@@ -419,8 +707,9 @@ function filterScreener() {
   const mkt = document.getElementById("f-mkt")?.value || "all";
   const dir = document.getElementById("f-dir")?.value || "all";
   const sec = document.getElementById("f-sec")?.value || "all";
+  const stocks = allStocks.filter(d => d.market === "us" || d.market === "is");
 
-  const res = allStocks.filter(d => {
+  const res = stocks.filter(d => {
     if (mkt === "us" && d.market !== "us") return false;
     if (mkt === "is" && d.market !== "is") return false;
     if (dir === "up" && !d.up) return false;
@@ -429,16 +718,13 @@ function filterScreener() {
     return true;
   });
 
-  const sb = document.getElementById("screener-body");
-  if (sb) sb.innerHTML = res.map(d => {
-    const price = d.price != null
-      ? (d.market==="is" ? d.price+" kr" : "$"+d.price)
-      : "—";
-    return `<tr>
+  document.getElementById("screener-body").innerHTML = res.map(d => {
+    const price = d.price != null ? fmt(d.price, d.market==="is") : "—";
+    return `<tr style="cursor:pointer" onclick="openModal('${d.sym}')">
       <td style="font-family:var(--mono);font-size:12px;font-weight:500">${d.sym}</td>
       <td style="color:var(--muted)">${d.name}</td>
       <td style="font-family:var(--mono);font-size:12px">${price}</td>
-      <td>${d.chgPct != null ? `<span class="pill ${d.up?"pill-up":"pill-dn"}">${d.up?"+":""}${d.chgPct}%</span>` : "—"}</td>
+      <td>${d.chgPct!=null?`<span class="pill ${d.up?"pill-up":"pill-dn"}">${d.up?"+":""}${d.chgPct}%</span>`:"—"}</td>
       <td style="color:var(--muted)">${d.sector}</td>
       <td><span class="pill pill-neu">${d.market==="is"?"🇮🇸 ICEX":"🇺🇸 NYSE/Nasdaq"}</span></td>
     </tr>`;
@@ -446,31 +732,19 @@ function filterScreener() {
 }
 
 async function loadData() {
-  const btn = document.querySelector(".hbtn.accent");
-  const info = document.getElementById("update-info");
-  if (btn) btn.textContent = "↻ Hleður...";
-
   try {
-    // Bæta við cache-bust til að fá alltaf nýjustu útgáfu
     const res = await fetch("stocks_data.json?t=" + Date.now());
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
-
     document.getElementById("error-banner").style.display = "none";
-
-    if (info) info.textContent = "Uppfært: " + data.updated;
+    document.getElementById("update-info").textContent = "Uppfært: " + data.updated;
     renderAll(data);
-
   } catch (err) {
     document.getElementById("error-banner").style.display = "block";
-    if (info) info.textContent = "Villa — keyra update_stocks.py";
-    console.error("loadData villa:", err);
+    document.getElementById("update-info").textContent = "Villa — keyra update_stocks.py";
   }
-
-  if (btn) btn.textContent = "↻ Uppfæra";
 }
 
-// Nav
 document.querySelectorAll(".nav-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -485,10 +759,7 @@ function logout() {
   window.location.href = "login.html";
 }
 
-// Hlaða gögnum við opnun
 loadData();
-
-// Uppfæra á 5 mín fresti — keyrir loadData sem les nýjasta JSON skrána
 setInterval(loadData, 5 * 60 * 1000);
 </script>
 </body>

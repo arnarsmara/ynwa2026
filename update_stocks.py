@@ -1,10 +1,9 @@
 """
 update_stocks.py — StockBreak
-Sækir gögn frá Yahoo Finance og Nasdaq Nordic og skrifar stocks_data.json
-sem vefsíðan les sjálfkrafa.
+Sækir gögn frá Yahoo Finance + söguleg gögn fyrir línurit
+Skrifar stocks_data.json sem vefsíðan les.
 
 Keyra:  python update_stocks.py
-Eða:    Setja upp í Windows Task Scheduler til að keyra á 5 mín fresti
 """
 
 import yfinance as yf
@@ -12,7 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  STILLINGAR
@@ -57,42 +56,76 @@ INDICES = [
 ]
 
 ICELANDIC = [
-    ("MAREL",   "Marel hf.",               "IS0000000388"),
-    ("ARION",   "Arion banki hf.",          "IS0000028302"),
-    ("ICEAIR",  "Icelandair Group hf.",     "IS0000003808"),
-    ("SIMINN",  "Siminn hf.",               "IS0000000701"),
-    ("EIMSKIP", "Eimskipafélag Íslands hf.","IS0000000594"),
-    ("REGINN",  "Reiknir hf.",              "IS0000018675"),
-    ("HAGA",    "Hagar hf.",                "IS0000017123"),
-    ("VIS",     "Vátryggingafélag Íslands", "IS0000004269"),
+    ("MAREL",   "Marel hf.",                "IS0000000388"),
+    ("ARION",   "Arion banki hf.",           "IS0000028302"),
+    ("ICEAIR",  "Icelandair Group hf.",      "IS0000003808"),
+    ("SIMINN",  "Siminn hf.",                "IS0000000701"),
+    ("EIMSKIP", "Eimskipafélag Íslands hf.", "IS0000000594"),
+    ("REGINN",  "Reiknir hf.",               "IS0000018675"),
+    ("HAGA",    "Hagar hf.",                 "IS0000017123"),
+    ("VIS",     "Vátryggingafélag Íslands",  "IS0000004269"),
 ]
 
 OUTPUT_FILE = "stocks_data.json"
 
 # ─────────────────────────────────────────────────────────────────────────────
-#  YAHOO FINANCE
+#  SÖGULEG GÖGN — fyrir línurit
 # ─────────────────────────────────────────────────────────────────────────────
-def fetch_yahoo(pairs):
+def fetch_history(ticker_sym, period="6mo", interval="1d"):
+    """Skilar lista af {date, close} fyrir línurit."""
+    try:
+        t = yf.Ticker(ticker_sym)
+        hist = t.history(period=period, interval=interval)
+        if hist.empty:
+            return []
+        result = []
+        for date, row in hist.iterrows():
+            result.append({
+                "d": date.strftime("%Y-%m-%d"),
+                "c": round(float(row["Close"]), 2)
+            })
+        return result
+    except:
+        return []
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  YAHOO FINANCE — quote + history
+# ─────────────────────────────────────────────────────────────────────────────
+def fetch_yahoo(pairs, fetch_hist=True):
     results = []
     tickers_list = [t for t, *_ in pairs]
     extras = {t: rest for t, *rest in pairs}
     print(f"  Sæki {len(tickers_list)} tickers...")
 
     data = yf.Tickers(" ".join(tickers_list))
+
     for ticker in tickers_list:
         extra = extras[ticker]
-        name = extra[0] if extra else ticker
+        name   = extra[0] if extra else ticker
         sector = extra[1] if len(extra) > 1 else ""
         try:
             info = data.tickers[ticker].info
             fi   = data.tickers[ticker].fast_info
-            price   = fi.last_price or info.get("currentPrice") or info.get("regularMarketPrice")
-            prev    = fi.previous_close or info.get("previousClose") or price
-            chg_pct = round(((price - prev) / prev * 100), 2) if prev else 0
-            hi52    = fi.year_high or info.get("fiftyTwoWeekHigh")
-            lo52    = fi.year_low  or info.get("fiftyTwoWeekLow")
-            mktcap  = info.get("marketCap")
-            pe      = info.get("trailingPE") or info.get("forwardPE")
+
+            price    = fi.last_price or info.get("currentPrice") or info.get("regularMarketPrice")
+            prev     = fi.previous_close or info.get("previousClose") or price
+            chg_pct  = round(((price - prev) / prev * 100), 2) if prev else 0
+            hi52     = fi.year_high or info.get("fiftyTwoWeekHigh")
+            lo52     = fi.year_low  or info.get("fiftyTwoWeekLow")
+            mktcap   = info.get("marketCap")
+            pe       = info.get("trailingPE") or info.get("forwardPE")
+            volume   = info.get("volume") or info.get("regularMarketVolume")
+            avg_vol  = info.get("averageVolume")
+            dividend = info.get("dividendYield")
+            beta     = info.get("beta")
+            desc     = info.get("longBusinessSummary", "")[:300] if info.get("longBusinessSummary") else ""
+
+            # Söguleg gögn
+            hist_6m = []
+            if fetch_hist:
+                print(f"    📈 Sæki sögu {ticker}...")
+                hist_6m = fetch_history(ticker, period="6mo", interval="1d")
 
             results.append({
                 "sym":      ticker,
@@ -106,15 +139,27 @@ def fetch_yahoo(pairs):
                 "lo52":     round(lo52, 2) if lo52 else None,
                 "mktcapB":  round(mktcap/1e9, 1) if mktcap else None,
                 "pe":       round(pe, 1) if pe else None,
+                "volume":   volume,
+                "avgVol":   avg_vol,
+                "dividend": round(dividend*100, 2) if dividend else None,
+                "beta":     round(beta, 2) if beta else None,
+                "desc":     desc,
+                "hist":     hist_6m,
                 "ok":       True,
             })
-            print(f"    ✅  {ticker:12s}  {price:.2f}  ({chg_pct:+.2f}%)")
+            print(f"    ✅  {ticker:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sögu")
+
         except Exception as e:
-            results.append({"sym": ticker, "name": name, "sector": sector,
-                            "market": "us", "ok": False, "error": str(e),
-                            "price": None, "chgPct": None, "up": True,
-                            "hi52": None, "lo52": None, "mktcapB": None, "pe": None})
+            results.append({
+                "sym": ticker, "name": name, "sector": sector, "market": "us",
+                "ok": False, "error": str(e),
+                "price": None, "chgPct": None, "up": True,
+                "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
+                "volume": None, "avgVol": None, "dividend": None, "beta": None,
+                "desc": "", "hist": [],
+            })
             print(f"    ⚠️   {ticker:12s}  VILLA: {e}")
+
     return results
 
 
@@ -132,12 +177,14 @@ def fetch_indices(index_list):
             results.append({
                 "sym": sym, "name": names[sym],
                 "price": round(price, 2) if price else None,
-                "chgPct": chg_pct, "up": chg_pct >= 0, "ok": True
+                "chgPct": chg_pct, "up": chg_pct >= 0, "ok": True,
+                "hist": []
             })
             print(f"    ✅  {sym:12s}  {price:.2f}  ({chg_pct:+.2f}%)")
         except Exception as e:
             results.append({"sym": sym, "name": names[sym],
-                            "price": None, "chgPct": 0, "up": True, "ok": False})
+                            "price": None, "chgPct": 0, "up": True,
+                            "ok": False, "hist": []})
             print(f"    ⚠️   {sym:12s}  VILLA: {e}")
     return results
 
@@ -147,10 +194,7 @@ def fetch_indices(index_list):
 # ─────────────────────────────────────────────────────────────────────────────
 def fetch_icelandic(icelandic_list):
     results = []
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Accept": "application/json, text/html",
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
     for ticker, name, isin in icelandic_list:
         price = None
@@ -158,7 +202,6 @@ def fetch_icelandic(icelandic_list):
         hi52 = None
         lo52 = None
 
-        # Leið 1: Nasdaq Nordic JSON API
         try:
             url = f"https://www.nasdaqomxnordic.com/api/instruments/search?query={ticker}&markets=XICE"
             r = requests.get(url, headers=headers, timeout=10)
@@ -183,7 +226,6 @@ def fetch_icelandic(icelandic_list):
         except:
             pass
 
-        # Leið 2: keldan.is scraping ef Nasdaq Nordic virkar ekki
         if not price:
             try:
                 r2 = requests.get(
@@ -211,22 +253,25 @@ def fetch_icelandic(icelandic_list):
 
         if price:
             results.append({
-                "sym": ticker, "name": name, "sector": "Íslenskt",
-                "market": "is",
+                "sym": ticker, "name": name, "sector": "Íslenskt", "market": "is",
                 "price": int(price),
                 "chgPct": round(chg_pct, 2) if chg_pct is not None else 0,
                 "up": (chg_pct or 0) >= 0,
                 "hi52": int(hi52) if hi52 else None,
                 "lo52": int(lo52) if lo52 else None,
-                "mktcapB": None, "pe": None, "ok": True
+                "mktcapB": None, "pe": None,
+                "volume": None, "avgVol": None, "dividend": None, "beta": None,
+                "desc": "", "hist": [], "ok": True
             })
             chg_str = f"{chg_pct:+.2f}%" if chg_pct is not None else "?"
             print(f"    ✅  {ticker:12s}  {price:.0f} kr  ({chg_str})")
         else:
             results.append({
-                "sym": ticker, "name": name, "sector": "Íslenskt",
-                "market": "is", "price": None, "chgPct": None, "up": True,
-                "hi52": None, "lo52": None, "mktcapB": None, "pe": None, "ok": False
+                "sym": ticker, "name": name, "sector": "Íslenskt", "market": "is",
+                "price": None, "chgPct": None, "up": True,
+                "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
+                "volume": None, "avgVol": None, "dividend": None, "beta": None,
+                "desc": "", "hist": [], "ok": False
             })
             print(f"    ⚠️   {ticker:12s}  Gat ekki sótt verð")
 
@@ -240,11 +285,11 @@ def main():
     print("\n📊  StockBreak — Uppfærsla hafin")
     print("=" * 48)
 
-    print("\n🇺🇸  Amerískar hlutabréf:")
-    us = fetch_yahoo(STOCKS_US)
+    print("\n🇺🇸  Amerískar hlutabréf + söguleg gögn:")
+    us = fetch_yahoo(STOCKS_US, fetch_hist=True)
 
-    print("\n📈  ETF sjóðir:")
-    etfs = fetch_yahoo(ETFS)
+    print("\n📈  ETF sjóðir + söguleg gögn:")
+    etfs = fetch_yahoo(ETFS, fetch_hist=True)
 
     print("\n📊  Vísitölur:")
     indices = fetch_indices(INDICES)
@@ -267,9 +312,11 @@ def main():
 
     ok_count   = sum(1 for g in [us, etfs, indices, is_stocks] for r in g if r.get("ok"))
     fail_count = sum(1 for g in [us, etfs, indices, is_stocks] for r in g if not r.get("ok"))
+    hist_count = sum(len(r.get("hist",[])) for g in [us, etfs] for r in g)
 
     print(f"\n✅  {OUTPUT_FILE} vistað")
     print(f"   {ok_count} tickers tókust, {fail_count} misheppnuðust")
+    print(f"   {hist_count} söguleg gagnaskref")
     print(f"   Tími: {now.strftime('%d.%m.%Y %H:%M:%S')}")
     print("=" * 48)
 
