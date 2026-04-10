@@ -1,6 +1,6 @@
 {
-  "updated": "10.04.2026 09:23:09",
-  "updated_ts": 1775812989,
+  "updated": "10.04.2026 09:28:22",
+  "updated_ts": 1775813302,
   "indices": [
     {
       "sym": "^GSPC",
@@ -32,8 +32,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10619.9,
-      "chgPct": 0.38,
+      "price": 10622.62,
+      "chgPct": 0.41,
       "up": true,
       "ok": true,
       "hist": []
@@ -41,8 +41,8 @@
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 19.72,
-      "chgPct": 1.23,
+      "price": 19.68,
+      "chgPct": 1.03,
       "up": true,
       "ok": true,
       "hist": []
@@ -11437,7 +11437,7 @@
       "lo52": 86.5,
       "mktcapB": null,
       "pe": null,
-      "volume": 26138,
+      "volume": 26387,
       "avgVol": 129555,
       "dividend": null,
       "beta": null,
@@ -11958,7 +11958,7 @@
       "lo52": 5.52,
       "mktcapB": null,
       "pe": null,
-      "volume": 41842,
+      "volume": 42144,
       "avgVol": 282382,
       "dividend": null,
       "beta": null,
