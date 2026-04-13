@@ -1,6 +1,6 @@
 {
-  "updated": "13.04.2026 13:07:04",
-  "updated_ts": 1776085624,
+  "updated": "13.04.2026 13:28:25",
+  "updated_ts": 1776086905,
   "indices": [
     {
       "sym": "^GSPC",
@@ -1556,8 +1556,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10555.47,
-      "chgPct": -0.38,
+      "price": 10560.89,
+      "chgPct": -0.33,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -2074,15 +2074,15 @@
         },
         {
           "d": "2026-04-13",
-          "c": 10555.48
+          "c": 10560.89
         }
       ]
     },
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 21.01,
-      "chgPct": 9.26,
+      "price": 20.84,
+      "chgPct": 8.37,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -2595,7 +2595,7 @@
         },
         {
           "d": "2026-04-13",
-          "c": 21.01
+          "c": 20.84
         }
       ]
     }
@@ -13982,14 +13982,14 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 112.37,
-      "chgPct": -0.57,
+      "price": 112.45,
+      "chgPct": -0.5,
       "up": false,
       "hi52": 115.08,
       "lo52": 87.25,
       "mktcapB": null,
       "pe": null,
-      "volume": 62321,
+      "volume": 63516,
       "avgVol": 129209,
       "dividend": null,
       "beta": null,
@@ -14493,7 +14493,7 @@
         },
         {
           "d": "2026-04-13",
-          "c": 112.37
+          "c": 112.45
         }
       ],
       "ok": true
@@ -14503,14 +14503,14 @@
       "name": "iShares Clean Energy",
       "sector": "ETF",
       "market": "us",
-      "price": 9.25,
-      "chgPct": -0.7,
+      "price": 9.26,
+      "chgPct": -0.65,
       "up": false,
       "hi52": 9.44,
       "lo52": 5.67,
       "mktcapB": null,
       "pe": null,
-      "volume": 86942,
+      "volume": 88268,
       "avgVol": 280256,
       "dividend": null,
       "beta": null,
@@ -15002,7 +15002,7 @@
         },
         {
           "d": "2026-04-13",
-          "c": 9.25
+          "c": 9.26
         }
       ],
       "ok": true
