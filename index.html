@@ -185,6 +185,32 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
   .modal { max-height: 95vh; }
   .modal-stats { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ── AI AGENT ── */
+.agent-wrap { background: var(--surface); border: 1px solid rgba(0,229,160,0.2); border-radius: 3px; margin-bottom: 20px; overflow: hidden; }
+.agent-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); background: rgba(0,229,160,0.04); }
+.agent-label { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.agent-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: agentPulse 2s infinite; }
+@keyframes agentPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.agent-refresh-btn { font-family: var(--mono); font-size: 10px; color: var(--muted); background: none; border: 1px solid var(--border2); border-radius: 2px; padding: 3px 10px; cursor: pointer; transition: all 0.15s; }
+.agent-refresh-btn:hover { color: var(--accent); border-color: rgba(0,229,160,0.3); }
+.agent-refresh-btn:disabled { opacity: 0.4; cursor: default; }
+.agent-body { padding: 14px; min-height: 60px; }
+.agent-loading { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.agent-spinner { width: 14px; height: 14px; border: 1.5px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.agent-suggestions { display: flex; flex-direction: column; gap: 8px; }
+.suggestion-card { display: flex; align-items: flex-start; gap: 12px; padding: 11px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 3px; transition: border-color 0.15s; }
+.suggestion-card:hover { border-color: var(--border2); }
+.sug-action { flex-shrink: 0; font-family: var(--mono); font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em; min-width: 48px; text-align: center; }
+.sug-buy { background: rgba(0,229,160,0.12); color: var(--accent); }
+.sug-sell { background: rgba(255,77,109,0.12); color: var(--red); }
+.sug-watch { background: rgba(255,150,0,0.12); color: #ff9600; }
+.sug-content { flex: 1; }
+.sug-ticker { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.sug-reason { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.sug-trigger { font-family: var(--mono); font-size: 10px; color: var(--dim); margin-top: 4px; }
+.agent-timestamp { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 6px 14px; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -216,6 +242,21 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
   <button class="nav-btn" data-tab="screener">Leitar</button>
   <button class="nav-btn" data-tab="news">Fréttir</button>
 </nav>
+
+<!-- AI AGENT -->
+<div class="agent-wrap" id="agent-wrap" style="max-width:1200px;margin:20px auto 0">
+  <div class="agent-header">
+    <div class="agent-label">
+      <div class="agent-dot"></div>
+      AI Ráðgjafi — StockBreak
+    </div>
+    <button class="agent-refresh-btn" id="agent-btn" onclick="runAgent()">↻ Endurnýja</button>
+  </div>
+  <div class="agent-body" id="agent-body">
+    <div class="agent-loading"><div class="agent-spinner"></div>Greini markaðinn...</div>
+  </div>
+  <div class="agent-timestamp" id="agent-ts" style="display:none"></div>
+</div>
 
 <!-- MARKAÐIR -->
 <div class="panel active" id="panel-markets">
@@ -625,6 +666,9 @@ function renderAll(data) {
   const iceland = data.iceland || [];
   allStocks = [...us, ...etfs, ...iceland];
 
+  // Bæta indices við allStocks FYRST svo modal virki
+  allStocks = [...indices, ...us, ...etfs, ...iceland];
+
   // Vísitölur
   const ig = document.getElementById("index-grid");
   if (ig) ig.innerHTML = indices.map(d => {
@@ -635,8 +679,6 @@ function renderAll(data) {
       <div class="ic-chg">${chgSpan(d)}</div>
     </div>`;
   }).join("");
-  // Add indices to allStocks for modal lookup
-  allStocks = [...indices, ...allStocks];
 
   // Movers
   const movers = [...us, ...etfs]
@@ -739,6 +781,7 @@ async function loadData() {
     document.getElementById("error-banner").style.display = "none";
     document.getElementById("update-info").textContent = "Uppfært: " + data.updated;
     renderAll(data);
+    renderSuggestions(data.suggestions || [], data.updated);
   } catch (err) {
     document.getElementById("error-banner").style.display = "block";
     document.getElementById("update-info").textContent = "Villa — keyra update_stocks.py";
@@ -761,6 +804,40 @@ function logout() {
 
 loadData();
 setInterval(loadData, 5 * 60 * 1000);
+
+// ── AI AGENT ──
+function renderSuggestions(suggestions, updatedTime) {
+  const body = document.getElementById("agent-body");
+  const ts   = document.getElementById("agent-ts");
+
+  if (!suggestions || suggestions.length === 0) {
+    body.innerHTML = '<div class="agent-loading" style="color:var(--dim);font-size:12px">Engar AI tillögur — settu GEMINI_API_KEY í umhverfisbreytur og keyrðu uppfaera.bat</div>';
+    ts.style.display = "none";
+    return;
+  }
+
+  body.innerHTML = '<div class="agent-suggestions">' + suggestions.map(function(s) {
+    var action = (s.action || "WATCH").toUpperCase();
+    var cls = action === "BUY" ? "sug-buy" : action === "SELL" ? "sug-sell" : "sug-watch";
+    return '<div class="suggestion-card">' +
+      '<div class="sug-action ' + cls + '">' + action + '</div>' +
+      '<div class="sug-content">' +
+        '<div class="sug-ticker">' + s.ticker + ' — ' + s.name + '</div>' +
+        '<div class="sug-reason">' + s.reason + '</div>' +
+        '<div class="sug-trigger">↳ ' + s.trigger + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join("") + '</div>';
+
+  ts.textContent = "Greint: " + (updatedTime || "");
+  ts.style.display = "block";
+}
+
+function runAgent() {
+  // Tillögur eru lesnar úr stocks_data.json — sjá loadData()
+}
+
+
 </script>
 </body>
 </html>
