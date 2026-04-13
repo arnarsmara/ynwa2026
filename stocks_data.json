@@ -1,6 +1,6 @@
 {
-  "updated": "13.04.2026 13:03:17",
-  "updated_ts": 1776085397,
+  "updated": "13.04.2026 13:07:04",
+  "updated_ts": 1776085624,
   "indices": [
     {
       "sym": "^GSPC",
@@ -1556,8 +1556,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10555.16,
-      "chgPct": -0.39,
+      "price": 10555.47,
+      "chgPct": -0.38,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -2074,15 +2074,15 @@
         },
         {
           "d": "2026-04-13",
-          "c": 10555.16
+          "c": 10555.48
         }
       ]
     },
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 20.94,
-      "chgPct": 8.89,
+      "price": 21.01,
+      "chgPct": 9.26,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -2595,7 +2595,7 @@
         },
         {
           "d": "2026-04-13",
-          "c": 20.94
+          "c": 21.01
         }
       ]
     }
@@ -13982,14 +13982,14 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 112.39,
-      "chgPct": -0.56,
+      "price": 112.37,
+      "chgPct": -0.57,
       "up": false,
       "hi52": 115.08,
       "lo52": 87.25,
       "mktcapB": null,
       "pe": null,
-      "volume": 62188,
+      "volume": 62321,
       "avgVol": 129209,
       "dividend": null,
       "beta": null,
@@ -14493,7 +14493,7 @@
         },
         {
           "d": "2026-04-13",
-          "c": 112.39
+          "c": 112.37
         }
       ],
       "ok": true
@@ -14504,13 +14504,13 @@
       "sector": "ETF",
       "market": "us",
       "price": 9.25,
-      "chgPct": -0.77,
+      "chgPct": -0.7,
       "up": false,
       "hi52": 9.44,
       "lo52": 5.67,
       "mktcapB": null,
       "pe": null,
-      "volume": 86878,
+      "volume": 86942,
       "avgVol": 280256,
       "dividend": null,
       "beta": null,
