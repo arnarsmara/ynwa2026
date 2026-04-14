@@ -1,0 +1,36 @@
+name: Uppfaera hlutabref
+
+on:
+  schedule:
+    - cron: '0 14,16,18,20 * * 1-5'  # kl 14,16,18,20 UTC = 16-22 IST, virka daga
+  workflow_dispatch:  # Handvirk keyrsla á GitHub
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Saekja koda
+        uses: actions/checkout@v4
+
+      - name: Setja upp Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setja upp pakka
+        run: pip install yfinance requests beautifulsoup4
+
+      - name: Keyra update_stocks.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python update_stocks.py
+
+      - name: Senda a GitHub
+        run: |
+          git config user.name "StockBreak Bot"
+          git config user.email "bot@stockbreak.is"
+          git add stocks_data.json
+          git diff --staged --quiet || git commit -m "auto: uppfaera gogn $(date +'%H:%M')"
+          git push

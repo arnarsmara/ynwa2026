@@ -174,17 +174,25 @@ def fetch_indices(index_list):
             price   = fi.last_price
             prev    = fi.previous_close or price
             chg_pct = round(((price - prev) / prev * 100), 2) if prev else 0
+            print(f"    📈 Sæki sögu {sym}...")
+            hist_6m = fetch_history(sym, period="6mo", interval="1d")
             results.append({
                 "sym": sym, "name": names[sym],
                 "price": round(price, 2) if price else None,
                 "chgPct": chg_pct, "up": chg_pct >= 0, "ok": True,
-                "hist": []
+                "sector": "Index", "market": "idx",
+                "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
+                "volume": None, "avgVol": None, "dividend": None, "beta": None,
+                "desc": "", "hist": hist_6m
             })
-            print(f"    ✅  {sym:12s}  {price:.2f}  ({chg_pct:+.2f}%)")
+            print(f"    ✅  {sym:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sögu")
         except Exception as e:
             results.append({"sym": sym, "name": names[sym],
                             "price": None, "chgPct": 0, "up": True,
-                            "ok": False, "hist": []})
+                            "ok": False, "sector": "Index", "market": "idx",
+                            "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
+                            "volume": None, "avgVol": None, "dividend": None, "beta": None,
+                            "desc": "", "hist": []})
             print(f"    ⚠️   {sym:12s}  VILLA: {e}")
     return results
 
@@ -278,6 +286,96 @@ def fetch_icelandic(icelandic_list):
     return results
 
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  AI AGENT — Gemini + Anthropic fallback
+# ─────────────────────────────────────────────────────────────────────────────
+def build_market_ctx(us, etfs, indices):
+    all_stocks = us + etfs
+    movers = sorted([r for r in all_stocks if r.get("chgPct") is not None],
+                    key=lambda r: abs(r["chgPct"]), reverse=True)[:6]
+    movers_str = ", ".join(f"{r['sym']} {r['chgPct']:+.2f}%" for r in movers)
+    sp500 = next((r for r in indices if r["sym"] == "^GSPC"), None)
+    vix   = next((r for r in indices if r["sym"] == "^VIX"), None)
+    return f"""Dagsetning: {datetime.now().strftime("%d.%m.%Y")}
+S&P 500: {(str(sp500["price"]) + " (" + str(sp500["chgPct"]) + "%)") if sp500 else "okunnur"}
+VIX: {vix["price"] if vix else "okunnur"}
+Staerstu hreyfingar: {movers_str or "engar"}"""
+
+SYSTEM_PROMPT = (
+    "Thu ert klar hlutabrefaragjafi. Gefdu 4 hlutabrefatilloglur a islensku "
+    "grunnadar a heimsatburdium og markadsgognum. Svaradu EINUNGIS med JSON array. "
+    "Snid: [{action: BUY eda SELL eda WATCH, ticker: TICKER eins og AAPL, "
+    "name: Nafn fyrirtaekis, reason: Skyring a islensku max 20 ord, "
+    "trigger: Hvata atburdur max 8 ord}]. "
+    "Tickers: AAPL MSFT NVDA TSLA GOOGL AMZN META NFLX JPM GS V BAC JNJ PFE UNH WMT KO XOM CVX VTI VOO QQQ."
+)
+
+def parse_suggestions(text):
+    start = text.find("[")
+    end   = text.rfind("]") + 1
+    if start == -1:
+        raise ValueError("Engin JSON array i svari")
+    return json.loads(text[start:end])
+
+def try_gemini(market_ctx):
+    import urllib.request
+    api_key = os.environ.get("GEMINI_API_KEY", "")
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY vantar")
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": SYSTEM_PROMPT + " Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}]}],
+        "generationConfig": {"temperature": 0.7, "maxOutputTokens": 800}
+    }).encode("utf-8")
+
+    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = json.loads(resp.read())
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        return parse_suggestions(text)
+
+def try_anthropic(market_ctx):
+    import urllib.request
+    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not api_key:
+        raise ValueError("ANTHROPIC_API_KEY vantar")
+
+    payload = json.dumps({
+        "model": "claude-sonnet-4-20250514",
+        "max_tokens": 800,
+        "system": SYSTEM_PROMPT,
+        "messages": [{"role": "user", "content": "Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}]
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages",
+        data=payload,
+        headers={"Content-Type": "application/json", "x-api-key": api_key, "anthropic-version": "2023-06-01"},
+        method="POST"
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = json.loads(resp.read())
+        text = data["content"][0]["text"]
+        return parse_suggestions(text)
+
+def fetch_ai_suggestions(us, etfs, indices):
+    market_ctx = build_market_ctx(us, etfs, indices)
+    providers = [
+        ("Gemini",    try_gemini),
+        ("Anthropic", try_anthropic),
+    ]
+    for name, fn in providers:
+        try:
+            suggestions = fn(market_ctx)
+            print(f"  ✅  {len(suggestions)} AI tilloglur fengnar via {name}")
+            return suggestions
+        except Exception as e:
+            print(f"  ⚠️  {name} mistokst: {e} — reyni naesta...")
+    print("  ⚠️  Allir AI veitur mistokust — engar tilloglur")
+    return []
 # ─────────────────────────────────────────────────────────────────────────────
 #  MAIN
 # ─────────────────────────────────────────────────────────────────────────────
@@ -297,14 +395,18 @@ def main():
     print("\n🇮🇸  Íslenskar hlutabréf:")
     is_stocks = fetch_icelandic(ICELANDIC)
 
+    print("\n🤖  AI Radgjafi:")
+    suggestions = fetch_ai_suggestions(us, etfs, indices)
+
     now = datetime.now()
     output = {
-        "updated":    now.strftime("%d.%m.%Y %H:%M:%S"),
-        "updated_ts": int(now.timestamp()),
-        "indices":    indices,
-        "us":         us,
-        "etfs":       etfs,
-        "iceland":    is_stocks,
+        "updated":      now.strftime("%d.%m.%Y %H:%M:%S"),
+        "updated_ts":   int(now.timestamp()),
+        "indices":      indices,
+        "us":           us,
+        "etfs":         etfs,
+        "iceland":      is_stocks,
+        "suggestions":  suggestions,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
@@ -323,3 +425,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
