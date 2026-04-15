@@ -325,7 +325,7 @@ def try_gemini(market_ctx):
     if not api_key:
         raise ValueError("GEMINI_API_KEY vantar")
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key={api_key}"
     payload = json.dumps({
         "contents": [{"parts": [{"text": SYSTEM_PROMPT + " Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}]}],
         "generationConfig": {"temperature": 0.7, "maxOutputTokens": 800}
@@ -361,11 +361,43 @@ def try_anthropic(market_ctx):
         text = data["content"][0]["text"]
         return parse_suggestions(text)
 
+def try_openrouter(market_ctx):
+    import urllib.request
+    api_key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not api_key:
+        raise ValueError("OPENROUTER_API_KEY vantar")
+
+    payload = json.dumps({
+        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "max_tokens": 800,
+        "messages": [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": "Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}
+        ]
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        "https://openrouter.ai/api/v1/chat/completions",
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + api_key,
+            "HTTP-Referer": "https://arnarsmara.github.io/ynwa2026",
+            "X-Title": "StockBreak"
+        },
+        method="POST"
+    )
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        data = json.loads(resp.read())
+        text = data["choices"][0]["message"]["content"]
+        return parse_suggestions(text)
+
 def fetch_ai_suggestions(us, etfs, indices):
     market_ctx = build_market_ctx(us, etfs, indices)
     providers = [
-        ("Gemini",    try_gemini),
-        ("Anthropic", try_anthropic),
+        ("OpenRouter/Qwen", try_openrouter),
+        ("Gemini",         try_gemini),
+        ("Anthropic",      try_anthropic),
     ]
     for name, fn in providers:
         try:
@@ -425,4 +457,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
