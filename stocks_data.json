@@ -1,6 +1,6 @@
 {
-  "updated": "25.05.2026 16:14:16",
-  "updated_ts": 1779725656,
+  "updated": "25.05.2026 19:12:14",
+  "updated_ts": 1779736334,
   "indices": [
     {
       "sym": "^GSPC",
@@ -14484,7 +14484,7 @@
       "sector": "ETF",
       "market": "us",
       "price": 11.24,
-      "chgPct": 1.46,
+      "chgPct": 1.33,
       "up": true,
       "hi52": 11.13,
       "lo52": 6.27,
