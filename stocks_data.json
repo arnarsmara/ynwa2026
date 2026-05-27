@@ -1,13 +1,13 @@
 {
-  "updated": "26.05.2026 21:25:42",
-  "updated_ts": 1779830742,
+  "updated": "27.05.2026 16:57:15",
+  "updated_ts": 1779901035,
   "indices": [
     {
       "sym": "^GSPC",
       "name": "S&P 500",
-      "price": 7519.12,
-      "chgPct": 0.61,
-      "up": true,
+      "price": 7514.11,
+      "chgPct": -0.07,
+      "up": false,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -508,15 +508,19 @@
         {
           "d": "2026-05-26",
           "c": 7519.12
+        },
+        {
+          "d": "2026-05-27",
+          "c": 7513.86
         }
       ]
     },
     {
       "sym": "^IXIC",
       "name": "Nasdaq",
-      "price": 26656.18,
-      "chgPct": 1.19,
-      "up": true,
+      "price": 26629.18,
+      "chgPct": -0.1,
+      "up": false,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -1017,15 +1021,19 @@
         {
           "d": "2026-05-26",
           "c": 26656.18
+        },
+        {
+          "d": "2026-05-27",
+          "c": 26629.18
         }
       ]
     },
     {
       "sym": "^DJI",
       "name": "Dow Jones",
-      "price": 50461.68,
-      "chgPct": -0.23,
-      "up": false,
+      "price": 50656.28,
+      "chgPct": 0.36,
+      "up": true,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -1526,14 +1534,18 @@
         {
           "d": "2026-05-26",
           "c": 50461.68
+        },
+        {
+          "d": "2026-05-27",
+          "c": 50656.28
         }
       ]
     },
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10491.39,
-      "chgPct": 0.24,
+      "price": 10505.01,
+      "chgPct": 0.13,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -1548,10 +1560,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-11-26",
-          "c": 9691.6
-        },
         {
           "d": "2025-11-27",
           "c": 9693.9
@@ -2038,16 +2046,20 @@
         },
         {
           "d": "2026-05-26",
-          "c": 10491.39
+          "c": 10491.4
+        },
+        {
+          "d": "2026-05-27",
+          "c": 10505.01
         }
       ]
     },
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 17.01,
-      "chgPct": 2.53,
-      "up": true,
+      "price": 16.67,
+      "chgPct": -2.0,
+      "up": false,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -2061,10 +2073,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-11-26",
-          "c": 17.19
-        },
         {
           "d": "2025-11-28",
           "c": 16.35
@@ -2556,6 +2564,10 @@
         {
           "d": "2026-05-26",
           "c": 17.01
+        },
+        {
+          "d": "2026-05-27",
+          "c": 16.67
         }
       ]
     }
@@ -2566,15 +2578,15 @@
       "name": "Apple Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 308.33,
-      "chgPct": -0.02,
-      "up": false,
-      "hi52": 311.4,
+      "price": 310.53,
+      "chgPct": 0.59,
+      "up": true,
+      "hi52": 311.82,
       "lo52": 195.07,
-      "mktcapB": 4528.6,
-      "pe": 37.4,
-      "volume": 46602561,
-      "avgVol": 44075103,
+      "mktcapB": 4560.7,
+      "pe": 37.6,
+      "volume": 28534288,
+      "avgVol": 43668981,
       "dividend": 35.0,
       "beta": 1.06,
       "desc": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising Ai",
@@ -3066,6 +3078,10 @@
         {
           "d": "2026-05-26",
           "c": 308.33
+        },
+        {
+          "d": "2026-05-27",
+          "c": 310.53
         }
       ],
       "ok": true
@@ -3075,15 +3091,15 @@
       "name": "Microsoft Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 416.03,
-      "chgPct": -0.42,
+      "price": 413.8,
+      "chgPct": -0.35,
       "up": false,
       "hi52": 555.45,
       "lo52": 356.28,
-      "mktcapB": 3090.5,
-      "pe": 24.8,
-      "volume": 30100943,
-      "avgVol": 33764611,
+      "mktcapB": 3073.9,
+      "pe": 24.6,
+      "volume": 14014911,
+      "avgVol": 33415241,
       "dividend": 87.0,
       "beta": 1.09,
       "desc": "Microsoft Corporation develops and supports software, services, devices, and solutions worldwide. The Productivity and Business Processes segment offers Microsoft 365 commercial, enterprise mobility + security, windows commercial, power BI, exchange, sharepoint, Microsoft teams, security and complia",
@@ -3575,6 +3591,10 @@
         {
           "d": "2026-05-26",
           "c": 416.03
+        },
+        {
+          "d": "2026-05-27",
+          "c": 413.8
         }
       ],
       "ok": true
@@ -3584,16 +3604,16 @@
       "name": "NVIDIA Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 214.86,
-      "chgPct": 0.26,
-      "up": true,
+      "price": 211.26,
+      "chgPct": -1.26,
+      "up": false,
       "hi52": 236.54,
       "lo52": 132.92,
-      "mktcapB": 5204.1,
-      "pe": 33.0,
-      "volume": 182422520,
-      "avgVol": 166733948,
-      "dividend": 2.0,
+      "mktcapB": 5116.9,
+      "pe": 32.4,
+      "volume": 94118511,
+      "avgVol": 164663923,
+      "dividend": 47.0,
       "beta": 2.24,
       "desc": "NVIDIA Corporation operates as a data center scale AI infrastructure company. The company operates through two segments, Compute & Networking, and Graphics segments. The Compute & Networking segment provides data center accelerated computing and networking platforms and artificial intelligence solut",
       "hist": [
@@ -4084,6 +4104,10 @@
         {
           "d": "2026-05-26",
           "c": 214.86
+        },
+        {
+          "d": "2026-05-27",
+          "c": 211.27
         }
       ],
       "ok": true
@@ -4093,15 +4117,15 @@
       "name": "Tesla Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 433.59,
-      "chgPct": 2.34,
+      "price": 441.95,
+      "chgPct": 1.51,
       "up": true,
       "hi52": 498.83,
       "lo52": 273.21,
-      "mktcapB": 1628.4,
-      "pe": 390.6,
-      "volume": 44408993,
-      "avgVol": 61989068,
+      "mktcapB": 1659.8,
+      "pe": 409.2,
+      "volume": 29337439,
+      "avgVol": 61800265,
       "dividend": null,
       "beta": 1.79,
       "desc": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive; and Energy Generation and Storage. The company offers electric vehicles, as ",
@@ -4593,6 +4617,10 @@
         {
           "d": "2026-05-26",
           "c": 433.59
+        },
+        {
+          "d": "2026-05-27",
+          "c": 441.95
         }
       ],
       "ok": true
@@ -4602,15 +4630,15 @@
       "name": "Alphabet Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 388.88,
-      "chgPct": 1.72,
+      "price": 391.8,
+      "chgPct": 0.78,
       "up": true,
       "hi52": 408.61,
       "lo52": 162.0,
-      "mktcapB": 4711.5,
-      "pe": 29.7,
-      "volume": 26389675,
-      "avgVol": 28459205,
+      "mktcapB": 4746.8,
+      "pe": 29.9,
+      "volume": 9849927,
+      "avgVol": 28177638,
       "dividend": 23.0,
       "beta": 1.27,
       "desc": "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America. It operates through Google Services, Google Cloud, and Other Bets segments. The Google Services segment provides products and services, including ad",
@@ -5102,6 +5130,10 @@
         {
           "d": "2026-05-26",
           "c": 388.88
+        },
+        {
+          "d": "2026-05-27",
+          "c": 391.8
         }
       ],
       "ok": true
@@ -5111,15 +5143,15 @@
       "name": "Amazon.com Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 265.29,
-      "chgPct": -0.04,
-      "up": false,
+      "price": 271.29,
+      "chgPct": 2.38,
+      "up": true,
       "hi52": 278.56,
       "lo52": 196.0,
-      "mktcapB": 2853.8,
-      "pe": 31.5,
-      "volume": 37859240,
-      "avgVol": 45200236,
+      "mktcapB": 2918.2,
+      "pe": 32.4,
+      "volume": 20783814,
+      "avgVol": 44877013,
       "dividend": null,
       "beta": 1.47,
       "desc": "Amazon.com, Inc. engages in the retail sale of consumer products, advertising, and subscriptions service through online and physical stores in North America and internationally. The company operates through three segments: North America, International, and Amazon Web Services (AWS). It also manufact",
@@ -5611,6 +5643,10 @@
         {
           "d": "2026-05-26",
           "c": 265.29
+        },
+        {
+          "d": "2026-05-27",
+          "c": 271.29
         }
       ],
       "ok": true
@@ -5620,15 +5656,15 @@
       "name": "Meta Platforms",
       "sector": "Tech",
       "market": "us",
-      "price": 612.34,
-      "chgPct": 0.82,
+      "price": 611.78,
+      "chgPct": 0.22,
       "up": true,
       "hi52": 796.25,
       "lo52": 520.26,
-      "mktcapB": 1554.4,
+      "mktcapB": 1552.9,
       "pe": 22.3,
-      "volume": 10995353,
-      "avgVol": 15598348,
+      "volume": 5668238,
+      "avgVol": 15540486,
       "dividend": 34.0,
       "beta": 1.24,
       "desc": "Meta Platforms, Inc. engages in the development of products that enable people to connect and share with friends and family through mobile devices, personal computers, virtual reality (VR) headsets, and AI glasses in the United States, Canada, Europe, Asia-Pacific, and internationally. It operates t",
@@ -6120,6 +6156,10 @@
         {
           "d": "2026-05-26",
           "c": 612.34
+        },
+        {
+          "d": "2026-05-27",
+          "c": 611.78
         }
       ],
       "ok": true
@@ -6129,15 +6169,15 @@
       "name": "Netflix Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 87.68,
-      "chgPct": -0.9,
-      "up": false,
+      "price": 87.57,
+      "chgPct": 0.1,
+      "up": true,
       "hi52": 134.12,
       "lo52": 75.01,
-      "mktcapB": 369.2,
-      "pe": 28.3,
-      "volume": 22843243,
-      "avgVol": 42745023,
+      "mktcapB": 368.8,
+      "pe": 28.2,
+      "volume": 10744790,
+      "avgVol": 39799376,
       "dividend": null,
       "beta": 1.55,
       "desc": "Netflix, Inc. provides entertainment services worldwide. The company offers television (TV) series, documentaries, feature films, games, and live programming across various genres and languages. It also provides members the ability to receive streaming content through a host of internet-connected de",
@@ -6629,6 +6669,10 @@
         {
           "d": "2026-05-26",
           "c": 87.68
+        },
+        {
+          "d": "2026-05-27",
+          "c": 87.57
         }
       ],
       "ok": true
@@ -6638,15 +6682,15 @@
       "name": "JPMorgan Chase",
       "sector": "Finance",
       "market": "us",
-      "price": 306.74,
-      "chgPct": 0.57,
-      "up": true,
+      "price": 297.23,
+      "chgPct": -3.13,
+      "up": false,
       "hi52": 337.25,
       "lo52": 260.31,
-      "mktcapB": 821.9,
-      "pe": 14.7,
-      "volume": 7241344,
-      "avgVol": 9391998,
+      "mktcapB": 796.4,
+      "pe": 14.2,
+      "volume": 6562103,
+      "avgVol": 9210408,
       "dividend": 196.0,
       "beta": 1.02,
       "desc": "JPMorgan Chase & Co. operates as a bank and financial holding company in the United States, rest of North America, Europe, the Middle East, Africa, the Asia Pacific, Latin America, and the Caribbean. It operates in three segments: Consumer & Community Banking, Commercial & Investment Bank, and Asset",
@@ -7138,6 +7182,10 @@
         {
           "d": "2026-05-26",
           "c": 306.74
+        },
+        {
+          "d": "2026-05-27",
+          "c": 297.23
         }
       ],
       "ok": true
@@ -7147,15 +7195,15 @@
       "name": "Goldman Sachs",
       "sector": "Finance",
       "market": "us",
-      "price": 994.52,
+      "price": 993.72,
       "chgPct": -0.05,
       "up": false,
-      "hi52": 1005.36,
+      "hi52": 1016.54,
       "lo52": 592.17,
-      "mktcapB": 293.4,
-      "pe": 18.2,
-      "volume": 2077316,
-      "avgVol": 2189880,
+      "mktcapB": 293.2,
+      "pe": 18.1,
+      "volume": 1017071,
+      "avgVol": 2132018,
       "dividend": 181.0,
       "beta": 1.27,
       "desc": "The Goldman Sachs Group, Inc., a financial institution, provides a range of financial services for corporations, financial institutions, governments, and individuals in the Americas, Europe, the Middle East, Africa, and Asia. It operates through three segments: Global Banking & Markets, Asset & Weal",
@@ -7647,6 +7695,10 @@
         {
           "d": "2026-05-26",
           "c": 994.52
+        },
+        {
+          "d": "2026-05-27",
+          "c": 993.72
         }
       ],
       "ok": true
@@ -7656,16 +7708,16 @@
       "name": "Visa Inc.",
       "sector": "Finance",
       "market": "us",
-      "price": 326.48,
-      "chgPct": -0.71,
-      "up": false,
+      "price": 329.35,
+      "chgPct": 0.88,
+      "up": true,
       "hi52": 375.51,
       "lo52": 293.89,
-      "mktcapB": 620.9,
-      "pe": 28.4,
-      "volume": 5059609,
-      "avgVol": 7274066,
-      "dividend": 81.0,
+      "mktcapB": 626.3,
+      "pe": 28.7,
+      "volume": 2679226,
+      "avgVol": 7212270,
+      "dividend": 82.0,
       "beta": 0.78,
       "desc": "Visa Inc. operates as a payment technology company in the United States and internationally. The company operates VisaNet, a transaction processing network that enables authorization, clearing, and settlement of payment transactions. It also offers credit, debit, and prepaid card products; tap to pa",
       "hist": [
@@ -8156,6 +8208,10 @@
         {
           "d": "2026-05-26",
           "c": 326.48
+        },
+        {
+          "d": "2026-05-27",
+          "c": 329.35
         }
       ],
       "ok": true
@@ -8165,16 +8221,16 @@
       "name": "Bank of America",
       "sector": "Finance",
       "market": "us",
-      "price": 52.2,
-      "chgPct": 0.97,
-      "up": true,
+      "price": 51.02,
+      "chgPct": -2.35,
+      "up": false,
       "hi52": 57.55,
-      "lo52": 43.3,
-      "mktcapB": 370.4,
-      "pe": 13.0,
-      "volume": 19074643,
-      "avgVol": 38140366,
-      "dividend": 216.0,
+      "lo52": 43.36,
+      "mktcapB": 362.1,
+      "pe": 12.7,
+      "volume": 23952375,
+      "avgVol": 37301621,
+      "dividend": 215.0,
       "beta": 1.22,
       "desc": "Bank of America Corporation, through its subsidiaries, provides various financial products and services for individual consumers, small and middle-market businesses, institutional investors, large corporations, and governments worldwide. It operates through four segments: Consumer Banking, Global We",
       "hist": [
@@ -8665,6 +8721,10 @@
         {
           "d": "2026-05-26",
           "c": 52.2
+        },
+        {
+          "d": "2026-05-27",
+          "c": 51.02
         }
       ],
       "ok": true
@@ -8674,506 +8734,510 @@
       "name": "Johnson & Johnson",
       "sector": "Health",
       "market": "us",
-      "price": 230.18,
-      "chgPct": -1.78,
-      "up": false,
+      "price": 231.57,
+      "chgPct": 0.47,
+      "up": true,
       "hi52": 251.71,
       "lo52": 149.04,
-      "mktcapB": 554.1,
-      "pe": 26.7,
-      "volume": 6427813,
-      "avgVol": 7797395,
-      "dividend": 229.0,
+      "mktcapB": 557.4,
+      "pe": 26.8,
+      "volume": 2353517,
+      "avgVol": 7633911,
+      "dividend": 233.0,
       "beta": 0.26,
       "desc": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide. It operates in two segments, Innovative Medicine and MedTech. The Innovative Medicine segment offers products for various therap",
       "hist": [
         {
           "d": "2025-11-28",
-          "c": 205.83
+          "c": 204.65
         },
         {
           "d": "2025-12-01",
-          "c": 204.25
+          "c": 203.09
         },
         {
           "d": "2025-12-02",
-          "c": 204.33
+          "c": 203.17
         },
         {
           "d": "2025-12-03",
-          "c": 204.24
+          "c": 203.08
         },
         {
           "d": "2025-12-04",
-          "c": 201.41
+          "c": 200.26
         },
         {
           "d": "2025-12-05",
-          "c": 200.86
+          "c": 199.71
         },
         {
           "d": "2025-12-08",
-          "c": 200.55
+          "c": 199.41
         },
         {
           "d": "2025-12-09",
-          "c": 198.9
+          "c": 197.77
         },
         {
           "d": "2025-12-10",
-          "c": 205.45
+          "c": 204.27
         },
         {
           "d": "2025-12-11",
-          "c": 208.9
+          "c": 207.7
         },
         {
           "d": "2025-12-12",
-          "c": 210.46
+          "c": 209.26
         },
         {
           "d": "2025-12-15",
-          "c": 213.04
+          "c": 211.82
         },
         {
           "d": "2025-12-16",
-          "c": 208.19
+          "c": 207.0
         },
         {
           "d": "2025-12-17",
-          "c": 209.22
+          "c": 208.02
         },
         {
           "d": "2025-12-18",
-          "c": 207.21
+          "c": 206.02
         },
         {
           "d": "2025-12-19",
-          "c": 205.28
+          "c": 204.1
         },
         {
           "d": "2025-12-22",
-          "c": 206.22
+          "c": 205.04
         },
         {
           "d": "2025-12-23",
-          "c": 204.69
+          "c": 203.52
         },
         {
           "d": "2025-12-24",
-          "c": 206.68
+          "c": 205.5
         },
         {
           "d": "2025-12-26",
-          "c": 206.53
+          "c": 205.35
         },
         {
           "d": "2025-12-29",
-          "c": 206.46
+          "c": 205.28
         },
         {
           "d": "2025-12-30",
-          "c": 205.82
+          "c": 204.64
         },
         {
           "d": "2025-12-31",
-          "c": 205.86
+          "c": 204.68
         },
         {
           "d": "2026-01-02",
-          "c": 206.25
+          "c": 205.07
         },
         {
           "d": "2026-01-05",
-          "c": 203.23
+          "c": 202.07
         },
         {
           "d": "2026-01-06",
-          "c": 203.71
+          "c": 202.54
         },
         {
           "d": "2026-01-07",
-          "c": 206.39
+          "c": 205.21
         },
         {
           "d": "2026-01-08",
-          "c": 204.66
+          "c": 203.49
         },
         {
           "d": "2026-01-09",
-          "c": 203.31
+          "c": 202.15
         },
         {
           "d": "2026-01-12",
-          "c": 208.61
+          "c": 207.42
         },
         {
           "d": "2026-01-13",
-          "c": 212.52
+          "c": 211.3
         },
         {
           "d": "2026-01-14",
-          "c": 217.39
+          "c": 216.15
         },
         {
           "d": "2026-01-15",
-          "c": 218.41
+          "c": 217.16
         },
         {
           "d": "2026-01-16",
-          "c": 217.5
+          "c": 216.26
         },
         {
           "d": "2026-01-20",
-          "c": 217.06
+          "c": 215.81
         },
         {
           "d": "2026-01-21",
-          "c": 216.86
+          "c": 215.62
         },
         {
           "d": "2026-01-22",
-          "c": 217.33
+          "c": 216.09
         },
         {
           "d": "2026-01-23",
-          "c": 218.98
+          "c": 217.72
         },
         {
           "d": "2026-01-26",
-          "c": 220.32
+          "c": 219.06
         },
         {
           "d": "2026-01-27",
-          "c": 223.25
+          "c": 221.98
         },
         {
           "d": "2026-01-28",
-          "c": 226.52
+          "c": 225.22
         },
         {
           "d": "2026-01-29",
-          "c": 226.09
+          "c": 224.8
         },
         {
           "d": "2026-01-30",
-          "c": 226.05
+          "c": 224.76
         },
         {
           "d": "2026-02-02",
-          "c": 229.53
+          "c": 228.22
         },
         {
           "d": "2026-02-03",
-          "c": 231.87
+          "c": 230.54
         },
         {
           "d": "2026-02-04",
-          "c": 233.23
+          "c": 231.9
         },
         {
           "d": "2026-02-05",
-          "c": 236.53
+          "c": 235.18
         },
         {
           "d": "2026-02-06",
-          "c": 238.72
+          "c": 237.36
         },
         {
           "d": "2026-02-09",
-          "c": 237.38
+          "c": 236.02
         },
         {
           "d": "2026-02-10",
-          "c": 237.09
+          "c": 235.73
         },
         {
           "d": "2026-02-11",
-          "c": 239.59
+          "c": 238.22
         },
         {
           "d": "2026-02-12",
-          "c": 243.26
+          "c": 241.87
         },
         {
           "d": "2026-02-13",
-          "c": 242.16
+          "c": 240.78
         },
         {
           "d": "2026-02-17",
-          "c": 242.04
+          "c": 240.66
         },
         {
           "d": "2026-02-18",
-          "c": 243.69
+          "c": 242.3
         },
         {
           "d": "2026-02-19",
-          "c": 245.6
+          "c": 244.2
         },
         {
           "d": "2026-02-20",
-          "c": 241.21
+          "c": 239.83
         },
         {
           "d": "2026-02-23",
-          "c": 244.54
+          "c": 243.14
         },
         {
           "d": "2026-02-24",
-          "c": 246.28
+          "c": 244.87
         },
         {
           "d": "2026-02-25",
-          "c": 245.17
+          "c": 243.77
         },
         {
           "d": "2026-02-26",
-          "c": 243.47
+          "c": 242.08
         },
         {
           "d": "2026-02-27",
-          "c": 248.43
+          "c": 247.01
         },
         {
           "d": "2026-03-02",
-          "c": 248.56
+          "c": 247.14
         },
         {
           "d": "2026-03-03",
-          "c": 246.75
+          "c": 245.34
         },
         {
           "d": "2026-03-04",
-          "c": 245.3
+          "c": 243.9
         },
         {
           "d": "2026-03-05",
-          "c": 239.63
+          "c": 238.26
         },
         {
           "d": "2026-03-06",
-          "c": 240.4
+          "c": 239.03
         },
         {
           "d": "2026-03-09",
-          "c": 242.59
+          "c": 241.2
         },
         {
           "d": "2026-03-10",
-          "c": 243.71
+          "c": 242.32
         },
         {
           "d": "2026-03-11",
-          "c": 242.99
+          "c": 241.6
         },
         {
           "d": "2026-03-12",
-          "c": 242.04
+          "c": 240.66
         },
         {
           "d": "2026-03-13",
-          "c": 241.52
+          "c": 240.14
         },
         {
           "d": "2026-03-16",
-          "c": 243.19
+          "c": 241.8
         },
         {
           "d": "2026-03-17",
-          "c": 238.11
+          "c": 236.75
         },
         {
           "d": "2026-03-18",
-          "c": 237.28
+          "c": 235.92
         },
         {
           "d": "2026-03-19",
-          "c": 237.6
+          "c": 236.24
         },
         {
           "d": "2026-03-20",
-          "c": 235.37
+          "c": 234.02
         },
         {
           "d": "2026-03-23",
-          "c": 235.42
+          "c": 234.07
         },
         {
           "d": "2026-03-24",
-          "c": 235.27
+          "c": 233.92
         },
         {
           "d": "2026-03-25",
-          "c": 239.93
+          "c": 238.56
         },
         {
           "d": "2026-03-26",
-          "c": 239.24
+          "c": 237.87
         },
         {
           "d": "2026-03-27",
-          "c": 240.45
+          "c": 239.08
         },
         {
           "d": "2026-03-30",
-          "c": 242.49
+          "c": 241.1
         },
         {
           "d": "2026-03-31",
-          "c": 244.44
-        },
-        {
-          "d": "2026-04-01",
-          "c": 244.12
-        },
-        {
-          "d": "2026-04-02",
           "c": 243.04
         },
         {
+          "d": "2026-04-01",
+          "c": 242.72
+        },
+        {
+          "d": "2026-04-02",
+          "c": 241.65
+        },
+        {
           "d": "2026-04-06",
-          "c": 240.97
+          "c": 239.59
         },
         {
           "d": "2026-04-07",
-          "c": 238.41
+          "c": 237.05
         },
         {
           "d": "2026-04-08",
-          "c": 241.3
+          "c": 239.92
         },
         {
           "d": "2026-04-09",
-          "c": 241.31
+          "c": 239.93
         },
         {
           "d": "2026-04-10",
-          "c": 238.46
+          "c": 237.1
         },
         {
           "d": "2026-04-13",
-          "c": 237.96
+          "c": 236.6
         },
         {
           "d": "2026-04-14",
-          "c": 240.1
+          "c": 238.73
         },
         {
           "d": "2026-04-15",
-          "c": 238.67
+          "c": 237.31
         },
         {
           "d": "2026-04-16",
-          "c": 234.54
+          "c": 233.2
         },
         {
           "d": "2026-04-17",
-          "c": 234.18
+          "c": 232.84
         },
         {
           "d": "2026-04-20",
-          "c": 230.69
+          "c": 229.37
         },
         {
           "d": "2026-04-21",
-          "c": 226.16
+          "c": 224.87
         },
         {
           "d": "2026-04-22",
-          "c": 226.1
+          "c": 224.81
         },
         {
           "d": "2026-04-23",
-          "c": 230.65
+          "c": 229.33
         },
         {
           "d": "2026-04-24",
-          "c": 227.5
+          "c": 226.2
         },
         {
           "d": "2026-04-27",
-          "c": 225.34
+          "c": 224.05
         },
         {
           "d": "2026-04-28",
-          "c": 227.79
+          "c": 226.49
         },
         {
           "d": "2026-04-29",
-          "c": 227.35
+          "c": 226.05
         },
         {
           "d": "2026-04-30",
-          "c": 229.85
+          "c": 228.54
         },
         {
           "d": "2026-05-01",
-          "c": 227.19
+          "c": 225.89
         },
         {
           "d": "2026-05-04",
-          "c": 224.2
+          "c": 222.92
         },
         {
           "d": "2026-05-05",
-          "c": 225.55
-        },
-        {
-          "d": "2026-05-06",
-          "c": 224.62
-        },
-        {
-          "d": "2026-05-07",
-          "c": 222.51
-        },
-        {
-          "d": "2026-05-08",
-          "c": 221.32
-        },
-        {
-          "d": "2026-05-11",
-          "c": 221.43
-        },
-        {
-          "d": "2026-05-12",
           "c": 224.26
         },
         {
+          "d": "2026-05-06",
+          "c": 223.34
+        },
+        {
+          "d": "2026-05-07",
+          "c": 221.24
+        },
+        {
+          "d": "2026-05-08",
+          "c": 220.05
+        },
+        {
+          "d": "2026-05-11",
+          "c": 220.16
+        },
+        {
+          "d": "2026-05-12",
+          "c": 222.98
+        },
+        {
           "d": "2026-05-13",
-          "c": 230.42
+          "c": 229.1
         },
         {
           "d": "2026-05-14",
-          "c": 230.8
+          "c": 229.48
         },
         {
           "d": "2026-05-15",
-          "c": 226.71
+          "c": 225.41
         },
         {
           "d": "2026-05-18",
-          "c": 228.92
+          "c": 227.61
         },
         {
           "d": "2026-05-19",
-          "c": 230.0
+          "c": 228.68
         },
         {
           "d": "2026-05-20",
-          "c": 229.32
+          "c": 228.01
         },
         {
           "d": "2026-05-21",
-          "c": 231.73
+          "c": 230.4
         },
         {
           "d": "2026-05-22",
-          "c": 234.34
+          "c": 233.0
         },
         {
           "d": "2026-05-26",
           "c": 230.18
+        },
+        {
+          "d": "2026-05-27",
+          "c": 231.57
         }
       ],
       "ok": true
@@ -9183,16 +9247,16 @@
       "name": "Pfizer Inc.",
       "sector": "Health",
       "market": "us",
-      "price": 25.85,
-      "chgPct": -0.23,
-      "up": false,
+      "price": 26.24,
+      "chgPct": 1.67,
+      "up": true,
       "hi52": 28.75,
       "lo52": 23.06,
-      "mktcapB": 147.3,
-      "pe": 19.7,
-      "volume": 22341462,
-      "avgVol": 37595945,
-      "dividend": 664.0,
+      "mktcapB": 149.6,
+      "pe": 20.0,
+      "volume": 20119479,
+      "avgVol": 37382700,
+      "dividend": 665.0,
       "beta": 0.3,
       "desc": "Pfizer Inc. discovers, develops, manufactures, markets, distributes, and sells biopharmaceutical products in the United States and internationally. It operates in three segments: Biopharma, PC1, and Pfizer Ignite. The company offers internal medicine products, including cardiovascular metabolic dise",
       "hist": [
@@ -9683,6 +9747,10 @@
         {
           "d": "2026-05-26",
           "c": 25.85
+        },
+        {
+          "d": "2026-05-27",
+          "c": 26.24
         }
       ],
       "ok": true
@@ -9692,16 +9760,16 @@
       "name": "UnitedHealth",
       "sector": "Health",
       "market": "us",
-      "price": 376.86,
-      "chgPct": -2.6,
-      "up": false,
+      "price": 381.62,
+      "chgPct": 1.31,
+      "up": true,
       "hi52": 404.15,
       "lo52": 234.6,
-      "mktcapB": 342.2,
-      "pe": 28.4,
-      "volume": 6422761,
-      "avgVol": 8320211,
-      "dividend": 228.0,
+      "mktcapB": 346.6,
+      "pe": 28.8,
+      "volume": 1892185,
+      "avgVol": 8266238,
+      "dividend": 235.0,
       "beta": 0.65,
       "desc": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally. It operates through four segments: Optum Health, Optum Insight, Optum Rx; and UnitedHealthcare. The Optum Health segment provides care delivery, care management, wellness and consumer engageme",
       "hist": [
@@ -10192,6 +10260,10 @@
         {
           "d": "2026-05-26",
           "c": 376.86
+        },
+        {
+          "d": "2026-05-27",
+          "c": 381.62
         }
       ],
       "ok": true
@@ -10201,16 +10273,16 @@
       "name": "Walmart Inc.",
       "sector": "Consumer",
       "market": "us",
-      "price": 118.57,
-      "chgPct": -1.28,
-      "up": false,
+      "price": 118.78,
+      "chgPct": 0.12,
+      "up": true,
       "hi52": 135.16,
       "lo52": 93.43,
-      "mktcapB": 945.1,
-      "pe": 41.8,
-      "volume": 28750150,
-      "avgVol": 19209946,
-      "dividend": 82.0,
+      "mktcapB": 946.9,
+      "pe": 41.7,
+      "volume": 11143657,
+      "avgVol": 19203128,
+      "dividend": 83.0,
       "beta": 0.65,
       "desc": "Walmart Inc. engages in the operation of retail and wholesale stores and clubs, ecommerce websites, and mobile applications worldwide. The company operates through three segments: Walmart U.S., Walmart International, and Sam's Club U.S. It operates supercenters, supermarkets, warehouse clubs, cash a",
       "hist": [
@@ -10701,6 +10773,10 @@
         {
           "d": "2026-05-26",
           "c": 118.57
+        },
+        {
+          "d": "2026-05-27",
+          "c": 118.78
         }
       ],
       "ok": true
@@ -10710,16 +10786,16 @@
       "name": "Coca-Cola",
       "sector": "Consumer",
       "market": "us",
-      "price": 80.46,
-      "chgPct": -1.46,
-      "up": false,
+      "price": 82.12,
+      "chgPct": 1.81,
+      "up": true,
       "hi52": 82.66,
       "lo52": 65.35,
-      "mktcapB": 346.2,
-      "pe": 25.3,
-      "volume": 9737561,
-      "avgVol": 15228241,
-      "dividend": 260.0,
+      "mktcapB": 353.3,
+      "pe": 25.8,
+      "volume": 5335910,
+      "avgVol": 14970253,
+      "dividend": 263.0,
       "beta": 0.36,
       "desc": "The Coca-Cola Company, a beverage company, manufactures and sells various nonalcoholic beverages in the United States and internationally. The company provides Trademark Coca-Cola, sparkling soft drinks and flavors; water, sports, coffee, and tea; juice, value-added dairy, and plant-based beverages;",
       "hist": [
@@ -11210,6 +11286,10 @@
         {
           "d": "2026-05-26",
           "c": 80.46
+        },
+        {
+          "d": "2026-05-27",
+          "c": 82.12
         }
       ],
       "ok": true
@@ -11219,16 +11299,16 @@
       "name": "ExxonMobil",
       "sector": "Energy",
       "market": "us",
-      "price": 149.81,
-      "chgPct": -3.35,
+      "price": 147.66,
+      "chgPct": -1.59,
       "up": false,
       "hi52": 176.41,
       "lo52": 101.19,
-      "mktcapB": 621.0,
-      "pe": 25.3,
-      "volume": 10136752,
-      "avgVol": 21361686,
-      "dividend": 266.0,
+      "mktcapB": 612.0,
+      "pe": 24.8,
+      "volume": 6430623,
+      "avgVol": 21074911,
+      "dividend": 275.0,
       "beta": 0.18,
       "desc": "Exxon Mobil Corporation engages in the exploration and production of crude oil and natural gas in the United States, Canada, and internationally. The company operates through Upstream, Energy Products, Chemical Products, and Specialty Products segments. Its Upstream segment explores for and produces",
       "hist": [
@@ -11719,6 +11799,10 @@
         {
           "d": "2026-05-26",
           "c": 149.81
+        },
+        {
+          "d": "2026-05-27",
+          "c": 147.66
         }
       ],
       "ok": true
@@ -11728,16 +11812,16 @@
       "name": "Chevron Corp.",
       "sector": "Energy",
       "market": "us",
-      "price": 184.71,
-      "chgPct": -3.67,
+      "price": 183.15,
+      "chgPct": -1.05,
       "up": false,
       "hi52": 214.71,
       "lo52": 135.21,
-      "mktcapB": 367.9,
-      "pe": 32.2,
-      "volume": 12946420,
-      "avgVol": 12376281,
-      "dividend": 372.0,
+      "mktcapB": 364.8,
+      "pe": 31.9,
+      "volume": 4363163,
+      "avgVol": 12413133,
+      "dividend": 385.0,
       "beta": 0.5,
       "desc": "Chevron Corporation, through its subsidiaries, engages in the integrated energy and chemicals operations in the United States and internationally. It operates through Upstream, Downstream, and All Other segments. The Upstream segment engages in the exploration for, development, production, and trans",
       "hist": [
@@ -12228,6 +12312,10 @@
         {
           "d": "2026-05-26",
           "c": 184.71
+        },
+        {
+          "d": "2026-05-27",
+          "c": 183.19
         }
       ],
       "ok": true
@@ -12239,15 +12327,15 @@
       "name": "Vanguard Total Market",
       "sector": "ETF",
       "market": "us",
-      "price": 369.46,
-      "chgPct": 0.82,
-      "up": true,
-      "hi52": 368.3,
+      "price": 369.18,
+      "chgPct": -0.1,
+      "up": false,
+      "hi52": 370.24,
       "lo52": 286.86,
       "mktcapB": null,
       "pe": 27.4,
-      "volume": 3460280,
-      "avgVol": 4597136,
+      "volume": 2019006,
+      "avgVol": 4555885,
       "dividend": 106.0,
       "beta": null,
       "desc": "The fund manager employs an indexing investment approach designed to track the performance of the CRSP U.S. Total Market Index (the “Target Index”), which represents 100% of the investable U.S. stock market, as determined by the index provider. Under normal circumstances, the fund invests at least 8",
@@ -12739,6 +12827,10 @@
         {
           "d": "2026-05-26",
           "c": 369.46
+        },
+        {
+          "d": "2026-05-27",
+          "c": 369.18
         }
       ],
       "ok": true
@@ -12748,15 +12840,15 @@
       "name": "Vanguard S&P 500",
       "sector": "ETF",
       "market": "us",
-      "price": 690.01,
-      "chgPct": 0.82,
-      "up": true,
-      "hi52": 689.1,
+      "price": 689.3,
+      "chgPct": -0.16,
+      "up": false,
+      "hi52": 691.51,
       "lo52": 536.16,
       "mktcapB": null,
       "pe": 28.2,
-      "volume": 4626208,
-      "avgVol": 9212253,
+      "volume": 3049720,
+      "avgVol": 9148365,
       "dividend": 108.0,
       "beta": null,
       "desc": "The fund manager employs an indexing investment approach designed to track the performance of the Standard & Poor's 500 Index, a widely recognized benchmark of U.S. stock market performance that is dominated by the stocks of large U.S. companies. The advisor attempts to replicate the target index by",
@@ -13248,6 +13340,10 @@
         {
           "d": "2026-05-26",
           "c": 690.01
+        },
+        {
+          "d": "2026-05-27",
+          "c": 689.3
         }
       ],
       "ok": true
@@ -13257,15 +13353,15 @@
       "name": "Invesco Nasdaq-100",
       "sector": "ETF",
       "market": "us",
-      "price": 730.28,
-      "chgPct": 2.09,
-      "up": true,
-      "hi52": 722.12,
+      "price": 728.0,
+      "chgPct": -0.36,
+      "up": false,
+      "hi52": 731.17,
       "lo52": 511.93,
       "mktcapB": null,
-      "pe": 35.6,
-      "volume": 33502605,
-      "avgVol": 54399116,
+      "pe": 35.5,
+      "volume": 23482689,
+      "avgVol": 53833480,
       "dividend": 42.0,
       "beta": null,
       "desc": "To maintain the correspondence between the composition and weights of the securities in the trust (the \"securities\") and the stocks in the NASDAQ-100 Index®, the adviser adjusts the securities from time to time to conform to periodic changes in the identity and/or relative weights of index securitie",
@@ -13757,6 +13853,10 @@
         {
           "d": "2026-05-26",
           "c": 730.28
+        },
+        {
+          "d": "2026-05-27",
+          "c": 727.95
         }
       ],
       "ok": true
@@ -13766,23 +13866,19 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 123.11,
-      "chgPct": -0.34,
+      "price": 122.89,
+      "chgPct": -0.18,
       "up": false,
       "hi52": 123.65,
       "lo52": 98.04,
       "mktcapB": null,
       "pe": null,
-      "volume": 132946,
-      "avgVol": 117801,
+      "volume": 137370,
+      "avgVol": 118545,
       "dividend": null,
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-11-26",
-          "c": 111.07
-        },
         {
           "d": "2025-11-27",
           "c": 111.0
@@ -14270,6 +14366,10 @@
         {
           "d": "2026-05-26",
           "c": 123.11
+        },
+        {
+          "d": "2026-05-27",
+          "c": 122.89
         }
       ],
       "ok": true
@@ -14279,23 +14379,19 @@
       "name": "iShares Clean Energy",
       "sector": "ETF",
       "market": "us",
-      "price": 11.3,
-      "chgPct": 0.52,
+      "price": 11.43,
+      "chgPct": 1.12,
       "up": true,
-      "hi52": 11.27,
+      "hi52": 11.33,
       "lo52": 6.27,
       "mktcapB": null,
       "pe": null,
-      "volume": 331025,
-      "avgVol": 302300,
+      "volume": 312887,
+      "avgVol": 304863,
       "dividend": null,
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-11-26",
-          "c": 8.18
-        },
         {
           "d": "2025-11-27",
           "c": 8.23
@@ -14775,6 +14871,10 @@
         {
           "d": "2026-05-26",
           "c": 11.3
+        },
+        {
+          "d": "2026-05-27",
+          "c": 11.43
         }
       ],
       "ok": true
