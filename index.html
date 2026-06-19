@@ -236,7 +236,6 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
 <nav class="nav">
   <button class="nav-btn active" data-tab="markets">Markaðir</button>
   <button class="nav-btn" data-tab="stocks">Hlutabréf</button>
-  <button class="nav-btn" data-tab="iceland">Íslenskt</button>
   <button class="nav-btn" data-tab="ipo">IPO</button>
   <button class="nav-btn" data-tab="sectors">Geirar</button>
   <button class="nav-btn" data-tab="screener">Leitar</button>
@@ -285,12 +284,6 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
   <div class="ticker-grid" id="etf-grid"></div>
 </div>
 
-<!-- ÍSLENSKT -->
-<div class="panel" id="panel-iceland">
-  <div class="is-notice">Nasdaq Iceland — gögn sótt við hverja keyrslu á update_stocks.py · Verð í ISK</div>
-  <div class="ticker-grid" id="iceland-grid"></div>
-</div>
-
 <!-- IPO -->
 <div class="panel" id="panel-ipo">
   <div class="stitle">Væntanlegar IPO 2025–2026</div>
@@ -321,7 +314,6 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
     <select class="fsel" id="f-mkt" onchange="filterScreener()">
       <option value="all">Allir markaðir</option>
       <option value="us">Bandarísk / ETF</option>
-      <option value="is">Íslensk</option>
     </select>
     <select class="fsel" id="f-dir" onchange="filterScreener()">
       <option value="all">Allar breytingar</option>
@@ -336,7 +328,6 @@ canvas#stockChart { width: 100% !important; height: 100% !important; }
       <option value="Health">Heilsa</option>
       <option value="Consumer">Neytendur</option>
       <option value="ETF">ETF</option>
-      <option value="Íslenskt">Íslenskt</option>
     </select>
   </div>
   <div class="sb-wrap">
@@ -394,7 +385,6 @@ const NEWS_STATIC = [
   {src:"FT",time:"6 klst",title:"Klarna IPO nálgast — verðmat yfir $15 milljarða",tag:"IPO"},
   {src:"CNBC",time:"7 klst",title:"S&P 500 nær nýju met — tæknihlutabréf leiðandi",tag:"Markaðir"},
   {src:"Reuters",time:"8 klst",title:"Tesla Model Y endurhannaður — sala yfir væntingum",tag:"TSLA"},
-  {src:"Keldan",time:"3 klst",title:"Íslenska markaðurinn hækkar — Marel í fararbroddi",tag:"Ísland"},
   {src:"Bloomberg",time:"10 klst",title:"Goldman Sachs hækkar markmið S&P 500 í 6.500",tag:"GS"},
   {src:"WSJ",time:"11 klst",title:"Evrópskir markaðir loka á hæsta stigi þetta ár",tag:"Evrópa"},
   {src:"FT",time:"12 klst",title:"Bitcoin yfir $90.000 — stofnanafjárfestar auka hlutdeild",tag:"Crypto"},
@@ -663,11 +653,7 @@ function renderAll(data) {
   const indices = data.indices || [];
   const us      = data.us || [];
   const etfs    = data.etfs || [];
-  const iceland = data.iceland || [];
-  allStocks = [...us, ...etfs, ...iceland];
-
-  // Bæta indices við allStocks FYRST svo modal virki
-  allStocks = [...indices, ...us, ...etfs, ...iceland];
+  allStocks = [...indices, ...us, ...etfs];
 
   // Vísitölur
   const ig = document.getElementById("index-grid");
@@ -694,8 +680,6 @@ function renderAll(data) {
   document.getElementById("health-grid").innerHTML = [...byS("Health"),...byS("Consumer")].map(tcard).join("");
   document.getElementById("energy-grid").innerHTML = byS("Energy").map(tcard).join("");
   document.getElementById("etf-grid").innerHTML    = etfs.map(tcard).join("");
-
-  document.getElementById("iceland-grid").innerHTML = iceland.map(tcard).join("");
 
   // News
   document.getElementById("news-markets").innerHTML = NEWS_STATIC.slice(0,5).map(newsHtml).join("");
@@ -735,9 +719,9 @@ function renderAll(data) {
   ).join("");
 
   // Tape
-  const items = [...us,...etfs,...iceland].filter(d => d.price != null);
+  const items = [...us,...etfs].filter(d => d.price != null);
   const html = [...items,...items].map(d => {
-    const p = d.market==="is" ? d.price+" kr" : "$"+d.price;
+    const p = "$"+d.price;
     return `<span class="tape-item">${d.sym} <span class="${d.up?"up":"dn"}">${p} ${d.up?"▲":"▼"}</span></span>`;
   }).join("");
   document.getElementById("tape").innerHTML = html;

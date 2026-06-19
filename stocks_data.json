@@ -1,6 +1,6 @@
 {
-  "updated": "19.06.2026 10:52:48",
-  "updated_ts": 1781866368,
+  "updated": "19.06.2026 11:00:02",
+  "updated_ts": 1781866802,
   "indices": [
     {
       "sym": "^GSPC",
@@ -1556,8 +1556,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10371.45,
-      "chgPct": -0.23,
+      "price": 10375.21,
+      "chgPct": -0.19,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -2062,7 +2062,7 @@
         },
         {
           "d": "2026-06-19",
-          "c": 10371.54
+          "c": 10375.21
         }
       ]
     },
@@ -13970,14 +13970,14 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 124.6,
-      "chgPct": -0.04,
+      "price": 124.58,
+      "chgPct": -0.06,
       "up": false,
       "hi52": 125.18,
       "lo52": 98.45,
       "mktcapB": null,
       "pe": null,
-      "volume": 29029,
+      "volume": 29542,
       "avgVol": 112810,
       "dividend": null,
       "beta": null,
@@ -14477,7 +14477,7 @@
         },
         {
           "d": "2026-06-19",
-          "c": 124.6
+          "c": 124.58
         }
       ],
       "ok": true
@@ -14487,14 +14487,14 @@
       "name": "iShares Clean Energy",
       "sector": "ETF",
       "market": "us",
-      "price": 10.59,
-      "chgPct": 0.84,
+      "price": 10.58,
+      "chgPct": 0.78,
       "up": true,
       "hi52": 11.71,
       "lo52": 6.33,
       "mktcapB": null,
       "pe": null,
-      "volume": 49611,
+      "volume": 49624,
       "avgVol": 345899,
       "dividend": null,
       "beta": null,
@@ -14986,7 +14986,7 @@
         },
         {
           "d": "2026-06-19",
-          "c": 10.59
+          "c": 10.58
         }
       ],
       "ok": true
