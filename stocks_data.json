@@ -1,6 +1,6 @@
 {
-  "updated": "19.06.2026 10:10:04",
-  "updated_ts": 1781863804,
+  "updated": "19.06.2026 10:13:46",
+  "updated_ts": 1781864026,
   "indices": [
     {
       "sym": "^GSPC",
@@ -1556,8 +1556,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10389.99,
-      "chgPct": -0.05,
+      "price": 10385.19,
+      "chgPct": -0.09,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -2062,15 +2062,15 @@
         },
         {
           "d": "2026-06-19",
-          "c": 10390.01
+          "c": 10385.19
         }
       ]
     },
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 16.89,
-      "chgPct": 2.99,
+      "price": 16.91,
+      "chgPct": 3.11,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -2583,7 +2583,7 @@
         },
         {
           "d": "2026-06-19",
-          "c": 16.89
+          "c": 16.91
         }
       ]
     }
@@ -3218,7 +3218,7 @@
         },
         {
           "d": "2026-01-26",
-          "c": 468.19
+          "c": 468.2
         },
         {
           "d": "2026-01-27",
@@ -13977,7 +13977,7 @@
       "lo52": 98.45,
       "mktcapB": null,
       "pe": null,
-      "volume": 24900,
+      "volume": 24966,
       "avgVol": 112810,
       "dividend": null,
       "beta": null,
@@ -14488,13 +14488,13 @@
       "sector": "ETF",
       "market": "us",
       "price": 10.62,
-      "chgPct": 1.18,
+      "chgPct": 1.14,
       "up": true,
       "hi52": 11.71,
       "lo52": 6.33,
       "mktcapB": null,
       "pe": null,
-      "volume": 42252,
+      "volume": 46334,
       "avgVol": 345899,
       "dividend": null,
       "beta": null,
