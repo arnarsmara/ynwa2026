@@ -11,11 +11,21 @@ import json
 import os
 import ssl
 from datetime import datetime, timedelta
+from pathlib import Path
 
 # Leyfir SSL a fyrirtaekjanetum med sjalfundirritadar skirteini (t.d. Reykjanesbae proxy)
 os.environ["CURL_CA_BUNDLE"] = ""
 os.environ["REQUESTS_CA_BUNDLE"] = ""
 ssl._create_default_https_context = ssl._create_unverified_context
+
+# Les .env skra ef hun er til (API lyklar -- fer aldrei a GitHub)
+_env_file = Path(__file__).parent / ".env"
+if _env_file.exists():
+    for _line in _env_file.read_text().splitlines():
+        _line = _line.strip()
+        if _line and not _line.startswith("#") and "=" in _line:
+            _k, _v = _line.split("=", 1)
+            os.environ.setdefault(_k.strip(), _v.strip())
 
 # -----------------------------------------------------------------------------
 #  STILLINGAR
