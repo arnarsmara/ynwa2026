@@ -21,7 +21,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # Les .env skra ef hun er til (API lyklar -- fer aldrei a GitHub)
 _env_file = Path(__file__).parent / ".env"
 if _env_file.exists():
-    for _line in _env_file.read_text().splitlines():
+    for _line in _env_file.read_text(encoding="utf-8-sig").splitlines():
         _line = _line.strip()
         if _line and not _line.startswith("#") and "=" in _line:
             _k, _v = _line.split("=", 1)
