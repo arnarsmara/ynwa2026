@@ -1,21 +1,25 @@
 """
-update_stocks.py — StockBreak
-Sækir gögn frá Yahoo Finance + söguleg gögn fyrir línurit
-Skrifar stocks_data.json sem vefsíðan les.
+update_stocks.py -- StockBreak
+Saekir gogn fra Yahoo Finance + soguleg gogn fyrir linurit
+Skrifar stocks_data.json sem vefsidan les.
 
 Keyra:  python update_stocks.py
 """
 
 import yfinance as yf
-import requests
-from bs4 import BeautifulSoup
 import json
 import os
+import ssl
 from datetime import datetime, timedelta
 
-# ─────────────────────────────────────────────────────────────────────────────
+# Leyfir SSL a fyrirtaekjanetum med sjalfundirritadar skirteini (t.d. Reykjanesbae proxy)
+os.environ["CURL_CA_BUNDLE"] = ""
+os.environ["REQUESTS_CA_BUNDLE"] = ""
+ssl._create_default_https_context = ssl._create_unverified_context
+
+# -----------------------------------------------------------------------------
 #  STILLINGAR
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
 STOCKS_US = [
     ("AAPL",  "Apple Inc.",         "Tech"),
@@ -55,24 +59,13 @@ INDICES = [
     ("^VIX",   "VIX"),
 ]
 
-ICELANDIC = [
-    ("MAREL",   "Marel hf.",                "IS0000000388"),
-    ("ARION",   "Arion banki hf.",           "IS0000028302"),
-    ("ICEAIR",  "Icelandair Group hf.",      "IS0000003808"),
-    ("SIMINN",  "Siminn hf.",                "IS0000000701"),
-    ("EIMSKIP", "Eimskipafélag Íslands hf.", "IS0000000594"),
-    ("REGINN",  "Reiknir hf.",               "IS0000018675"),
-    ("HAGA",    "Hagar hf.",                 "IS0000017123"),
-    ("VIS",     "Vátryggingafélag Íslands",  "IS0000004269"),
-]
-
 OUTPUT_FILE = "stocks_data.json"
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  SÖGULEG GÖGN — fyrir línurit
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+#  SOGULEG GOGN -- fyrir linurit
+# -----------------------------------------------------------------------------
 def fetch_history(ticker_sym, period="6mo", interval="1d"):
-    """Skilar lista af {date, close} fyrir línurit."""
+    """Skilar lista af {date, close} fyrir linurit."""
     try:
         t = yf.Ticker(ticker_sym)
         hist = t.history(period=period, interval=interval)
@@ -89,14 +82,14 @@ def fetch_history(ticker_sym, period="6mo", interval="1d"):
         return []
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  YAHOO FINANCE — quote + history
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+#  YAHOO FINANCE -- quote + history
+# -----------------------------------------------------------------------------
 def fetch_yahoo(pairs, fetch_hist=True):
     results = []
     tickers_list = [t for t, *_ in pairs]
     extras = {t: rest for t, *rest in pairs}
-    print(f"  Sæki {len(tickers_list)} tickers...")
+    print(f"  Saeki {len(tickers_list)} tickers...")
 
     data = yf.Tickers(" ".join(tickers_list))
 
@@ -121,10 +114,9 @@ def fetch_yahoo(pairs, fetch_hist=True):
             beta     = info.get("beta")
             desc     = info.get("longBusinessSummary", "")[:300] if info.get("longBusinessSummary") else ""
 
-            # Söguleg gögn
             hist_6m = []
             if fetch_hist:
-                print(f"    📈 Sæki sögu {ticker}...")
+                print(f"    Saeki sogu {ticker}...")
                 hist_6m = fetch_history(ticker, period="6mo", interval="1d")
 
             results.append({
@@ -147,7 +139,7 @@ def fetch_yahoo(pairs, fetch_hist=True):
                 "hist":     hist_6m,
                 "ok":       True,
             })
-            print(f"    ✅  {ticker:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sögu")
+            print(f"    OK  {ticker:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sogu")
 
         except Exception as e:
             results.append({
@@ -158,7 +150,7 @@ def fetch_yahoo(pairs, fetch_hist=True):
                 "volume": None, "avgVol": None, "dividend": None, "beta": None,
                 "desc": "", "hist": [],
             })
-            print(f"    ⚠️   {ticker:12s}  VILLA: {e}")
+            print(f"    VILLA  {ticker:12s}  {e}")
 
     return results
 
@@ -174,7 +166,7 @@ def fetch_indices(index_list):
             price   = fi.last_price
             prev    = fi.previous_close or price
             chg_pct = round(((price - prev) / prev * 100), 2) if prev else 0
-            print(f"    📈 Sæki sögu {sym}...")
+            print(f"    Saeki sogu {sym}...")
             hist_6m = fetch_history(sym, period="6mo", interval="1d")
             results.append({
                 "sym": sym, "name": names[sym],
@@ -185,7 +177,7 @@ def fetch_indices(index_list):
                 "volume": None, "avgVol": None, "dividend": None, "beta": None,
                 "desc": "", "hist": hist_6m
             })
-            print(f"    ✅  {sym:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sögu")
+            print(f"    OK  {sym:12s}  {price:.2f}  ({chg_pct:+.2f}%)  {len(hist_6m)} dagar sogu")
         except Exception as e:
             results.append({"sym": sym, "name": names[sym],
                             "price": None, "chgPct": 0, "up": True,
@@ -193,104 +185,13 @@ def fetch_indices(index_list):
                             "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
                             "volume": None, "avgVol": None, "dividend": None, "beta": None,
                             "desc": "", "hist": []})
-            print(f"    ⚠️   {sym:12s}  VILLA: {e}")
+            print(f"    VILLA  {sym:12s}  {e}")
     return results
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-#  NASDAQ NORDIC — íslenskar hlutabréf
-# ─────────────────────────────────────────────────────────────────────────────
-def fetch_icelandic(icelandic_list):
-    results = []
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-
-    for ticker, name, isin in icelandic_list:
-        price = None
-        chg_pct = None
-        hi52 = None
-        lo52 = None
-
-        try:
-            url = f"https://www.nasdaqomxnordic.com/api/instruments/search?query={ticker}&markets=XICE"
-            r = requests.get(url, headers=headers, timeout=10)
-            if r.status_code == 200:
-                d = r.json()
-                rows = d.get("rows", d.get("instruments", d if isinstance(d, list) else []))
-                if rows:
-                    item = rows[0]
-                    def pn(v):
-                        if v is None: return None
-                        try: return float(str(v).replace(",",".").replace(" ",""))
-                        except: return None
-                    price   = pn(item.get("lastPrice") or item.get("last") or item.get("price"))
-                    prev    = pn(item.get("previousClose") or item.get("prevClose"))
-                    chg_raw = pn(item.get("changePercent") or item.get("changePercentage"))
-                    if chg_raw is not None:
-                        chg_pct = round(chg_raw, 2)
-                    elif price and prev and prev != 0:
-                        chg_pct = round((price - prev) / prev * 100, 2)
-                    hi52 = pn(item.get("high52w") or item.get("fiftyTwoWeekHigh"))
-                    lo52 = pn(item.get("low52w")  or item.get("fiftyTwoWeekLow"))
-        except:
-            pass
-
-        if not price:
-            try:
-                r2 = requests.get(
-                    f"https://www.keldan.is/Markadir/Hlutabref/{ticker}",
-                    headers={"User-Agent": "Mozilla/5.0"}, timeout=10, verify=False
-                )
-                if r2.status_code == 200:
-                    soup = BeautifulSoup(r2.text, "html.parser")
-                    for table in soup.find_all("table"):
-                        for row in table.find_all("tr"):
-                            cells = row.find_all(["td","th"])
-                            if len(cells) >= 2:
-                                label = cells[0].get_text(strip=True).lower()
-                                val_txt = cells[1].get_text(strip=True)
-                                try:
-                                    val = float(val_txt.replace(".","").replace(",",".").replace(" ","").replace("kr",""))
-                                    if any(x in label for x in ["síðasta","last","verð"]) and not price:
-                                        price = val
-                                    elif any(x in label for x in ["breyting","%"]) and chg_pct is None:
-                                        chg_pct = val
-                                except:
-                                    pass
-            except:
-                pass
-
-        if price:
-            results.append({
-                "sym": ticker, "name": name, "sector": "Íslenskt", "market": "is",
-                "price": int(price),
-                "chgPct": round(chg_pct, 2) if chg_pct is not None else 0,
-                "up": (chg_pct or 0) >= 0,
-                "hi52": int(hi52) if hi52 else None,
-                "lo52": int(lo52) if lo52 else None,
-                "mktcapB": None, "pe": None,
-                "volume": None, "avgVol": None, "dividend": None, "beta": None,
-                "desc": "", "hist": [], "ok": True
-            })
-            chg_str = f"{chg_pct:+.2f}%" if chg_pct is not None else "?"
-            print(f"    ✅  {ticker:12s}  {price:.0f} kr  ({chg_str})")
-        else:
-            results.append({
-                "sym": ticker, "name": name, "sector": "Íslenskt", "market": "is",
-                "price": None, "chgPct": None, "up": True,
-                "hi52": None, "lo52": None, "mktcapB": None, "pe": None,
-                "volume": None, "avgVol": None, "dividend": None, "beta": None,
-                "desc": "", "hist": [], "ok": False
-            })
-            print(f"    ⚠️   {ticker:12s}  Gat ekki sótt verð")
-
-    return results
-
-
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-#  AI AGENT — Gemini + Anthropic fallback
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
+#  AI AGENT
+# -----------------------------------------------------------------------------
 def build_market_ctx(us, etfs, indices):
     all_stocks = us + etfs
     movers = sorted([r for r in all_stocks if r.get("chgPct") is not None],
@@ -298,10 +199,12 @@ def build_market_ctx(us, etfs, indices):
     movers_str = ", ".join(f"{r['sym']} {r['chgPct']:+.2f}%" for r in movers)
     sp500 = next((r for r in indices if r["sym"] == "^GSPC"), None)
     vix   = next((r for r in indices if r["sym"] == "^VIX"), None)
-    return f"""Dagsetning: {datetime.now().strftime("%d.%m.%Y")}
-S&P 500: {(str(sp500["price"]) + " (" + str(sp500["chgPct"]) + "%)") if sp500 else "okunnur"}
-VIX: {vix["price"] if vix else "okunnur"}
-Staerstu hreyfingar: {movers_str or "engar"}"""
+    return (
+        f"Dagsetning: {datetime.now().strftime('%d.%m.%Y')} "
+        f"S&P 500: {(str(sp500['price']) + ' (' + str(sp500['chgPct']) + '%)') if sp500 else 'okunnur'} "
+        f"VIX: {vix['price'] if vix else 'okunnur'} "
+        f"Staerstu hreyfingar: {movers_str or 'engar'}"
+    )
 
 SYSTEM_PROMPT = (
     "Thu ert klar hlutabrefaragjafi. Gefdu 4 hlutabrefatilloglur a islensku "
@@ -324,13 +227,11 @@ def try_gemini(market_ctx):
     api_key = os.environ.get("GEMINI_API_KEY", "")
     if not api_key:
         raise ValueError("GEMINI_API_KEY vantar")
-
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key={api_key}"
     payload = json.dumps({
         "contents": [{"parts": [{"text": SYSTEM_PROMPT + " Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}]}],
         "generationConfig": {"temperature": 0.7, "maxOutputTokens": 800}
     }).encode("utf-8")
-
     req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
     with urllib.request.urlopen(req, timeout=30) as resp:
         data = json.loads(resp.read())
@@ -342,14 +243,12 @@ def try_anthropic(market_ctx):
     api_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if not api_key:
         raise ValueError("ANTHROPIC_API_KEY vantar")
-
     payload = json.dumps({
-        "model": "claude-sonnet-4-20250514",
+        "model": "claude-sonnet-4-6",
         "max_tokens": 800,
         "system": SYSTEM_PROMPT,
         "messages": [{"role": "user", "content": "Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}]
     }).encode("utf-8")
-
     req = urllib.request.Request(
         "https://api.anthropic.com/v1/messages",
         data=payload,
@@ -366,7 +265,6 @@ def try_openrouter(market_ctx):
     api_key = os.environ.get("OPENROUTER_API_KEY", "")
     if not api_key:
         raise ValueError("OPENROUTER_API_KEY vantar")
-
     payload = json.dumps({
         "model": "qwen/qwen3-next-80b-a3b-instruct:free",
         "max_tokens": 800,
@@ -375,7 +273,6 @@ def try_openrouter(market_ctx):
             {"role": "user", "content": "Markadsgogn: " + market_ctx + ". Svaradu med JSON array eingongu."}
         ]
     }).encode("utf-8")
-
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions",
         data=payload,
@@ -402,56 +299,53 @@ def fetch_ai_suggestions(us, etfs, indices):
     for name, fn in providers:
         try:
             suggestions = fn(market_ctx)
-            print(f"  ✅  {len(suggestions)} AI tilloglur fengnar via {name}")
+            print(f"  OK  {len(suggestions)} AI tilloglur fengnar via {name}")
             return suggestions
         except Exception as e:
-            print(f"  ⚠️  {name} mistokst: {e} — reyni naesta...")
-    print("  ⚠️  Allir AI veitur mistokust — engar tilloglur")
+            print(f"  VILLA  {name}: {e} -- reyni naesta...")
+    print("  VILLA  Allir AI veitur mistokust -- engar tilloglur")
     return []
-# ─────────────────────────────────────────────────────────────────────────────
+
+# -----------------------------------------------------------------------------
 #  MAIN
-# ─────────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 def main():
-    print("\n📊  StockBreak — Uppfærsla hafin")
+    print("\nStockBreak -- Uppfaersla hafin")
     print("=" * 48)
 
-    print("\n🇺🇸  Amerískar hlutabréf + söguleg gögn:")
+    print("\nAmeriskar hlutabref + soguleg gogn:")
     us = fetch_yahoo(STOCKS_US, fetch_hist=True)
 
-    print("\n📈  ETF sjóðir + söguleg gögn:")
+    print("\nETF sjodir + soguleg gogn:")
     etfs = fetch_yahoo(ETFS, fetch_hist=True)
 
-    print("\n📊  Vísitölur:")
+    print("\nVisitolur:")
     indices = fetch_indices(INDICES)
 
-    print("\n🇮🇸  Íslenskar hlutabréf:")
-    is_stocks = fetch_icelandic(ICELANDIC)
-
-    print("\n🤖  AI Radgjafi:")
+    print("\nAI Radgjafi:")
     suggestions = fetch_ai_suggestions(us, etfs, indices)
 
     now = datetime.now()
     output = {
-        "updated":      now.strftime("%d.%m.%Y %H:%M:%S"),
-        "updated_ts":   int(now.timestamp()),
-        "indices":      indices,
-        "us":           us,
-        "etfs":         etfs,
-        "iceland":      is_stocks,
-        "suggestions":  suggestions,
+        "updated":     now.strftime("%d.%m.%Y %H:%M:%S"),
+        "updated_ts":  int(now.timestamp()),
+        "indices":     indices,
+        "us":          us,
+        "etfs":        etfs,
+        "suggestions": suggestions,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    ok_count   = sum(1 for g in [us, etfs, indices, is_stocks] for r in g if r.get("ok"))
-    fail_count = sum(1 for g in [us, etfs, indices, is_stocks] for r in g if not r.get("ok"))
-    hist_count = sum(len(r.get("hist",[])) for g in [us, etfs] for r in g)
+    ok_count   = sum(1 for g in [us, etfs, indices] for r in g if r.get("ok"))
+    fail_count = sum(1 for g in [us, etfs, indices] for r in g if not r.get("ok"))
+    hist_count = sum(len(r.get("hist", [])) for g in [us, etfs] for r in g)
 
-    print(f"\n✅  {OUTPUT_FILE} vistað")
-    print(f"   {ok_count} tickers tókust, {fail_count} misheppnuðust")
-    print(f"   {hist_count} söguleg gagnaskref")
-    print(f"   Tími: {now.strftime('%d.%m.%Y %H:%M:%S')}")
+    print(f"\nOK  {OUTPUT_FILE} vistad")
+    print(f"   {ok_count} tickers tokust, {fail_count} misheppnudust")
+    print(f"   {hist_count} soguleg gagnaskref")
+    print(f"   Timi: {now.strftime('%d.%m.%Y %H:%M:%S')}")
     print("=" * 48)
 
 

@@ -7,16 +7,14 @@ echo ==============================================
 echo   StockBreak - Uppfaera gogn
 echo ==============================================
 echo.
-
 echo [1/2] Saeki hlutabrefagogn...
 python update_stocks.py
-
 echo.
 echo [2/2] Sendi a GitHub...
-git add stocks_data.json
+git add -A
 git commit -m "uppfaera gogn"
+git pull --rebase -X ours
 git push
-
 echo.
 echo ==============================================
 echo   Lokid! Vefsidan er uppfaerd.
