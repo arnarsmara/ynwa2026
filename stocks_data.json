@@ -1573,10 +1573,6 @@
       "desc": "",
       "hist": [
         {
-          "d": "2025-12-18",
-          "c": 9837.8
-        },
-        {
           "d": "2025-12-19",
           "c": 9897.4
         },
@@ -2089,10 +2085,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-12-18",
-          "c": 16.87
-        },
         {
           "d": "2025-12-19",
           "c": 14.91
@@ -6741,7 +6733,7 @@
       "price": 325.22,
       "chgPct": -2.77,
       "up": false,
-      "hi52": 337.77,
+      "hi52": 338.09,
       "lo52": 272.11,
       "mktcapB": 871.4,
       "pe": 15.6,
@@ -13981,7 +13973,7 @@
       "price": 124.62,
       "chgPct": 0.41,
       "up": true,
-      "hi52": 124.61,
+      "hi52": 125.18,
       "lo52": 98.45,
       "mktcapB": null,
       "pe": null,
@@ -13991,10 +13983,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-12-18",
-          "c": 110.43
-        },
         {
           "d": "2025-12-19",
           "c": 110.95
@@ -15013,16 +15001,12 @@
       "lo52": 6.33,
       "mktcapB": null,
       "pe": null,
-      "volume": 488657,
-      "avgVol": 346569,
+      "volume": 13506,
+      "avgVol": 345899,
       "dividend": null,
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2025-12-18",
-          "c": 7.96
-        },
         {
           "d": "2025-12-19",
           "c": 8.09
@@ -15505,10 +15489,176 @@
         },
         {
           "d": "2026-06-18",
-          "c": 10.47
+          "c": 10.5
+        },
+        {
+          "d": "2026-06-19",
+          "c": 10.61
         }
       ],
       "ok": true
+    }
+  ],
+  "iceland": [
+    {
+      "sym": "MAREL",
+      "name": "Marel hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "ARION",
+      "name": "Arion banki hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "ICEAIR",
+      "name": "Icelandair Group hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "SIMINN",
+      "name": "Siminn hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "EIMSKIP",
+      "name": "Eimskipafélag Íslands hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "REGINN",
+      "name": "Reiknir hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "HAGA",
+      "name": "Hagar hf.",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
+    },
+    {
+      "sym": "VIS",
+      "name": "Vátryggingafélag Íslands",
+      "sector": "Íslenskt",
+      "market": "is",
+      "price": null,
+      "chgPct": null,
+      "up": true,
+      "hi52": null,
+      "lo52": null,
+      "mktcapB": null,
+      "pe": null,
+      "volume": null,
+      "avgVol": null,
+      "dividend": null,
+      "beta": null,
+      "desc": "",
+      "hist": [],
+      "ok": false
     }
   ],
   "suggestions": []
