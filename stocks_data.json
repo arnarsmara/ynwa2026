@@ -1,6 +1,6 @@
 {
-  "updated": "03.07.2026 15:46:30",
-  "updated_ts": 1783093590,
+  "updated": "03.07.2026 17:08:45",
+  "updated_ts": 1783098525,
   "indices": [
     {
       "sym": "^GSPC",
@@ -1556,8 +1556,8 @@
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10673.2,
-      "chgPct": 0.09,
+      "price": 10679.03,
+      "chgPct": 0.25,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -2074,7 +2074,7 @@
         },
         {
           "d": "2026-07-03",
-          "c": 10673.2
+          "c": 10679.03
         }
       ]
     },
@@ -3198,7 +3198,7 @@
         },
         {
           "d": "2026-01-26",
-          "c": 468.2
+          "c": 468.19
         },
         {
           "d": "2026-01-27",
@@ -12590,7 +12590,7 @@
         },
         {
           "d": "2026-02-25",
-          "c": 339.78
+          "c": 339.79
         },
         {
           "d": "2026-02-26",
@@ -13986,14 +13986,14 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 125.76,
-      "chgPct": 0.48,
+      "price": 125.74,
+      "chgPct": 0.46,
       "up": true,
       "hi52": 126.0,
       "lo52": 100.37,
       "mktcapB": null,
       "pe": null,
-      "volume": 62791,
+      "volume": 67669,
       "avgVol": 105264,
       "dividend": null,
       "beta": null,
@@ -14501,7 +14501,7 @@
         },
         {
           "d": "2026-07-03",
-          "c": 125.76
+          "c": 125.74
         }
       ],
       "ok": true
@@ -14511,14 +14511,14 @@
       "name": "iShares Clean Energy",
       "sector": "ETF",
       "market": "us",
-      "price": 10.08,
-      "chgPct": 0.94,
+      "price": 10.09,
+      "chgPct": 0.64,
       "up": true,
       "hi52": 11.71,
       "lo52": 6.6,
       "mktcapB": null,
       "pe": null,
-      "volume": 108780,
+      "volume": 139999,
       "avgVol": 344485,
       "dividend": null,
       "beta": null,
@@ -15026,7 +15026,7 @@
         },
         {
           "d": "2026-07-03",
-          "c": 10.08
+          "c": 10.09
         }
       ],
       "ok": true
