@@ -1,13 +1,13 @@
 {
-  "updated": "28.07.2026 20:55:45",
-  "updated_ts": 1785272145,
+  "updated": "29.07.2026 15:42:51",
+  "updated_ts": 1785339771,
   "indices": [
     {
       "sym": "^GSPC",
       "name": "S&P 500",
-      "price": 7428.78,
-      "chgPct": 0.21,
-      "up": true,
+      "price": 7363.9,
+      "chgPct": -0.87,
+      "up": false,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -506,24 +506,20 @@
           "c": 7408.3
         },
         {
-          "d": "2026-07-24",
-          "c": 7411.98
-        },
-        {
           "d": "2026-07-27",
           "c": 7413.18
         },
         {
-          "d": "2026-07-28",
-          "c": 7428.78
+          "d": "2026-07-29",
+          "c": 7363.9
         }
       ]
     },
     {
       "sym": "^IXIC",
       "name": "Nasdaq",
-      "price": 24876.91,
-      "chgPct": -0.22,
+      "price": 24582.58,
+      "chgPct": -1.18,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -1023,25 +1019,21 @@
           "c": 25137.69
         },
         {
-          "d": "2026-07-24",
-          "c": 24975.82
-        },
-        {
           "d": "2026-07-27",
           "c": 24932.08
         },
         {
-          "d": "2026-07-28",
-          "c": 24876.91
+          "d": "2026-07-29",
+          "c": 24582.58
         }
       ]
     },
     {
       "sym": "^DJI",
       "name": "Dow Jones",
-      "price": 52747.32,
-      "chgPct": 1.03,
-      "up": true,
+      "price": 51891.9,
+      "chgPct": -1.62,
+      "up": false,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -1540,24 +1532,20 @@
           "c": 51711.65
         },
         {
-          "d": "2026-07-24",
-          "c": 51947.25
-        },
-        {
           "d": "2026-07-27",
           "c": 52210.08
         },
         {
-          "d": "2026-07-28",
-          "c": 52747.32
+          "d": "2026-07-29",
+          "c": 51891.9
         }
       ]
     },
     {
       "sym": "^FTSE",
       "name": "FTSE 100",
-      "price": 10871.02,
-      "chgPct": 0.83,
+      "price": 10895.93,
+      "chgPct": 0.16,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -1572,10 +1560,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2026-01-28",
-          "c": 10154.4
-        },
         {
           "d": "2026-01-29",
           "c": 10171.8
@@ -2065,25 +2049,21 @@
           "c": 10639.2
         },
         {
-          "d": "2026-07-24",
-          "c": 10736.2
-        },
-        {
           "d": "2026-07-27",
           "c": 10781.8
         },
         {
-          "d": "2026-07-28",
-          "c": 10871.02
+          "d": "2026-07-29",
+          "c": 10895.93
         }
       ]
     },
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 18.21,
-      "chgPct": -2.46,
-      "up": false,
+      "price": 19.83,
+      "chgPct": 8.96,
+      "up": true,
       "ok": true,
       "sector": "Index",
       "market": "idx",
@@ -2097,10 +2077,6 @@
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2026-01-28",
-          "c": 16.35
-        },
         {
           "d": "2026-01-29",
           "c": 16.88
@@ -2590,16 +2566,12 @@
           "c": 18.7
         },
         {
-          "d": "2026-07-24",
-          "c": 18.58
-        },
-        {
           "d": "2026-07-27",
           "c": 18.67
         },
         {
-          "d": "2026-07-28",
-          "c": 18.21
+          "d": "2026-07-29",
+          "c": 19.83
         }
       ]
     }
@@ -2610,15 +2582,15 @@
       "name": "Apple Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 340.08,
-      "chgPct": 0.76,
-      "up": true,
+      "price": 340.48,
+      "chgPct": -0.22,
+      "up": false,
       "hi52": 339.57,
       "lo52": 201.5,
-      "mktcapB": 4994.9,
+      "mktcapB": 5001.0,
       "pe": 41.2,
-      "volume": 50765695,
-      "avgVol": 55539493,
+      "volume": 16684722,
+      "avgVol": 55895206,
       "dividend": 32.0,
       "beta": 1.1,
       "desc": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising Ai",
@@ -3116,8 +3088,8 @@
           "c": 336.91
         },
         {
-          "d": "2026-07-28",
-          "c": 340.08
+          "d": "2026-07-29",
+          "c": 340.48
         }
       ],
       "ok": true
@@ -3127,15 +3099,15 @@
       "name": "Microsoft Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 393.35,
-      "chgPct": 0.99,
-      "up": true,
+      "price": 394.46,
+      "chgPct": -0.26,
+      "up": false,
       "hi52": 555.45,
       "lo52": 349.2,
-      "mktcapB": 2922.0,
-      "pe": 23.4,
-      "volume": 32162591,
-      "avgVol": 39187406,
+      "mktcapB": 2930.3,
+      "pe": 23.5,
+      "volume": 10729000,
+      "avgVol": 39089652,
       "dividend": 94.0,
       "beta": 1.13,
       "desc": "Microsoft Corporation develops and supports software, services, devices, and solutions worldwide. The Productivity and Business Processes segment offers Microsoft 365 commercial, enterprise mobility + security, windows commercial, power BI, exchange, sharepoint, Microsoft teams, security and complia",
@@ -3633,8 +3605,8 @@
           "c": 389.1
         },
         {
-          "d": "2026-07-28",
-          "c": 393.35
+          "d": "2026-07-29",
+          "c": 394.48
         }
       ],
       "ok": true
@@ -3644,15 +3616,15 @@
       "name": "NVIDIA Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 197.01,
-      "chgPct": 0.44,
-      "up": true,
+      "price": 191.93,
+      "chgPct": -2.88,
+      "up": false,
       "hi52": 236.54,
       "lo52": 164.07,
-      "mktcapB": 4771.8,
-      "pe": 30.2,
-      "volume": 125108105,
-      "avgVol": 154089254,
+      "mktcapB": 4648.7,
+      "pe": 29.3,
+      "volume": 43149561,
+      "avgVol": 154252880,
       "dividend": 51.0,
       "beta": 2.21,
       "desc": "NVIDIA Corporation operates as a data center scale AI infrastructure company in the United States, Taiwan, China, Hong Kong, Europe, and internationally. It operates through Compute & Networking, and Graphics segments. The Compute & Networking segment provides data center accelerated computing and n",
@@ -4150,8 +4122,8 @@
           "c": 196.51
         },
         {
-          "d": "2026-07-28",
-          "c": 197.01
+          "d": "2026-07-29",
+          "c": 191.93
         }
       ],
       "ok": true
@@ -4161,15 +4133,15 @@
       "name": "Tesla Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 307.44,
-      "chgPct": -0.21,
+      "price": 302.83,
+      "chgPct": -1.31,
       "up": false,
       "hi52": 498.83,
       "lo52": 297.82,
-      "mktcapB": 1214.2,
-      "pe": 284.7,
-      "volume": 38773921,
-      "avgVol": 48049303,
+      "mktcapB": 1196.1,
+      "pe": 280.4,
+      "volume": 12683491,
+      "avgVol": 47956381,
       "dividend": null,
       "beta": 1.8,
       "desc": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive; and Energy Generation and Storage. The company offers electric vehicles, as ",
@@ -4667,8 +4639,8 @@
           "c": 309.22
         },
         {
-          "d": "2026-07-28",
-          "c": 307.44
+          "d": "2026-07-29",
+          "c": 302.86
         }
       ],
       "ok": true
@@ -4678,16 +4650,16 @@
       "name": "Alphabet Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 333.71,
-      "chgPct": 2.06,
-      "up": true,
+      "price": 333.55,
+      "chgPct": -0.7,
+      "up": false,
       "hi52": 408.61,
       "lo52": 187.82,
-      "mktcapB": 4081.3,
-      "pe": 16.8,
-      "volume": 27157077,
-      "avgVol": 33144226,
-      "dividend": 27.0,
+      "mktcapB": 4079.2,
+      "pe": 16.7,
+      "volume": 7867987,
+      "avgVol": 33047168,
+      "dividend": 26.0,
       "beta": 1.25,
       "desc": "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America. It operates through Google Services, Google Cloud, and Other Bets segments. The Google Services segment provides products and services, including ad",
       "hist": [
@@ -5184,8 +5156,8 @@
           "c": 326.56
         },
         {
-          "d": "2026-07-28",
-          "c": 333.71
+          "d": "2026-07-29",
+          "c": 333.55
         }
       ],
       "ok": true
@@ -5195,15 +5167,15 @@
       "name": "Amazon.com Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 230.86,
-      "chgPct": -0.29,
+      "price": 228.39,
+      "chgPct": -1.57,
       "up": false,
       "hi52": 278.56,
       "lo52": 196.0,
-      "mktcapB": 2483.4,
-      "pe": 27.6,
-      "volume": 42368131,
-      "avgVol": 48690591,
+      "mktcapB": 2456.8,
+      "pe": 27.3,
+      "volume": 10358473,
+      "avgVol": 48233329,
       "dividend": null,
       "beta": 1.46,
       "desc": "Amazon.com, Inc. engages in the retail sale of consumer products, advertising, and subscriptions service through online and physical stores in North America and internationally. The company operates through three segments: North America, International, and Amazon Web Services (AWS). It also manufact",
@@ -5701,8 +5673,8 @@
           "c": 231.39
         },
         {
-          "d": "2026-07-28",
-          "c": 230.86
+          "d": "2026-07-29",
+          "c": 228.39
         }
       ],
       "ok": true
@@ -5712,15 +5684,15 @@
       "name": "Meta Platforms",
       "sector": "Tech",
       "market": "us",
-      "price": 593.41,
-      "chgPct": -0.39,
+      "price": 589.63,
+      "chgPct": -1.3,
       "up": false,
       "hi52": 796.25,
       "lo52": 520.26,
-      "mktcapB": 1506.3,
-      "pe": 21.6,
-      "volume": 10867222,
-      "avgVol": 18291562,
+      "mktcapB": 1497.4,
+      "pe": 21.5,
+      "volume": 4172464,
+      "avgVol": 18177588,
       "dividend": 35.0,
       "beta": 1.25,
       "desc": "Meta Platforms, Inc. engages in the development of products that enable people to connect and share with friends and family through mobile devices, personal computers, virtual reality (VR) headsets, and AI glasses in the United States, Canada, Europe, Asia-Pacific, and internationally. It operates t",
@@ -6218,8 +6190,8 @@
           "c": 593.87
         },
         {
-          "d": "2026-07-28",
-          "c": 593.41
+          "d": "2026-07-29",
+          "c": 589.91
         }
       ],
       "ok": true
@@ -6229,15 +6201,15 @@
       "name": "Netflix Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 72.39,
-      "chgPct": 2.26,
-      "up": true,
+      "price": 72.27,
+      "chgPct": -1.04,
+      "up": false,
       "hi52": 126.71,
       "lo52": 65.08,
-      "mktcapB": 301.4,
-      "pe": 22.8,
-      "volume": 46873913,
-      "avgVol": 43210877,
+      "mktcapB": 300.9,
+      "pe": 22.7,
+      "volume": 14984957,
+      "avgVol": 43554780,
       "dividend": null,
       "beta": 1.52,
       "desc": "Netflix, Inc. provides entertainment services worldwide. The company offers television (TV) series, documentaries, feature films, games, and live programming across various genres and languages. It also provides members the ability to receive streaming content through a host of internet-connected de",
@@ -6735,8 +6707,8 @@
           "c": 70.4
         },
         {
-          "d": "2026-07-28",
-          "c": 72.39
+          "d": "2026-07-29",
+          "c": 72.27
         }
       ],
       "ok": true
@@ -6746,15 +6718,15 @@
       "name": "JPMorgan Chase",
       "sector": "Finance",
       "market": "us",
-      "price": 357.31,
-      "chgPct": 0.31,
-      "up": true,
+      "price": 348.87,
+      "chgPct": -2.47,
+      "up": false,
       "hi52": 359.05,
       "lo52": 279.1,
-      "mktcapB": 949.8,
-      "pe": 15.3,
-      "volume": 4925879,
-      "avgVol": 9440740,
+      "mktcapB": 927.4,
+      "pe": 15.0,
+      "volume": 2448825,
+      "avgVol": 9416183,
       "dividend": 168.0,
       "beta": 0.98,
       "desc": "JPMorgan Chase & Co. operates as a bank and financial holding company in the United States, rest of North America, Europe, the Middle East, Africa, the Asia Pacific, Latin America, and the Caribbean. It operates in three segments: Consumer & Community Banking, Commercial & Investment Bank, and Asset",
@@ -7252,8 +7224,8 @@
           "c": 356.2
         },
         {
-          "d": "2026-07-28",
-          "c": 357.31
+          "d": "2026-07-29",
+          "c": 348.87
         }
       ],
       "ok": true
@@ -7263,15 +7235,15 @@
       "name": "Goldman Sachs",
       "sector": "Finance",
       "market": "us",
-      "price": 1033.34,
-      "chgPct": -1.23,
+      "price": 984.05,
+      "chgPct": -4.97,
       "up": false,
       "hi52": 1153.99,
       "lo52": 694.05,
-      "mktcapB": 304.8,
-      "pe": 16.0,
-      "volume": 1719168,
-      "avgVol": 2148100,
+      "mktcapB": 290.3,
+      "pe": 15.2,
+      "volume": 1056644,
+      "avgVol": 2155431,
       "dividend": 191.0,
       "beta": 1.29,
       "desc": "The Goldman Sachs Group, Inc., a financial institution, provides a range of financial services for corporations, financial institutions, governments, and individuals in the Americas, Europe, the Middle East, Africa, and Asia. It operates through three segments: Global Banking & Markets, Asset & Weal",
@@ -7761,16 +7733,12 @@
           "c": 1074.72
         },
         {
-          "d": "2026-07-24",
-          "c": 1061.23
-        },
-        {
           "d": "2026-07-27",
           "c": 1048.23
         },
         {
-          "d": "2026-07-28",
-          "c": 1033.34
+          "d": "2026-07-29",
+          "c": 984.05
         }
       ],
       "ok": true
@@ -7780,15 +7748,15 @@
       "name": "Visa Inc.",
       "sector": "Finance",
       "market": "us",
-      "price": 366.59,
-      "chgPct": 1.27,
+      "price": 372.07,
+      "chgPct": 2.68,
       "up": true,
       "hi52": 365.14,
       "lo52": 293.89,
-      "mktcapB": 697.2,
-      "pe": 32.0,
-      "volume": 9423942,
-      "avgVol": 8346168,
+      "mktcapB": 707.6,
+      "pe": 32.4,
+      "volume": 4108788,
+      "avgVol": 8254221,
       "dividend": 74.0,
       "beta": 0.75,
       "desc": "Visa Inc. operates as a payment technology company in the United States and internationally. The company operates VisaNet, a transaction processing network that enables authorization, clearing, and settlement of payment transactions. It also offers credit, debit, and prepaid card products; tap to pa",
@@ -8286,8 +8254,8 @@
           "c": 362.53
         },
         {
-          "d": "2026-07-28",
-          "c": 366.59
+          "d": "2026-07-29",
+          "c": 372.07
         }
       ],
       "ok": true
@@ -8297,16 +8265,16 @@
       "name": "Bank of America",
       "sector": "Finance",
       "market": "us",
-      "price": 62.62,
-      "chgPct": 0.71,
-      "up": true,
+      "price": 61.63,
+      "chgPct": -1.66,
+      "up": false,
       "hi52": 62.99,
       "lo52": 44.75,
-      "mktcapB": 444.4,
-      "pe": 14.5,
-      "volume": 22507659,
-      "avgVol": 36281309,
-      "dividend": 206.0,
+      "mktcapB": 432.5,
+      "pe": 14.2,
+      "volume": 11131470,
+      "avgVol": 36321867,
+      "dividend": 204.0,
       "beta": 1.18,
       "desc": "Bank of America Corporation, through its subsidiaries, provides various financial products and services for individual consumers, small and middle-market businesses, institutional investors, large corporations, and governments worldwide. It operates through four segments: Consumer Banking, Global We",
       "hist": [
@@ -8803,8 +8771,8 @@
           "c": 62.13
         },
         {
-          "d": "2026-07-28",
-          "c": 62.62
+          "d": "2026-07-29",
+          "c": 61.63
         }
       ],
       "ok": true
@@ -8814,16 +8782,16 @@
       "name": "Johnson & Johnson",
       "sector": "Health",
       "market": "us",
-      "price": 266.73,
-      "chgPct": -1.43,
+      "price": 268.37,
+      "chgPct": -0.03,
       "up": false,
       "hi52": 269.43,
       "lo52": 164.23,
-      "mktcapB": 642.8,
-      "pe": 30.9,
-      "volume": 7820507,
-      "avgVol": 8249396,
-      "dividend": 202.0,
+      "mktcapB": 646.7,
+      "pe": 31.1,
+      "volume": 1560607,
+      "avgVol": 8305849,
+      "dividend": 201.0,
       "beta": 0.23,
       "desc": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide. It operates in two segments, Innovative Medicine and MedTech. The Innovative Medicine segment offers products for various therap",
       "hist": [
@@ -9320,8 +9288,8 @@
           "c": 265.95
         },
         {
-          "d": "2026-07-28",
-          "c": 266.73
+          "d": "2026-07-29",
+          "c": 268.37
         }
       ],
       "ok": true
@@ -9331,15 +9299,15 @@
       "name": "Pfizer Inc.",
       "sector": "Health",
       "market": "us",
-      "price": 25.25,
-      "chgPct": 2.27,
+      "price": 25.29,
+      "chgPct": 0.24,
       "up": true,
       "hi52": 28.75,
       "lo52": 23.11,
-      "mktcapB": 143.9,
+      "mktcapB": 144.1,
       "pe": 19.3,
-      "volume": 41476309,
-      "avgVol": 41008772,
+      "volume": 8941524,
+      "avgVol": 41336018,
       "dividend": 697.0,
       "beta": 0.31,
       "desc": "Pfizer Inc. discovers, develops, manufactures, markets, distributes, and sells biopharmaceutical products in the United States and internationally. It operates in three segments: Biopharma, PC1, and Pfizer Ignite. The company offers internal medicine products, including cardiovascular metabolic dise",
@@ -9837,8 +9805,8 @@
           "c": 24.67
         },
         {
-          "d": "2026-07-28",
-          "c": 25.25
+          "d": "2026-07-29",
+          "c": 25.29
         }
       ],
       "ok": true
@@ -9848,16 +9816,16 @@
       "name": "UnitedHealth",
       "sector": "Health",
       "market": "us",
-      "price": 428.79,
-      "chgPct": 2.68,
+      "price": 425.88,
+      "chgPct": 0.1,
       "up": true,
       "hi52": 461.62,
       "lo52": 234.6,
-      "mktcapB": 389.4,
-      "pe": 32.3,
-      "volume": 5067632,
-      "avgVol": 6593485,
-      "dividend": 222.0,
+      "mktcapB": 386.8,
+      "pe": 32.0,
+      "volume": 1297407,
+      "avgVol": 6542185,
+      "dividend": 216.0,
       "beta": 0.63,
       "desc": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally. It operates through four segments: Optum Health, Optum Insight, Optum Rx; and UnitedHealthcare. The Optum Health segment provides care delivery, care management, wellness and consumer engageme",
       "hist": [
@@ -10354,8 +10322,8 @@
           "c": 417.64
         },
         {
-          "d": "2026-07-28",
-          "c": 428.79
+          "d": "2026-07-29",
+          "c": 426.02
         }
       ],
       "ok": true
@@ -10365,15 +10333,15 @@
       "name": "Walmart Inc.",
       "sector": "Consumer",
       "market": "us",
-      "price": 113.1,
-      "chgPct": 1.07,
-      "up": true,
+      "price": 113.33,
+      "chgPct": -0.89,
+      "up": false,
       "hi52": 135.16,
       "lo52": 95.42,
-      "mktcapB": 900.1,
-      "pe": 39.8,
-      "volume": 23838807,
-      "avgVol": 22454904,
+      "mktcapB": 901.9,
+      "pe": 39.9,
+      "volume": 5673638,
+      "avgVol": 22591006,
       "dividend": 89.0,
       "beta": 0.6,
       "desc": "Walmart Inc. engages in the operation of retail and wholesale stores and clubs, ecommerce websites, and mobile applications worldwide. The company operates through three segments: Walmart U.S., Walmart International, and Sam's Club U.S. It operates supercenters, supermarkets, warehouse clubs, cash a",
@@ -10871,8 +10839,8 @@
           "c": 111.74
         },
         {
-          "d": "2026-07-28",
-          "c": 113.1
+          "d": "2026-07-29",
+          "c": 113.33
         }
       ],
       "ok": true
@@ -10882,15 +10850,15 @@
       "name": "Coca-Cola",
       "sector": "Consumer",
       "market": "us",
-      "price": 88.27,
-      "chgPct": 5.08,
+      "price": 90.41,
+      "chgPct": 2.51,
       "up": true,
       "hi52": 85.68,
       "lo52": 65.35,
-      "mktcapB": 379.8,
-      "pe": 27.8,
-      "volume": 31976054,
-      "avgVol": 17255878,
+      "mktcapB": 389.0,
+      "pe": 28.4,
+      "volume": 8341456,
+      "avgVol": 17529362,
       "dividend": 252.0,
       "beta": 0.35,
       "desc": "The Coca-Cola Company, a beverage company, manufactures and sells various nonalcoholic beverages in the United States and internationally. The company provides Trademark Coca-Cola, sparkling soft drinks and flavors; water, sports, coffee, and tea; juice, value-added dairy, and plant-based beverages;",
@@ -11388,8 +11356,8 @@
           "c": 84.07
         },
         {
-          "d": "2026-07-28",
-          "c": 88.27
+          "d": "2026-07-29",
+          "c": 90.41
         }
       ],
       "ok": true
@@ -11399,15 +11367,15 @@
       "name": "ExxonMobil",
       "sector": "Energy",
       "market": "us",
-      "price": 153.04,
-      "chgPct": -1.11,
-      "up": false,
+      "price": 157.72,
+      "chgPct": 1.7,
+      "up": true,
       "hi52": 176.41,
       "lo52": 105.53,
-      "mktcapB": 634.3,
-      "pe": 25.8,
-      "volume": 12791771,
-      "avgVol": 16870757,
+      "mktcapB": 653.7,
+      "pe": 26.8,
+      "volume": 4657372,
+      "avgVol": 16896849,
       "dividend": 266.0,
       "beta": 0.16,
       "desc": "ExxonMobil Holdings Corporation engages in the exploration and production of crude oil and natural gas in the United States, Canada, and internationally. The company operates through Upstream, Energy Products, Chemical Products, and Specialty Products segments. Its Upstream segment explores for and ",
@@ -11905,8 +11873,8 @@
           "c": 154.77
         },
         {
-          "d": "2026-07-28",
-          "c": 153.04
+          "d": "2026-07-29",
+          "c": 157.72
         }
       ],
       "ok": true
@@ -11916,15 +11884,15 @@
       "name": "Chevron Corp.",
       "sector": "Energy",
       "market": "us",
-      "price": 187.58,
-      "chgPct": -1.33,
-      "up": false,
+      "price": 192.35,
+      "chgPct": 1.63,
+      "up": true,
       "hi52": 214.71,
       "lo52": 146.49,
-      "mktcapB": 373.6,
-      "pe": 32.7,
-      "volume": 5551364,
-      "avgVol": 9243368,
+      "mktcapB": 383.1,
+      "pe": 33.5,
+      "volume": 2743153,
+      "avgVol": 9222675,
       "dividend": 375.0,
       "beta": 0.49,
       "desc": "Chevron Corporation, through its subsidiaries, engages in the integrated energy and chemicals operations in the United States and internationally. It operates through Upstream, Downstream, and All Other segments. The Upstream segment engages in the exploration for, development, production, and trans",
@@ -12422,8 +12390,8 @@
           "c": 190.0
         },
         {
-          "d": "2026-07-28",
-          "c": 187.58
+          "d": "2026-07-29",
+          "c": 192.35
         }
       ],
       "ok": true
@@ -12435,15 +12403,15 @@
       "name": "Vanguard Total Market",
       "sector": "ETF",
       "market": "us",
-      "price": 365.99,
-      "chgPct": 0.18,
-      "up": true,
+      "price": 362.54,
+      "chgPct": -1.34,
+      "up": false,
       "hi52": 374.7,
       "lo52": 304.4,
       "mktcapB": null,
-      "pe": 26.1,
-      "volume": 2623892,
-      "avgVol": 3364370,
+      "pe": 25.8,
+      "volume": 1725331,
+      "avgVol": 3362511,
       "dividend": 105.0,
       "beta": null,
       "desc": "The fund manager employs an indexing investment approach designed to track the performance of the CRSP U.S. Total Market Index (the “Target Index”), which represents 100% of the investable U.S. stock market, as determined by the index provider. Under normal circumstances, the fund invests at least 8",
@@ -12522,7 +12490,7 @@
         },
         {
           "d": "2026-02-25",
-          "c": 339.79
+          "c": 339.78
         },
         {
           "d": "2026-02-26",
@@ -12941,8 +12909,8 @@
           "c": 365.18
         },
         {
-          "d": "2026-07-28",
-          "c": 365.99
+          "d": "2026-07-29",
+          "c": 362.54
         }
       ],
       "ok": true
@@ -12952,15 +12920,15 @@
       "name": "Vanguard S&P 500",
       "sector": "ETF",
       "market": "us",
-      "price": 680.96,
-      "chgPct": 0.27,
-      "up": true,
+      "price": 674.78,
+      "chgPct": -1.26,
+      "up": false,
       "hi52": 699.15,
       "lo52": 569.29,
       "mktcapB": null,
-      "pe": 26.7,
-      "volume": 4968607,
-      "avgVol": 7948942,
+      "pe": 26.4,
+      "volume": 2348260,
+      "avgVol": 7928622,
       "dividend": 107.0,
       "beta": null,
       "desc": "The fund manager employs an indexing investment approach designed to track the performance of the Standard & Poor's 500 Index, a widely recognized benchmark of U.S. stock market performance that is dominated by the stocks of large U.S. companies. The advisor attempts to replicate the target index by",
@@ -13458,8 +13426,8 @@
           "c": 679.31
         },
         {
-          "d": "2026-07-28",
-          "c": 680.96
+          "d": "2026-07-29",
+          "c": 674.78
         }
       ],
       "ok": true
@@ -13469,15 +13437,15 @@
       "name": "Invesco Nasdaq-100",
       "sector": "ETF",
       "market": "us",
-      "price": 675.49,
-      "chgPct": -0.86,
+      "price": 666.38,
+      "chgPct": -1.97,
       "up": false,
       "hi52": 748.65,
       "lo52": 551.68,
       "mktcapB": null,
-      "pe": 30.0,
-      "volume": 49675490,
-      "avgVol": 43081318,
+      "pe": 29.6,
+      "volume": 15712004,
+      "avgVol": 43395093,
       "dividend": 41.0,
       "beta": null,
       "desc": "To maintain the correspondence between the composition and weights of the securities in the trust (the \"securities\") and the stocks in the NASDAQ-100 Index®, the adviser adjusts the securities from time to time to conform to periodic changes in the identity and/or relative weights of index securitie",
@@ -13975,8 +13943,8 @@
           "c": 682.12
         },
         {
-          "d": "2026-07-28",
-          "c": 675.49
+          "d": "2026-07-29",
+          "c": 666.38
         }
       ],
       "ok": true
@@ -13986,23 +13954,19 @@
       "name": "iShares MSCI World",
       "sector": "ETF",
       "market": "us",
-      "price": 125.18,
-      "chgPct": 0.21,
-      "up": true,
+      "price": 124.33,
+      "chgPct": -0.66,
+      "up": false,
       "hi52": 126.64,
       "lo52": 101.3,
       "mktcapB": null,
       "pe": null,
-      "volume": 86877,
-      "avgVol": 101496,
+      "volume": 81388,
+      "avgVol": 102057,
       "dividend": null,
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2026-01-28",
-          "c": 112.32
-        },
         {
           "d": "2026-01-29",
           "c": 111.4
@@ -14502,6 +14466,10 @@
         {
           "d": "2026-07-28",
           "c": 125.18
+        },
+        {
+          "d": "2026-07-29",
+          "c": 124.33
         }
       ],
       "ok": true
@@ -14511,23 +14479,19 @@
       "name": "iShares Clean Energy",
       "sector": "ETF",
       "market": "us",
-      "price": 8.71,
-      "chgPct": -2.05,
+      "price": 8.58,
+      "chgPct": -1.59,
       "up": false,
       "hi52": 11.71,
       "lo52": 6.71,
       "mktcapB": null,
       "pe": null,
-      "volume": 410932,
-      "avgVol": 326465,
+      "volume": 398315,
+      "avgVol": 326272,
       "dividend": null,
       "beta": null,
       "desc": "",
       "hist": [
-        {
-          "d": "2026-01-28",
-          "c": 9.1
-        },
         {
           "d": "2026-01-29",
           "c": 8.83
@@ -15027,6 +14991,10 @@
         {
           "d": "2026-07-28",
           "c": 8.71
+        },
+        {
+          "d": "2026-07-29",
+          "c": 8.58
         }
       ],
       "ok": true
