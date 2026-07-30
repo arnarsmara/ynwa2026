@@ -1,12 +1,12 @@
 {
-  "updated": "30.07.2026 17:12:27",
-  "updated_ts": 1785431547,
+  "updated": "30.07.2026 19:05:19",
+  "updated_ts": 1785438319,
   "indices": [
     {
       "sym": "^GSPC",
       "name": "S&P 500",
-      "price": 7420.93,
-      "chgPct": 1.43,
+      "price": 7435.29,
+      "chgPct": 1.63,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -519,15 +519,15 @@
         },
         {
           "d": "2026-07-30",
-          "c": 7421.08
+          "c": 7435.25
         }
       ]
     },
     {
       "sym": "^IXIC",
       "name": "Nasdaq",
-      "price": 25064.38,
-      "chgPct": 2.54,
+      "price": 25098.72,
+      "chgPct": 2.68,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -1040,15 +1040,15 @@
         },
         {
           "d": "2026-07-30",
-          "c": 25064.38
+          "c": 25098.72
         }
       ]
     },
     {
       "sym": "^DJI",
       "name": "Dow Jones",
-      "price": 52118.29,
-      "chgPct": 1.02,
+      "price": 52231.27,
+      "chgPct": 1.23,
       "up": true,
       "ok": true,
       "sector": "Index",
@@ -1561,7 +1561,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 52118.29
+          "c": 52231.27
         }
       ]
     },
@@ -2093,8 +2093,8 @@
     {
       "sym": "^VIX",
       "name": "VIX",
-      "price": 18.1,
-      "chgPct": -12.26,
+      "price": 17.74,
+      "chgPct": -14.01,
       "up": false,
       "ok": true,
       "sector": "Index",
@@ -2611,7 +2611,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 18.1
+          "c": 17.74
         }
       ]
     }
@@ -2622,14 +2622,14 @@
       "name": "Apple Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 332.52,
-      "chgPct": -2.2,
+      "price": 333.79,
+      "chgPct": -1.83,
       "up": false,
       "hi52": 344.57,
       "lo52": 201.5,
-      "mktcapB": 4884.0,
-      "pe": 40.3,
-      "volume": 29328470,
+      "mktcapB": 4902.8,
+      "pe": 40.5,
+      "volume": 36364061,
       "avgVol": 55309000,
       "dividend": 32.0,
       "beta": 1.1,
@@ -3133,7 +3133,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 332.52
+          "c": 333.81
         }
       ],
       "ok": true
@@ -3143,14 +3143,14 @@
       "name": "Microsoft Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 455.75,
-      "chgPct": 7.23,
+      "price": 455.65,
+      "chgPct": 7.21,
       "up": true,
       "hi52": 555.45,
       "lo52": 349.2,
-      "mktcapB": 3385.5,
+      "mktcapB": 3384.8,
       "pe": 27.3,
-      "volume": 77172013,
+      "volume": 88603134,
       "avgVol": 38666122,
       "dividend": 93.0,
       "beta": 1.13,
@@ -3654,7 +3654,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 455.75
+          "c": 455.65
         }
       ],
       "ok": true
@@ -3664,14 +3664,14 @@
       "name": "NVIDIA Corp.",
       "sector": "Tech",
       "market": "us",
-      "price": 193.62,
-      "chgPct": 1.23,
+      "price": 193.65,
+      "chgPct": 1.25,
       "up": true,
       "hi52": 236.54,
       "lo52": 164.07,
-      "mktcapB": 4690.6,
+      "mktcapB": 4690.5,
       "pe": 29.6,
-      "volume": 72584502,
+      "volume": 87133589,
       "avgVol": 152984455,
       "dividend": 53.0,
       "beta": 2.21,
@@ -4175,7 +4175,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 193.66
+          "c": 193.65
         }
       ],
       "ok": true
@@ -4185,14 +4185,14 @@
       "name": "Tesla Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 306.07,
-      "chgPct": 3.09,
+      "price": 308.61,
+      "chgPct": 3.94,
       "up": true,
       "hi52": 498.83,
       "lo52": 297.38,
-      "mktcapB": 1208.8,
-      "pe": 286.0,
-      "volume": 22660847,
+      "mktcapB": 1218.7,
+      "pe": 288.4,
+      "volume": 27561444,
       "avgVol": 47765921,
       "dividend": null,
       "beta": 1.8,
@@ -4696,7 +4696,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 306.07
+          "c": 308.61
         }
       ],
       "ok": true
@@ -4706,14 +4706,14 @@
       "name": "Alphabet Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 334.78,
-      "chgPct": -0.33,
+      "price": 334.41,
+      "chgPct": -0.44,
       "up": false,
       "hi52": 408.61,
       "lo52": 187.82,
-      "mktcapB": 4096.2,
+      "mktcapB": 4089.4,
       "pe": 16.8,
-      "volume": 15196456,
+      "volume": 20223296,
       "avgVol": 32315483,
       "dividend": 26.0,
       "beta": 1.25,
@@ -5217,7 +5217,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 334.72
+          "c": 334.41
         }
       ],
       "ok": true
@@ -5227,14 +5227,14 @@
       "name": "Amazon.com Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 238.25,
-      "chgPct": 3.55,
+      "price": 237.68,
+      "chgPct": 3.3,
       "up": true,
       "hi52": 278.56,
       "lo52": 196.0,
-      "mktcapB": 2563.0,
-      "pe": 28.5,
-      "volume": 40473383,
+      "mktcapB": 2556.8,
+      "pe": 28.4,
+      "volume": 49556458,
       "avgVol": 47304881,
       "dividend": null,
       "beta": 1.46,
@@ -5738,7 +5738,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 238.25
+          "c": 237.7
         }
       ],
       "ok": true
@@ -5748,14 +5748,14 @@
       "name": "Meta Platforms",
       "sector": "Tech",
       "market": "us",
-      "price": 531.33,
-      "chgPct": -2.06,
+      "price": 533.27,
+      "chgPct": -1.7,
       "up": false,
       "hi52": 796.25,
       "lo52": 520.26,
-      "mktcapB": 1348.7,
-      "pe": 20.0,
-      "volume": 27374093,
+      "mktcapB": 1353.7,
+      "pe": 20.1,
+      "volume": 32267917,
       "avgVol": 17669027,
       "dividend": 35.0,
       "beta": 1.25,
@@ -6259,7 +6259,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 531.34
+          "c": 533.3
         }
       ],
       "ok": true
@@ -6269,14 +6269,14 @@
       "name": "Netflix Inc.",
       "sector": "Tech",
       "market": "us",
-      "price": 72.93,
-      "chgPct": -0.29,
+      "price": 72.9,
+      "chgPct": -0.33,
       "up": false,
       "hi52": 126.71,
       "lo52": 65.08,
-      "mktcapB": 303.7,
+      "mktcapB": 303.6,
       "pe": 22.9,
-      "volume": 28039839,
+      "volume": 35500919,
       "avgVol": 43600901,
       "dividend": null,
       "beta": 1.52,
@@ -6780,7 +6780,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 72.93
+          "c": 72.9
         }
       ],
       "ok": true
@@ -6790,14 +6790,14 @@
       "name": "JPMorgan Chase",
       "sector": "Finance",
       "market": "us",
-      "price": 352.1,
-      "chgPct": 1.77,
+      "price": 351.59,
+      "chgPct": 1.63,
       "up": true,
       "hi52": 359.3,
       "lo52": 279.1,
-      "mktcapB": 935.8,
+      "mktcapB": 934.6,
       "pe": 15.1,
-      "volume": 2809211,
+      "volume": 4296903,
       "avgVol": 9406345,
       "dividend": 174.0,
       "beta": 0.98,
@@ -7301,7 +7301,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 352.07
+          "c": 351.59
         }
       ],
       "ok": true
@@ -7311,14 +7311,14 @@
       "name": "Goldman Sachs",
       "sector": "Finance",
       "market": "us",
-      "price": 1021.52,
-      "chgPct": 3.95,
+      "price": 1028.18,
+      "chgPct": 4.63,
       "up": true,
       "hi52": 1153.99,
       "lo52": 694.05,
-      "mktcapB": 301.4,
-      "pe": 15.8,
-      "volume": 1253412,
+      "mktcapB": 303.3,
+      "pe": 15.9,
+      "volume": 1613895,
       "avgVol": 2177039,
       "dividend": 204.0,
       "beta": 1.29,
@@ -7822,7 +7822,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 1021.52
+          "c": 1028.18
         }
       ],
       "ok": true
@@ -7832,14 +7832,14 @@
       "name": "Visa Inc.",
       "sector": "Finance",
       "market": "us",
-      "price": 364.87,
-      "chgPct": -1.39,
+      "price": 365.89,
+      "chgPct": -1.11,
       "up": false,
       "hi52": 373.97,
       "lo52": 293.89,
-      "mktcapB": 670.3,
-      "pe": 31.0,
-      "volume": 4324279,
+      "mktcapB": 672.2,
+      "pe": 31.1,
+      "volume": 5480081,
       "avgVol": 8255219,
       "dividend": 73.0,
       "beta": 0.75,
@@ -8343,7 +8343,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 364.89
+          "c": 365.89
         }
       ],
       "ok": true
@@ -8358,9 +8358,9 @@
       "up": true,
       "hi52": 62.99,
       "lo52": 44.75,
-      "mktcapB": 434.4,
+      "mktcapB": 434.3,
       "pe": 14.3,
-      "volume": 11419772,
+      "volume": 14022002,
       "avgVol": 36499414,
       "dividend": 210.0,
       "beta": 1.18,
@@ -8874,14 +8874,14 @@
       "name": "Johnson & Johnson",
       "sector": "Health",
       "market": "us",
-      "price": 256.05,
-      "chgPct": -1.97,
+      "price": 256.14,
+      "chgPct": -1.94,
       "up": false,
       "hi52": 274.9,
       "lo52": 164.23,
-      "mktcapB": 617.1,
+      "mktcapB": 617.3,
       "pe": 29.7,
-      "volume": 3933914,
+      "volume": 5004645,
       "avgVol": 8272216,
       "dividend": 202.0,
       "beta": 0.23,
@@ -9385,7 +9385,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 256.05
+          "c": 256.14
         }
       ],
       "ok": true
@@ -9395,14 +9395,14 @@
       "name": "Pfizer Inc.",
       "sector": "Health",
       "market": "us",
-      "price": 24.81,
-      "chgPct": -1.39,
+      "price": 24.92,
+      "chgPct": -0.93,
       "up": false,
       "hi52": 28.75,
       "lo52": 23.11,
-      "mktcapB": 141.4,
-      "pe": 18.9,
-      "volume": 24214444,
+      "mktcapB": 142.1,
+      "pe": 19.0,
+      "volume": 30278984,
       "avgVol": 41193660,
       "dividend": 684.0,
       "beta": 0.31,
@@ -9906,7 +9906,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 24.81
+          "c": 24.92
         }
       ],
       "ok": true
@@ -9916,14 +9916,14 @@
       "name": "UnitedHealth",
       "sector": "Health",
       "market": "us",
-      "price": 425.69,
-      "chgPct": 1.38,
+      "price": 423.69,
+      "chgPct": 0.9,
       "up": true,
       "hi52": 461.62,
       "lo52": 234.6,
-      "mktcapB": 386.6,
-      "pe": 32.0,
-      "volume": 1618443,
+      "mktcapB": 384.8,
+      "pe": 31.9,
+      "volume": 2333372,
       "avgVol": 6515595,
       "dividend": 221.0,
       "beta": 0.63,
@@ -10427,7 +10427,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 425.69
+          "c": 423.69
         }
       ],
       "ok": true
@@ -10437,14 +10437,14 @@
       "name": "Walmart Inc.",
       "sector": "Consumer",
       "market": "us",
-      "price": 110.79,
-      "chgPct": -3.24,
+      "price": 111.0,
+      "chgPct": -3.06,
       "up": false,
       "hi52": 135.16,
       "lo52": 95.42,
-      "mktcapB": 881.7,
-      "pe": 39.0,
-      "volume": 12706251,
+      "mktcapB": 883.3,
+      "pe": 39.1,
+      "volume": 16769381,
       "avgVol": 22650454,
       "dividend": 87.0,
       "beta": 0.6,
@@ -10948,7 +10948,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 110.79
+          "c": 111.0
         }
       ],
       "ok": true
@@ -10958,14 +10958,14 @@
       "name": "Coca-Cola",
       "sector": "Consumer",
       "market": "us",
-      "price": 88.2,
-      "chgPct": -1.0,
+      "price": 88.44,
+      "chgPct": -0.72,
       "up": false,
       "hi52": 90.92,
       "lo52": 65.35,
-      "mktcapB": 379.5,
-      "pe": 26.5,
-      "volume": 8170099,
+      "mktcapB": 380.6,
+      "pe": 26.6,
+      "volume": 10170832,
       "avgVol": 17636819,
       "dividend": 238.0,
       "beta": 0.35,
@@ -11469,7 +11469,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 88.2
+          "c": 88.44
         }
       ],
       "ok": true
@@ -11479,14 +11479,14 @@
       "name": "ExxonMobil",
       "sector": "Energy",
       "market": "us",
-      "price": 156.09,
-      "chgPct": -0.46,
-      "up": false,
+      "price": 156.98,
+      "chgPct": 0.11,
+      "up": true,
       "hi52": 176.41,
       "lo52": 105.53,
-      "mktcapB": 647.0,
-      "pe": 26.3,
-      "volume": 4467497,
+      "mktcapB": 650.7,
+      "pe": 26.4,
+      "volume": 5830348,
       "avgVol": 16761186,
       "dividend": 263.0,
       "beta": 0.16,
@@ -11990,7 +11990,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 156.09
+          "c": 156.98
         }
       ],
       "ok": true
@@ -12000,14 +12000,14 @@
       "name": "Chevron Corp.",
       "sector": "Energy",
       "market": "us",
-      "price": 191.04,
-      "chgPct": -0.31,
-      "up": false,
+      "price": 192.18,
+      "chgPct": 0.28,
+      "up": true,
       "hi52": 214.71,
       "lo52": 146.49,
-      "mktcapB": 380.5,
-      "pe": 33.3,
-      "volume": 2834883,
+      "mktcapB": 382.7,
+      "pe": 33.5,
+      "volume": 3676513,
       "avgVol": 9163283,
       "dividend": 371.0,
       "beta": 0.49,
@@ -12511,7 +12511,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 191.04
+          "c": 192.18
         }
       ],
       "ok": true
@@ -12523,14 +12523,14 @@
       "name": "Vanguard Total Market",
       "sector": "ETF",
       "market": "us",
-      "price": 365.16,
-      "chgPct": 0.83,
+      "price": 365.96,
+      "chgPct": 1.05,
       "up": true,
       "hi52": 374.7,
       "lo52": 304.4,
       "mktcapB": null,
-      "pe": 26.0,
-      "volume": 1887230,
+      "pe": 26.1,
+      "volume": 2376269,
       "avgVol": 3385785,
       "dividend": 105.0,
       "beta": null,
@@ -13034,7 +13034,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 365.16
+          "c": 365.96
         }
       ],
       "ok": true
@@ -13044,14 +13044,14 @@
       "name": "Vanguard S&P 500",
       "sector": "ETF",
       "market": "us",
-      "price": 679.91,
-      "chgPct": 1.0,
+      "price": 681.22,
+      "chgPct": 1.19,
       "up": true,
       "hi52": 699.15,
       "lo52": 569.29,
       "mktcapB": null,
-      "pe": 26.6,
-      "volume": 3883155,
+      "pe": 26.7,
+      "volume": 4562941,
       "avgVol": 7961901,
       "dividend": 107.0,
       "beta": null,
@@ -13555,7 +13555,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 679.91
+          "c": 681.22
         }
       ],
       "ok": true
@@ -13565,14 +13565,14 @@
       "name": "Invesco Nasdaq-100",
       "sector": "ETF",
       "market": "us",
-      "price": 681.83,
-      "chgPct": 2.37,
+      "price": 682.67,
+      "chgPct": 2.49,
       "up": true,
       "hi52": 748.65,
       "lo52": 551.68,
       "mktcapB": null,
       "pe": 30.3,
-      "volume": 37144336,
+      "volume": 45581143,
       "avgVol": 43670218,
       "dividend": 41.0,
       "beta": null,
@@ -14076,7 +14076,7 @@
         },
         {
           "d": "2026-07-30",
-          "c": 681.89
+          "c": 682.67
         }
       ],
       "ok": true
